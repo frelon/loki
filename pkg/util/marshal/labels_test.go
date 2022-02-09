@@ -4,11 +4,10 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/grafana/loki/pkg/loghttp"
+	"github.com/frelon/loki/v2/pkg/loghttp"
 )
 
 func TestNewLabelSet(t *testing.T) {
-
 	tests := []struct {
 		lbs     string
 		want    loghttp.LabelSet

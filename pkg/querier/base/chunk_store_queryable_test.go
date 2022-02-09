@@ -11,8 +11,8 @@ import (
 	"github.com/prometheus/prometheus/model/labels"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
-	promchunk "github.com/grafana/loki/pkg/storage/chunk/encoding"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	promchunk "github.com/frelon/loki/v2/pkg/storage/chunk/encoding"
 )
 
 // Make sure that chunkSeries implements SeriesWithChunks

@@ -13,9 +13,9 @@ import (
 	"github.com/pkg/errors"
 	"github.com/prometheus/common/model"
 
-	"github.com/grafana/loki/clients/pkg/promtail/api"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/api"
 
-	"github.com/grafana/loki/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logproto"
 )
 
 const (
@@ -143,7 +143,7 @@ func (m *multilineStage) Run(in chan Entry) chan Entry {
 	return out
 }
 
-func (m *multilineStage) runMultiline(in chan Entry, out chan Entry, wg *sync.WaitGroup) {
+func (m *multilineStage) runMultiline(in, out chan Entry, wg *sync.WaitGroup) {
 	defer wg.Done()
 
 	state := &multilineState{

@@ -9,12 +9,12 @@ import (
 	"github.com/prometheus/prometheus/promql/parser"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/querier/astmapper"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/querier/astmapper"
 )
 
 func TestSelect(t *testing.T) {
-	var testExpr = []struct {
+	testExpr := []struct {
 		name    string
 		querier *ShardedQuerier
 		fn      func(*testing.T, *ShardedQuerier)
@@ -36,7 +36,6 @@ func TestSelect(t *testing.T) {
 				nil,
 			)),
 			fn: func(t *testing.T, q *ShardedQuerier) {
-
 				expected := &PrometheusResponse{
 					Status: "success",
 					Data: PrometheusData{
@@ -211,7 +210,6 @@ func TestSelectConcurrent(t *testing.T) {
 			err: errors.Errorf("some-err"),
 		},
 	} {
-
 		t.Run(c.name, func(t *testing.T) {
 			// each request will return a single samplestream
 			querier := mkQuerier(mockHandlerWith(&PrometheusResponse{
@@ -262,7 +260,6 @@ func exactMatch(k, v string) *labels.Matcher {
 		panic(err)
 	}
 	return m
-
 }
 
 func mkQuerier(handler Handler) *ShardedQuerier {

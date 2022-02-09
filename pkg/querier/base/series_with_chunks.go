@@ -3,7 +3,7 @@ package base
 import (
 	"github.com/prometheus/prometheus/storage"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
 )
 
 // SeriesWithChunks extends storage.Series interface with direct access to Cortex chunks.

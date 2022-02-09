@@ -7,7 +7,7 @@ import (
 	"github.com/prometheus/prometheus/model/labels"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/logqlmodel"
+	"github.com/frelon/loki/v2/pkg/logqlmodel"
 )
 
 func TestNoopPipeline(t *testing.T) {

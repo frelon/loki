@@ -10,8 +10,8 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/model"
 
-	"github.com/grafana/loki/pkg/storage/stores/shipper/compactor/retention"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/storage/stores/shipper/compactor/retention"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 const (
@@ -213,6 +213,6 @@ func (d *DeleteRequestsManager) IntervalMayHaveExpiredChunks(_ model.Interval, u
 	return len(d.deleteRequestsToProcess) != 0
 }
 
-func (d *DeleteRequestsManager) DropFromIndex(_ retention.ChunkEntry, _ model.Time, _ model.Time) bool {
+func (d *DeleteRequestsManager) DropFromIndex(_ retention.ChunkEntry, _, _ model.Time) bool {
 	return false
 }

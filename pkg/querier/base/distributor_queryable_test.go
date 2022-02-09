@@ -14,13 +14,13 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaveworks/common/user"
 
-	"github.com/grafana/loki/pkg/ingester/client"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/prom1/storage/metric"
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/storage/chunk/encoding"
-	"github.com/grafana/loki/pkg/util"
-	"github.com/grafana/loki/pkg/util/chunkcompat"
+	"github.com/frelon/loki/v2/pkg/ingester/client"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/prom1/storage/metric"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/encoding"
+	"github.com/frelon/loki/v2/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util/chunkcompat"
 )
 
 const (
@@ -305,6 +305,7 @@ func verifySeries(t *testing.T, series storage.Series, l labels.Labels, samples 
 	require.False(t, it.Next())
 	require.Nil(t, it.Err())
 }
+
 func TestDistributorQuerier_LabelNames(t *testing.T) {
 	someMatchers := []*labels.Matcher{labels.MustNewMatcher(labels.MatchEqual, "foo", "bar")}
 	labelNames := []string{"foo", "job"}

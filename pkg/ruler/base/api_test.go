@@ -17,7 +17,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaveworks/common/user"
 
-	"github.com/grafana/loki/pkg/ruler/rulespb"
+	"github.com/frelon/loki/v2/pkg/ruler/rulespb"
 )
 
 func TestRuler_rules(t *testing.T) {
@@ -403,7 +403,7 @@ rules:
 	}
 }
 
-func requestFor(t *testing.T, method string, url string, body io.Reader, userID string) *http.Request {
+func requestFor(t *testing.T, method, url string, body io.Reader, userID string) *http.Request {
 	t.Helper()
 
 	req := httptest.NewRequest(method, url, body)

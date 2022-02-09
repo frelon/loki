@@ -13,7 +13,7 @@ import (
 	"github.com/prometheus/common/model"
 	"github.com/stretchr/testify/assert"
 
-	util_log "github.com/grafana/loki/pkg/util/log"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 var testLabelsYaml = `
@@ -35,6 +35,7 @@ var testLabelsLogLine = `
 	"level" : "WARN"
 }
 `
+
 var testLabelsLogLineWithMissingKey = `
 {
 	"time":"2012-11-01T22:08:41+00:00",

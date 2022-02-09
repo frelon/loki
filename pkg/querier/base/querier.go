@@ -20,16 +20,16 @@ import (
 	"github.com/thanos-io/thanos/pkg/strutil"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/grafana/loki/pkg/querier/batch"
-	"github.com/grafana/loki/pkg/querier/chunkstore"
-	"github.com/grafana/loki/pkg/querier/iterators"
-	"github.com/grafana/loki/pkg/querier/lazyquery"
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/tenant"
-	"github.com/grafana/loki/pkg/util"
-	"github.com/grafana/loki/pkg/util/limiter"
-	"github.com/grafana/loki/pkg/util/spanlogger"
-	"github.com/grafana/loki/pkg/util/validation"
+	"github.com/frelon/loki/v2/pkg/querier/batch"
+	"github.com/frelon/loki/v2/pkg/querier/chunkstore"
+	"github.com/frelon/loki/v2/pkg/querier/iterators"
+	"github.com/frelon/loki/v2/pkg/querier/lazyquery"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/tenant"
+	"github.com/frelon/loki/v2/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util/limiter"
+	"github.com/frelon/loki/v2/pkg/util/spanlogger"
+	"github.com/frelon/loki/v2/pkg/util/validation"
 )
 
 // Config contains the configuration require to create a querier
@@ -157,7 +157,7 @@ func New(cfg Config, limits *validation.Overrides, distributor Distributor, stor
 	queryable := NewQueryable(distributorQueryable, ns, iteratorFunc, cfg, limits)
 	exemplarQueryable := newDistributorExemplarQueryable(distributor)
 
-	lazyQueryable := storage.QueryableFunc(func(ctx context.Context, mint int64, maxt int64) (storage.Querier, error) {
+	lazyQueryable := storage.QueryableFunc(func(ctx context.Context, mint, maxt int64) (storage.Querier, error) {
 		querier, err := queryable.Querier(ctx, mint, maxt)
 		if err != nil {
 			return nil, err

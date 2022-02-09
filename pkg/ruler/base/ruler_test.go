@@ -41,17 +41,17 @@ import (
 	"google.golang.org/grpc"
 	"gopkg.in/yaml.v2"
 
-	"github.com/grafana/loki/pkg/logproto"
-	querier "github.com/grafana/loki/pkg/querier/base"
-	"github.com/grafana/loki/pkg/ruler/rulespb"
-	"github.com/grafana/loki/pkg/ruler/rulestore"
-	"github.com/grafana/loki/pkg/ruler/rulestore/objectclient"
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/storage/chunk/hedging"
-	chunk_storage "github.com/grafana/loki/pkg/storage/chunk/storage"
-	"github.com/grafana/loki/pkg/tenant"
-	"github.com/grafana/loki/pkg/util"
-	"github.com/grafana/loki/pkg/util/validation"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	querier "github.com/frelon/loki/v2/pkg/querier/base"
+	"github.com/frelon/loki/v2/pkg/ruler/rulespb"
+	"github.com/frelon/loki/v2/pkg/ruler/rulestore"
+	"github.com/frelon/loki/v2/pkg/ruler/rulestore/objectclient"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/hedging"
+	chunk_storage "github.com/frelon/loki/v2/pkg/storage/chunk/storage"
+	"github.com/frelon/loki/v2/pkg/tenant"
+	"github.com/frelon/loki/v2/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util/validation"
 )
 
 func defaultRulerConfig(t testing.TB, store rulestore.RuleStore) Config {
@@ -883,7 +883,7 @@ func TestSharding(t *testing.T) {
 			kvStore, closer := consul.NewInMemoryClient(ring.GetCodec(), log.NewNopLogger(), nil)
 			t.Cleanup(func() { assert.NoError(t, closer.Close()) })
 
-			setupRuler := func(id string, host string, port int, forceRing *ring.Ring) *Ruler {
+			setupRuler := func(id, host string, port int, forceRing *ring.Ring) *Ruler {
 				cfg := Config{
 					StoreConfig:      RuleStoreConfig{mock: newMockRuleStore(allRules)},
 					EnableSharding:   tc.sharding,

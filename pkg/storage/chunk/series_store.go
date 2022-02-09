@@ -13,11 +13,11 @@ import (
 	"github.com/prometheus/common/model"
 	"github.com/prometheus/prometheus/model/labels"
 
-	"github.com/grafana/loki/pkg/querier/astmapper"
-	"github.com/grafana/loki/pkg/storage/chunk/cache"
-	"github.com/grafana/loki/pkg/util"
-	util_log "github.com/grafana/loki/pkg/util/log"
-	"github.com/grafana/loki/pkg/util/spanlogger"
+	"github.com/frelon/loki/v2/pkg/querier/astmapper"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/cache"
+	"github.com/frelon/loki/v2/pkg/util"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/util/spanlogger"
 )
 
 // CardinalityExceededError is returned when the user reads a row that
@@ -228,7 +228,8 @@ func (c *seriesStore) LabelNamesForMetricName(ctx context.Context, userID string
 
 	return labelNames, nil
 }
-func (c *seriesStore) LabelValuesForMetricName(ctx context.Context, userID string, from, through model.Time, metricName string, labelName string, matchers ...*labels.Matcher) ([]string, error) {
+
+func (c *seriesStore) LabelValuesForMetricName(ctx context.Context, userID string, from, through model.Time, metricName, labelName string, matchers ...*labels.Matcher) ([]string, error) {
 	log, ctx := spanlogger.New(ctx, "SeriesStore.LabelValuesForMetricName")
 	defer log.Span.Finish()
 

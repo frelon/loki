@@ -13,10 +13,10 @@ import (
 	"github.com/prometheus/prometheus/promql"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/grafana/loki/pkg/iter"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logqlmodel"
-	"github.com/grafana/loki/pkg/util"
+	"github.com/frelon/loki/v2/pkg/iter"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logqlmodel"
+	"github.com/frelon/loki/v2/pkg/util"
 )
 
 type QueryRangeType string
@@ -652,7 +652,7 @@ func matchingSignature(sample promql.Sample, opts *BinOpOptions) uint64 {
 
 func vectorBinop(op string, opts *BinOpOptions, lhs, rhs promql.Vector, lsigs, rsigs []uint64) (promql.Vector, error) {
 	// handle one-to-one or many-to-one matching
-	//for one-to-many, swap
+	// for one-to-many, swap
 	if opts != nil && opts.VectorMatching.Card == CardOneToMany {
 		lhs, rhs = rhs, lhs
 		lsigs, rsigs = rsigs, lsigs

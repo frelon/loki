@@ -6,7 +6,7 @@ import (
 	"github.com/go-kit/log/level"
 	"github.com/prometheus/prometheus/promql/parser"
 
-	util_log "github.com/grafana/loki/pkg/util/log"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 var summableAggregates = map[parser.ItemType]struct{}{
@@ -93,12 +93,10 @@ func CanParallelize(node parser.Node) bool {
 		level.Error(util_log.Logger).Log("err", fmt.Sprintf("CanParallel: unhandled node type %T", node)) //lint:ignore faillint allow global logger for now
 		return false
 	}
-
 }
 
 // ParallelizableFunc ensures that a promql function can be part of a parallel query.
 func ParallelizableFunc(f parser.Function) bool {
-
 	for _, v := range nonParallelFuncs {
 		if v == f.Name {
 			return false

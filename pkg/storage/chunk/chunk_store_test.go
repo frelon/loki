@@ -19,9 +19,9 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaveworks/common/test"
 
-	"github.com/grafana/loki/pkg/storage/chunk/cache"
-	"github.com/grafana/loki/pkg/storage/chunk/encoding"
-	"github.com/grafana/loki/pkg/util/validation"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/cache"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/encoding"
+	"github.com/frelon/loki/v2/pkg/util/validation"
 )
 
 type configFactory func() StoreConfig
@@ -546,7 +546,7 @@ func TestChunkStore_getMetricNameChunks(t *testing.T) {
 }
 
 // nolint
-func mustNewLabelMatcher(matchType labels.MatchType, name string, value string) *labels.Matcher {
+func mustNewLabelMatcher(matchType labels.MatchType, name, value string) *labels.Matcher {
 	return labels.MustNewMatcher(matchType, name, value)
 }
 

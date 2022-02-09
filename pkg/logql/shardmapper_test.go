@@ -8,7 +8,7 @@ import (
 	"github.com/prometheus/prometheus/model/labels"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/querier/astmapper"
+	"github.com/frelon/loki/v2/pkg/querier/astmapper"
 )
 
 func TestShardedStringer(t *testing.T) {

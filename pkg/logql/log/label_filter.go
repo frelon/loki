@@ -10,7 +10,7 @@ import (
 	"github.com/dustin/go-humanize"
 	"github.com/prometheus/prometheus/model/labels"
 
-	"github.com/grafana/loki/pkg/logqlmodel"
+	"github.com/frelon/loki/v2/pkg/logqlmodel"
 )
 
 var (
@@ -69,7 +69,7 @@ type BinaryLabelFilter struct {
 }
 
 // NewAndLabelFilter creates a new LabelFilterer from a and binary operation of two LabelFilterer.
-func NewAndLabelFilter(left LabelFilterer, right LabelFilterer) *BinaryLabelFilter {
+func NewAndLabelFilter(left, right LabelFilterer) *BinaryLabelFilter {
 	return &BinaryLabelFilter{
 		Left:  left,
 		Right: right,
@@ -78,7 +78,7 @@ func NewAndLabelFilter(left LabelFilterer, right LabelFilterer) *BinaryLabelFilt
 }
 
 // NewOrLabelFilter creates a new LabelFilterer from a or binary operation of two LabelFilterer.
-func NewOrLabelFilter(left LabelFilterer, right LabelFilterer) *BinaryLabelFilter {
+func NewOrLabelFilter(left, right LabelFilterer) *BinaryLabelFilter {
 	return &BinaryLabelFilter{
 		Left:  left,
 		Right: right,
@@ -309,7 +309,6 @@ func (n *NumericLabelFilter) Process(line []byte, lbs *LabelsBuilder) ([]byte, b
 		lbs.SetErr(errLabelFilter)
 		return line, true
 	}
-
 }
 
 func (n *NumericLabelFilter) RequiredLabelNames() []string {

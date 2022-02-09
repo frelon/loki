@@ -12,7 +12,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
 
-	"github.com/grafana/loki/pkg/util/flagext"
+	"github.com/frelon/loki/v2/pkg/util/flagext"
 )
 
 const (
@@ -23,9 +23,7 @@ const (
 	ErrDropStageInvalidByteSize = "drop stage failed to parse longer_than to bytes: %v"
 )
 
-var (
-	defaultDropReason = "drop_stage"
-)
+var defaultDropReason = "drop_stage"
 
 // DropConfig contains the configuration for a dropStage
 type DropConfig struct {

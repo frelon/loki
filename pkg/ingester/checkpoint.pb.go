@@ -6,25 +6,30 @@ package ingester
 import (
 	bytes "bytes"
 	fmt "fmt"
-	_ "github.com/gogo/protobuf/gogoproto"
-	proto "github.com/gogo/protobuf/proto"
-	_ "github.com/gogo/protobuf/types"
-	github_com_gogo_protobuf_types "github.com/gogo/protobuf/types"
-	_ "github.com/grafana/loki/pkg/logproto"
-	github_com_grafana_loki_pkg_logproto "github.com/grafana/loki/pkg/logproto"
 	io "io"
 	math "math"
 	math_bits "math/bits"
 	reflect "reflect"
 	strings "strings"
 	time "time"
+
+	_ "github.com/gogo/protobuf/gogoproto"
+	proto "github.com/gogo/protobuf/proto"
+	_ "github.com/gogo/protobuf/types"
+	github_com_gogo_protobuf_types "github.com/gogo/protobuf/types"
+
+	_ "github.com/frelon/loki/v2/pkg/logproto"
+
+	github_com_frelon_loki_pkg_logproto "github.com/grafana/loki/v2/pkg/logproto"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
-var _ = proto.Marshal
-var _ = fmt.Errorf
-var _ = math.Inf
-var _ = time.Kitchen
+var (
+	_ = proto.Marshal
+	_ = fmt.Errorf
+	_ = math.Inf
+	_ = time.Kitchen
+)
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the proto package it is being compiled against.
@@ -52,9 +57,11 @@ func (*Chunk) ProtoMessage() {}
 func (*Chunk) Descriptor() ([]byte, []int) {
 	return fileDescriptor_00f4b7152db9bdb5, []int{0}
 }
+
 func (m *Chunk) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *Chunk) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_Chunk.Marshal(b, m, deterministic)
@@ -67,12 +74,15 @@ func (m *Chunk) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
+
 func (m *Chunk) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_Chunk.Merge(m, src)
 }
+
 func (m *Chunk) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *Chunk) XXX_DiscardUnknown() {
 	xxx_messageInfo_Chunk.DiscardUnknown(m)
 }
@@ -139,9 +149,9 @@ func (m *Chunk) GetHead() []byte {
 type Series struct {
 	UserID string `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	// post mapped fingerprint is necessary because subsequent wal writes will reference it.
-	Fingerprint uint64                                              `protobuf:"varint,2,opt,name=fingerprint,proto3" json:"fingerprint,omitempty"`
-	Labels      []github_com_grafana_loki_pkg_logproto.LabelAdapter `protobuf:"bytes,3,rep,name=labels,proto3,customtype=github.com/grafana/loki/pkg/logproto.LabelAdapter" json:"labels"`
-	Chunks      []Chunk                                             `protobuf:"bytes,4,rep,name=chunks,proto3" json:"chunks"`
+	Fingerprint uint64                                             `protobuf:"varint,2,opt,name=fingerprint,proto3" json:"fingerprint,omitempty"`
+	Labels      []github_com_frelon_loki_pkg_logproto.LabelAdapter `protobuf:"bytes,3,rep,name=labels,proto3,customtype=github.com/grafana/loki/v2/pkg/logproto.LabelAdapter" json:"labels"`
+	Chunks      []Chunk                                            `protobuf:"bytes,4,rep,name=chunks,proto3" json:"chunks"`
 	// most recently pushed timestamp.
 	To time.Time `protobuf:"bytes,5,opt,name=to,proto3,stdtime" json:"to"`
 	// most recently pushed line.
@@ -158,9 +168,11 @@ func (*Series) ProtoMessage() {}
 func (*Series) Descriptor() ([]byte, []int) {
 	return fileDescriptor_00f4b7152db9bdb5, []int{1}
 }
+
 func (m *Series) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *Series) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_Series.Marshal(b, m, deterministic)
@@ -173,12 +185,15 @@ func (m *Series) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
+
 func (m *Series) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_Series.Merge(m, src)
 }
+
 func (m *Series) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *Series) XXX_DiscardUnknown() {
 	xxx_messageInfo_Series.DiscardUnknown(m)
 }
@@ -323,6 +338,7 @@ func (this *Chunk) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *Series) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -378,6 +394,7 @@ func (this *Series) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *Chunk) GoString() string {
 	if this == nil {
 		return "nil"
@@ -395,6 +412,7 @@ func (this *Chunk) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *Series) GoString() string {
 	if this == nil {
 		return "nil"
@@ -418,6 +436,7 @@ func (this *Series) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func valueToGoStringCheckpoint(v interface{}, typ string) string {
 	rv := reflect.ValueOf(v)
 	if rv.IsNil() {
@@ -426,6 +445,7 @@ func valueToGoStringCheckpoint(v interface{}, typ string) string {
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("func(v %v) *%v { return &v } ( %#v )", typ, typ, pv)
 }
+
 func (m *Chunk) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -617,6 +637,7 @@ func encodeVarintCheckpoint(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
+
 func (m *Chunk) Size() (n int) {
 	if m == nil {
 		return 0
@@ -690,14 +711,17 @@ func (m *Series) Size() (n int) {
 func sovCheckpoint(x uint64) (n int) {
 	return (math_bits.Len64(x|1) + 6) / 7
 }
+
 func sozCheckpoint(x uint64) (n int) {
 	return sovCheckpoint(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
+
 func (this *Chunk) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&Chunk{`,
+	s := strings.Join([]string{
+		`&Chunk{`,
 		`From:` + strings.Replace(strings.Replace(fmt.Sprintf("%v", this.From), "Timestamp", "types.Timestamp", 1), `&`, ``, 1) + `,`,
 		`To:` + strings.Replace(strings.Replace(fmt.Sprintf("%v", this.To), "Timestamp", "types.Timestamp", 1), `&`, ``, 1) + `,`,
 		`FlushedAt:` + strings.Replace(strings.Replace(fmt.Sprintf("%v", this.FlushedAt), "Timestamp", "types.Timestamp", 1), `&`, ``, 1) + `,`,
@@ -710,6 +734,7 @@ func (this *Chunk) String() string {
 	}, "")
 	return s
 }
+
 func (this *Series) String() string {
 	if this == nil {
 		return "nil"
@@ -719,7 +744,8 @@ func (this *Series) String() string {
 		repeatedStringForChunks += strings.Replace(strings.Replace(f.String(), "Chunk", "Chunk", 1), `&`, ``, 1) + ","
 	}
 	repeatedStringForChunks += "}"
-	s := strings.Join([]string{`&Series{`,
+	s := strings.Join([]string{
+		`&Series{`,
 		`UserID:` + fmt.Sprintf("%v", this.UserID) + `,`,
 		`Fingerprint:` + fmt.Sprintf("%v", this.Fingerprint) + `,`,
 		`Labels:` + fmt.Sprintf("%v", this.Labels) + `,`,
@@ -732,6 +758,7 @@ func (this *Series) String() string {
 	}, "")
 	return s
 }
+
 func valueToStringCheckpoint(v interface{}) string {
 	rv := reflect.ValueOf(v)
 	if rv.IsNil() {
@@ -740,6 +767,7 @@ func valueToStringCheckpoint(v interface{}) string {
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("*%v", pv)
 }
+
 func (m *Chunk) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -1033,6 +1061,7 @@ func (m *Chunk) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *Series) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -1322,6 +1351,7 @@ func (m *Series) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func skipCheckpoint(dAtA []byte) (n int, err error) {
 	l := len(dAtA)
 	iNdEx := 0

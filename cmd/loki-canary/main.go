@@ -14,10 +14,10 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/prometheus/common/version"
 
-	"github.com/grafana/loki/pkg/canary/comparator"
-	"github.com/grafana/loki/pkg/canary/reader"
-	"github.com/grafana/loki/pkg/canary/writer"
-	_ "github.com/grafana/loki/pkg/util/build"
+	"github.com/frelon/loki/v2/pkg/canary/comparator"
+	"github.com/frelon/loki/v2/pkg/canary/reader"
+	"github.com/frelon/loki/v2/pkg/canary/writer"
+	_ "github.com/frelon/loki/v2/pkg/util/build"
 )
 
 type canary struct {
@@ -29,7 +29,6 @@ type canary struct {
 }
 
 func main() {
-
 	lName := flag.String("labelname", "name", "The label name for this instance of loki-canary to use in the log selector")
 	lVal := flag.String("labelvalue", "loki-canary", "The unique label value for this instance of loki-canary to use in the log selector")
 	sName := flag.String("streamname", "stream", "The stream name for this instance of loki-canary to use in the log selector")

@@ -17,13 +17,13 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/prometheus/prometheus/model/labels"
 
-	"github.com/grafana/loki/pkg/loghttp"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logql"
-	"github.com/grafana/loki/pkg/util"
-	loki_util "github.com/grafana/loki/pkg/util"
-	"github.com/grafana/loki/pkg/util/unmarshal"
-	unmarshal2 "github.com/grafana/loki/pkg/util/unmarshal/legacy"
+	"github.com/frelon/loki/v2/pkg/loghttp"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logql"
+	"github.com/frelon/loki/v2/pkg/util"
+	loki_util "github.com/frelon/loki/v2/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util/unmarshal"
+	unmarshal2 "github.com/frelon/loki/v2/pkg/util/unmarshal/legacy"
 )
 
 var (

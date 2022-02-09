@@ -14,8 +14,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	lokiutil "github.com/grafana/loki/pkg/util"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	lokiutil "github.com/frelon/loki/v2/pkg/util"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 var testTimestampYaml = `
@@ -51,7 +51,7 @@ func TestTimestampPipeline(t *testing.T) {
 		t.Fatal(err)
 	}
 	out := processEntries(pl, newEntry(nil, nil, testTimestampLogLine, time.Now()))[0]
-	assert.Equal(t, time.Date(2012, 11, 01, 22, 8, 41, 0, time.FixedZone("", -4*60*60)).Unix(), out.Timestamp.Unix())
+	assert.Equal(t, time.Date(2012, 11, 0o1, 22, 8, 41, 0, time.FixedZone("", -4*60*60)).Unix(), out.Timestamp.Unix())
 }
 
 var (
@@ -115,7 +115,7 @@ func TestTimestampValidation(t *testing.T) {
 			},
 			err:          nil,
 			testString:   "2012-11-01T22:08:41-04:00",
-			expectedTime: time.Date(2012, 11, 01, 22, 8, 41, 0, time.FixedZone("", -4*60*60)),
+			expectedTime: time.Date(2012, 11, 0o1, 22, 8, 41, 0, time.FixedZone("", -4*60*60)),
 		},
 		"custom format with year": {
 			config: &TimestampConfig{
@@ -124,7 +124,7 @@ func TestTimestampValidation(t *testing.T) {
 			},
 			err:          nil,
 			testString:   "2009-01-01",
-			expectedTime: time.Date(2009, 01, 01, 00, 00, 00, 0, time.UTC),
+			expectedTime: time.Date(2009, 0o1, 0o1, 0o0, 0o0, 0o0, 0, time.UTC),
 		},
 		"custom format without year": {
 			config: &TimestampConfig{
@@ -170,7 +170,7 @@ func TestTimestampValidation(t *testing.T) {
 			},
 			err:          nil,
 			testString:   "2012-11-01T22:08:41-04:00",
-			expectedTime: time.Date(2012, 11, 01, 22, 8, 41, 0, time.FixedZone("", -4*60*60)),
+			expectedTime: time.Date(2012, 11, 0o1, 22, 8, 41, 0, time.FixedZone("", -4*60*60)),
 		},
 	}
 	for name, test := range tests {
@@ -213,7 +213,7 @@ func TestTimestampStage_Process(t *testing.T) {
 				"somethigelse": "notimportant",
 				"ts":           "2106-01-02T23:04:05-04:00",
 			},
-			time.Date(2106, 01, 02, 23, 04, 05, 0, time.FixedZone("", -4*60*60)),
+			time.Date(2106, 0o1, 0o2, 23, 0o4, 0o5, 0, time.FixedZone("", -4*60*60)),
 		},
 		"unix success": {
 			TimestampConfig{

@@ -3,9 +3,10 @@ package manifests_test
 import (
 	"testing"
 
-	lokiv1beta1 "github.com/grafana/loki/operator/api/v1beta1"
-	"github.com/grafana/loki/operator/internal/manifests"
 	"github.com/stretchr/testify/require"
+
+	lokiv1beta1 "github.com/frelon/loki/v2/operator/api/v1beta1"
+	"github.com/frelon/loki/v2/operator/internal/manifests"
 )
 
 func TestNewIndexGatewayStatefulSet_HasTemplateConfigHashAnnotation(t *testing.T) {

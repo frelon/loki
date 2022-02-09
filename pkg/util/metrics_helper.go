@@ -13,16 +13,14 @@ import (
 	"github.com/prometheus/prometheus/model/labels"
 	tsdb_errors "github.com/prometheus/prometheus/tsdb/errors"
 
-	util_log "github.com/grafana/loki/pkg/util/log"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
-var (
-	bytesBufferPool = sync.Pool{
-		New: func() interface{} {
-			return bytes.NewBuffer(nil)
-		},
-	}
-)
+var bytesBufferPool = sync.Pool{
+	New: func() interface{} {
+		return bytes.NewBuffer(nil)
+	},
+}
 
 // Data for single value (counter/gauge) with labels.
 type singleValueWithLabels struct {

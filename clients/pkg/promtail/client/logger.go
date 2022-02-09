@@ -12,7 +12,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"gopkg.in/yaml.v2"
 
-	"github.com/grafana/loki/clients/pkg/promtail/api"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/api"
 )
 
 var (

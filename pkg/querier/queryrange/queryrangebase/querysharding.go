@@ -13,15 +13,13 @@ import (
 	"github.com/prometheus/prometheus/promql"
 	"github.com/prometheus/prometheus/promql/parser"
 
-	"github.com/grafana/loki/pkg/querier/astmapper"
-	"github.com/grafana/loki/pkg/querier/lazyquery"
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/util"
+	"github.com/frelon/loki/v2/pkg/querier/astmapper"
+	"github.com/frelon/loki/v2/pkg/querier/lazyquery"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/util"
 )
 
-var (
-	errInvalidShardingRange = errors.New("Query does not fit in a single sharding configuration")
-)
+var errInvalidShardingRange = errors.New("Query does not fit in a single sharding configuration")
 
 // ShardingConfigs is a slice of chunk shard configs
 type ShardingConfigs []chunk.PeriodConfig
@@ -49,7 +47,6 @@ func (confs ShardingConfigs) ValidRange(start, end int64) (chunk.PeriodConfig, e
 // GetConf will extract a shardable config corresponding to a request and the shardingconfigs
 func (confs ShardingConfigs) GetConf(r Request) (chunk.PeriodConfig, error) {
 	conf, err := confs.ValidRange(r.GetStart(), r.GetEnd())
-
 	// query exists across multiple sharding configs
 	if err != nil {
 		return conf, err
@@ -127,7 +124,6 @@ func NewQueryShardMiddleware(
 			next: InstrumentMiddleware("sharding-bypass", metrics).Wrap(next),
 		}
 	})
-
 }
 
 type astMapperware struct {
@@ -183,7 +179,6 @@ func (ast *astMapperware) Do(ctx context.Context, r Request) (Response, error) {
 		),
 		strQuery,
 	)
-
 	if err != nil {
 		return nil, err
 	}
@@ -193,7 +188,6 @@ func (ast *astMapperware) Do(ctx context.Context, r Request) (Response, error) {
 	ast.mappedASTCounter.Inc()
 
 	return ast.next.Do(ctx, r.WithQuery(strMappedQuery))
-
 }
 
 type queryShard struct {
@@ -220,7 +214,6 @@ func (qs *queryShard) Do(ctx context.Context, r Request) (Response, error) {
 		util.TimeFromMillis(r.GetEnd()),
 		time.Duration(r.GetStep())*time.Millisecond,
 	)
-
 	if err != nil {
 		return nil, err
 	}
@@ -228,7 +221,6 @@ func (qs *queryShard) Do(ctx context.Context, r Request) (Response, error) {
 	extracted, err := FromResult(res)
 	if err != nil {
 		return nil, err
-
 	}
 	return &PrometheusResponse{
 		Status: StatusSuccess,

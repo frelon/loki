@@ -12,10 +12,10 @@ import (
 	"github.com/prometheus/prometheus/promql/parser"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/loghttp"
-	legacy "github.com/grafana/loki/pkg/loghttp/legacy"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logqlmodel"
+	"github.com/frelon/loki/v2/pkg/loghttp"
+	legacy "github.com/frelon/loki/v2/pkg/loghttp/legacy"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logqlmodel"
 )
 
 // covers responses from /loki/api/v1/query_range and /loki/api/v1/query
@@ -536,7 +536,7 @@ func Test_WriteSeriesResponseJSON(t *testing.T) {
 	}
 }
 
-func testJSONBytesEqual(t *testing.T, expected []byte, actual []byte, msg string, args ...interface{}) {
+func testJSONBytesEqual(t *testing.T, expected, actual []byte, msg string, args ...interface{}) {
 	var expectedValue map[string]interface{}
 	err := json.Unmarshal(expected, &expectedValue)
 	require.NoError(t, err)

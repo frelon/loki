@@ -5,11 +5,12 @@ import (
 	"context"
 	"sync"
 
-	"github.com/grafana/loki/operator/internal/external/k8s"
 	"k8s.io/apimachinery/pkg/api/meta"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/types"
 	"sigs.k8s.io/controller-runtime/pkg/client"
+
+	"github.com/frelon/loki/v2/operator/internal/external/k8s"
 )
 
 type FakeClient struct {
@@ -94,9 +95,8 @@ type FakeClient struct {
 	}
 	RESTMapperStub        func() meta.RESTMapper
 	rESTMapperMutex       sync.RWMutex
-	rESTMapperArgsForCall []struct {
-	}
-	rESTMapperReturns struct {
+	rESTMapperArgsForCall []struct{}
+	rESTMapperReturns     struct {
 		result1 meta.RESTMapper
 	}
 	rESTMapperReturnsOnCall map[int]struct {
@@ -104,9 +104,8 @@ type FakeClient struct {
 	}
 	SchemeStub        func() *runtime.Scheme
 	schemeMutex       sync.RWMutex
-	schemeArgsForCall []struct {
-	}
-	schemeReturns struct {
+	schemeArgsForCall []struct{}
+	schemeReturns     struct {
 		result1 *runtime.Scheme
 	}
 	schemeReturnsOnCall map[int]struct {
@@ -114,9 +113,8 @@ type FakeClient struct {
 	}
 	StatusStub        func() client.StatusWriter
 	statusMutex       sync.RWMutex
-	statusArgsForCall []struct {
-	}
-	statusReturns struct {
+	statusArgsForCall []struct{}
+	statusReturns     struct {
 		result1 client.StatusWriter
 	}
 	statusReturnsOnCall map[int]struct {
@@ -521,8 +519,7 @@ func (fake *FakeClient) PatchReturnsOnCall(i int, result1 error) {
 func (fake *FakeClient) RESTMapper() meta.RESTMapper {
 	fake.rESTMapperMutex.Lock()
 	ret, specificReturn := fake.rESTMapperReturnsOnCall[len(fake.rESTMapperArgsForCall)]
-	fake.rESTMapperArgsForCall = append(fake.rESTMapperArgsForCall, struct {
-	}{})
+	fake.rESTMapperArgsForCall = append(fake.rESTMapperArgsForCall, struct{}{})
 	stub := fake.RESTMapperStub
 	fakeReturns := fake.rESTMapperReturns
 	fake.recordInvocation("RESTMapper", []interface{}{})
@@ -574,8 +571,7 @@ func (fake *FakeClient) RESTMapperReturnsOnCall(i int, result1 meta.RESTMapper) 
 func (fake *FakeClient) Scheme() *runtime.Scheme {
 	fake.schemeMutex.Lock()
 	ret, specificReturn := fake.schemeReturnsOnCall[len(fake.schemeArgsForCall)]
-	fake.schemeArgsForCall = append(fake.schemeArgsForCall, struct {
-	}{})
+	fake.schemeArgsForCall = append(fake.schemeArgsForCall, struct{}{})
 	stub := fake.SchemeStub
 	fakeReturns := fake.schemeReturns
 	fake.recordInvocation("Scheme", []interface{}{})
@@ -627,8 +623,7 @@ func (fake *FakeClient) SchemeReturnsOnCall(i int, result1 *runtime.Scheme) {
 func (fake *FakeClient) Status() client.StatusWriter {
 	fake.statusMutex.Lock()
 	ret, specificReturn := fake.statusReturnsOnCall[len(fake.statusArgsForCall)]
-	fake.statusArgsForCall = append(fake.statusArgsForCall, struct {
-	}{})
+	fake.statusArgsForCall = append(fake.statusArgsForCall, struct{}{})
 	stub := fake.StatusStub
 	fakeReturns := fake.statusReturns
 	fake.recordInvocation("Status", []interface{}{})

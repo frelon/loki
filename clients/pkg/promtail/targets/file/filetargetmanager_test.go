@@ -16,16 +16,16 @@ import (
 	"github.com/prometheus/prometheus/discovery/targetgroup"
 	"gopkg.in/fsnotify.v1"
 
-	"github.com/grafana/loki/clients/pkg/promtail/api"
-	"github.com/grafana/loki/clients/pkg/promtail/client/fake"
-	"github.com/grafana/loki/clients/pkg/promtail/positions"
-	"github.com/grafana/loki/clients/pkg/promtail/scrapeconfig"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/api"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/client/fake"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/positions"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/scrapeconfig"
 )
 
 func newTestLogDirectories(t *testing.T) string {
 	tmpDir := t.TempDir()
 	logFileDir := filepath.Join(tmpDir, "logs")
-	err := os.MkdirAll(logFileDir, 0750)
+	err := os.MkdirAll(logFileDir, 0o750)
 	assert.NoError(t, err)
 	return logFileDir
 }
@@ -491,7 +491,7 @@ func TestDeadlockStartWatchingDuringSync(t *testing.T) {
 	go func() {
 		for i := 0; i < 10; i++ {
 			dir := filepath.Join(newLogDir, fmt.Sprintf("%d", i))
-			err := os.MkdirAll(dir, 0750)
+			err := os.MkdirAll(dir, 0o750)
 			assert.NoError(t, err)
 			time.Sleep(1 * time.Millisecond)
 			for j := 0; j < 100; j++ {

@@ -10,8 +10,9 @@ import (
 	"time"
 
 	"github.com/aws/aws-lambda-go/events"
-	"github.com/grafana/loki/pkg/logproto"
 	"github.com/prometheus/common/model"
+
+	"github.com/frelon/loki/v2/pkg/logproto"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
@@ -49,7 +50,6 @@ func getS3Object(ctx context.Context, labels map[string]string) (io.ReadCloser, 
 			Key:                 aws.String(labels["key"]),
 			ExpectedBucketOwner: aws.String(labels["bucketOwner"]),
 		})
-
 	if err != nil {
 		fmt.Println("Failed to get object %s from bucket %s on account %s", labels["key"], labels["bucket"], labels["bucketOwner"])
 		return nil, err
@@ -93,7 +93,6 @@ func parseS3Log(ctx context.Context, b *batch, labels map[string]string, obj io.
 }
 
 func getLabels(record events.S3EventRecord) (map[string]string, error) {
-
 	labels := make(map[string]string)
 
 	labels["key"] = record.S3.Object.Key
@@ -112,7 +111,6 @@ func getLabels(record events.S3EventRecord) (map[string]string, error) {
 }
 
 func processS3Event(ctx context.Context, ev *events.S3Event) error {
-
 	batch, _ := newBatch(ctx)
 
 	for _, record := range ev.Records {

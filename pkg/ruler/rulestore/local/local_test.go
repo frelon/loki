@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"gopkg.in/yaml.v3"
 
-	"github.com/grafana/loki/pkg/ruler/rulespb"
+	"github.com/frelon/loki/v2/pkg/ruler/rulespb"
 )
 
 func TestClient_LoadAllRuleGroups(t *testing.T) {
@@ -44,18 +44,18 @@ func TestClient_LoadAllRuleGroups(t *testing.T) {
 	b, err := yaml.Marshal(ruleGroups)
 	require.NoError(t, err)
 
-	err = os.MkdirAll(path.Join(dir, user1), 0777)
+	err = os.MkdirAll(path.Join(dir, user1), 0o777)
 	require.NoError(t, err)
 
 	// Link second user to first.
 	err = os.Symlink(user1, path.Join(dir, user2))
 	require.NoError(t, err)
 
-	err = ioutil.WriteFile(path.Join(dir, user1, namespace1), b, 0777)
+	err = ioutil.WriteFile(path.Join(dir, user1, namespace1), b, 0o777)
 	require.NoError(t, err)
 
 	const ignoredDir = "ignored-dir"
-	err = os.Mkdir(path.Join(dir, user1, ignoredDir), os.ModeDir|0644)
+	err = os.Mkdir(path.Join(dir, user1, ignoredDir), os.ModeDir|0o644)
 	require.NoError(t, err)
 
 	err = os.Symlink(ignoredDir, path.Join(dir, user1, "link-to-dir"))

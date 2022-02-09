@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/grafana/loki/pkg/loghttp"
-	"github.com/grafana/loki/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/loghttp"
+	"github.com/frelon/loki/v2/pkg/logproto"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -168,7 +168,6 @@ func TestFileClient_ListLabelValues(t *testing.T) {
 		Data:   []string{defaultLabelValue},
 		Status: loghttp.QueryStatusSuccess,
 	}, values)
-
 }
 
 func TestFileClient_Series(t *testing.T) {

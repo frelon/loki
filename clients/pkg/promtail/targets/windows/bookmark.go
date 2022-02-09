@@ -9,7 +9,7 @@ import (
 
 	"github.com/spf13/afero"
 
-	"github.com/grafana/loki/clients/pkg/promtail/targets/windows/win_eventlog"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/targets/windows/win_eventlog"
 )
 
 type bookMark struct {
@@ -48,7 +48,7 @@ func newBookMark(path string) (*bookMark, error) {
 		return nil, err
 	}
 	// otherwise open the current one.
-	file, err := fs.OpenFile(path, os.O_RDWR, 0666)
+	file, err := fs.OpenFile(path, os.O_RDWR, 0o666)
 	if err != nil {
 		return nil, err
 	}

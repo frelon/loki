@@ -11,9 +11,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/iter"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logql/log"
+	"github.com/frelon/loki/v2/pkg/iter"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logql/log"
 )
 
 func iterEq(t *testing.T, exp []entry, got iter.EntryIterator) {
@@ -268,7 +268,7 @@ func BenchmarkHeadBlockWrites(b *testing.B) {
 	// unordered, unordered
 
 	// current default block size of 256kb with 75b avg log lines =~ 5.2k lines/block
-	var nWrites = (256 << 10) / 50
+	nWrites := (256 << 10) / 50
 
 	headBlockFn := func() func(int64, string) {
 		hb := &headBlock{}
@@ -449,7 +449,6 @@ func BenchmarkUnorderedRead(b *testing.B) {
 			})
 		}
 	})
-
 }
 
 func TestUnorderedIteratorCountsAllEntries(t *testing.T) {
@@ -563,7 +562,6 @@ func TestReorder(t *testing.T) {
 
 			require.Equal(t, exp, b)
 		})
-
 	}
 }
 

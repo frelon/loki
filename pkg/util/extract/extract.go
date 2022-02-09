@@ -6,12 +6,10 @@ import (
 	"github.com/prometheus/common/model"
 	"github.com/prometheus/prometheus/model/labels"
 
-	"github.com/grafana/loki/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logproto"
 )
 
-var (
-	errNoMetricNameLabel = fmt.Errorf("No metric name label")
-)
+var errNoMetricNameLabel = fmt.Errorf("No metric name label")
 
 // MetricNameMatcherFromMatchers extracts the metric name from a set of matchers
 func MetricNameMatcherFromMatchers(matchers []*labels.Matcher) (*labels.Matcher, []*labels.Matcher, bool) {

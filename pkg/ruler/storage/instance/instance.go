@@ -26,18 +26,16 @@ import (
 	"github.com/prometheus/prometheus/storage/remote"
 	"gopkg.in/yaml.v2"
 
-	"github.com/grafana/loki/pkg/ruler/storage/util"
-	"github.com/grafana/loki/pkg/ruler/storage/wal"
-	"github.com/grafana/loki/pkg/util/build"
+	"github.com/frelon/loki/v2/pkg/ruler/storage/util"
+	"github.com/frelon/loki/v2/pkg/ruler/storage/wal"
+	"github.com/frelon/loki/v2/pkg/util/build"
 )
 
 func init() {
 	remote.UserAgent = fmt.Sprintf("LokiRulerWAL/%s", build.Version)
 }
 
-var (
-	remoteWriteMetricName = "queue_highest_sent_timestamp_seconds"
-)
+var remoteWriteMetricName = "queue_highest_sent_timestamp_seconds"
 
 // Default configuration values
 var (

@@ -13,12 +13,12 @@ import (
 	"github.com/prometheus/common/version"
 	"gopkg.in/alecthomas/kingpin.v2"
 
-	"github.com/grafana/loki/pkg/logcli/client"
-	"github.com/grafana/loki/pkg/logcli/labelquery"
-	"github.com/grafana/loki/pkg/logcli/output"
-	"github.com/grafana/loki/pkg/logcli/query"
-	"github.com/grafana/loki/pkg/logcli/seriesquery"
-	_ "github.com/grafana/loki/pkg/util/build"
+	"github.com/frelon/loki/v2/pkg/logcli/client"
+	"github.com/frelon/loki/v2/pkg/logcli/labelquery"
+	"github.com/frelon/loki/v2/pkg/logcli/output"
+	"github.com/frelon/loki/v2/pkg/logcli/query"
+	"github.com/frelon/loki/v2/pkg/logcli/seriesquery"
+	_ "github.com/frelon/loki/v2/pkg/util/build"
 )
 
 var (
@@ -217,7 +217,6 @@ func main() {
 }
 
 func newQueryClient(app *kingpin.Application) client.Client {
-
 	client := &client.DefaultClient{
 		TLSConfig: config.TLSConfig{},
 	}
@@ -256,7 +255,6 @@ func newLabelQuery(cmd *kingpin.CmdClause) *labelquery.LabelQuery {
 
 	// executed after all command flags are parsed
 	cmd.Action(func(c *kingpin.ParseContext) error {
-
 		defaultEnd := time.Now()
 		defaultStart := defaultEnd.Add(-since)
 
@@ -284,7 +282,6 @@ func newSeriesQuery(cmd *kingpin.CmdClause) *seriesquery.SeriesQuery {
 
 	// executed after all command flags are parsed
 	cmd.Action(func(c *kingpin.ParseContext) error {
-
 		defaultEnd := time.Now()
 		defaultStart := defaultEnd.Add(-since)
 
@@ -312,7 +309,6 @@ func newQuery(instant bool, cmd *kingpin.CmdClause) *query.Query {
 
 	// executed after all command flags are parsed
 	cmd.Action(func(c *kingpin.ParseContext) error {
-
 		if instant {
 			q.SetInstant(mustParse(now, time.Now()))
 		} else {
@@ -358,7 +354,6 @@ func mustParse(t string, defaultTime time.Time) time.Time {
 	}
 
 	ret, err := time.Parse(time.RFC3339Nano, t)
-
 	if err != nil {
 		log.Fatalf("Unable to parse time %v", err)
 	}
@@ -368,7 +363,7 @@ func mustParse(t string, defaultTime time.Time) time.Time {
 
 // This method is to duplicate the same logic of `step` value from `start` and `end`
 // done on the loki server side.
-// https://github.com/grafana/loki/blob/main/pkg/loghttp/params.go
+// https://github.com/frelon/loki/v2/blob/main/pkg/loghttp/params.go
 func defaultQueryRangeStep(start, end time.Time) time.Duration {
 	step := int(math.Max(math.Floor(end.Sub(start).Seconds()/250), 1))
 	return time.Duration(step) * time.Second

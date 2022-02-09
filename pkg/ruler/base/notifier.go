@@ -19,7 +19,7 @@ import (
 	"github.com/prometheus/prometheus/discovery/dns"
 	"github.com/prometheus/prometheus/notifier"
 
-	"github.com/grafana/loki/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util"
 )
 
 type NotifierConfig struct {
@@ -147,7 +147,6 @@ func amConfigFromURL(rulerConfig *Config, url *url.URL, apiVersion config.Alertm
 				Port:            0, // Ignored, because of SRV.
 			},
 		}
-
 	} else {
 		sdConfig = discovery.Configs{
 			discovery.StaticConfig{

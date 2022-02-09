@@ -11,7 +11,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/stretchr/testify/assert"
 
-	util_log "github.com/grafana/loki/pkg/util/log"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 var testOutputYaml = `
@@ -33,6 +33,7 @@ var testOutputLogLine = `
 	"message" : "this is a log line"
 }
 `
+
 var testOutputLogLineWithMissingKey = `
 {
 	"time":"2012-11-01T22:08:41+00:00",

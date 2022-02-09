@@ -12,10 +12,10 @@ import (
 	"google.golang.org/api/option"
 	"google.golang.org/grpc"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/storage/chunk/hedging"
-	"github.com/grafana/loki/pkg/storage/chunk/objectclient"
-	"github.com/grafana/loki/pkg/storage/chunk/testutils"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/hedging"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/objectclient"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/testutils"
 )
 
 const (

@@ -19,7 +19,7 @@ import (
 	"github.com/sony/gobreaker"
 	"github.com/thanos-io/thanos/pkg/discovery/dns"
 
-	util_log "github.com/grafana/loki/pkg/util/log"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 // MemcachedClient interface exists for mocking memcacheClient.
@@ -159,7 +159,7 @@ func NewMemcachedClient(cfg MemcachedClientConfig, name string, r prometheus.Reg
 	return newClient
 }
 
-func (c *memcachedClient) circuitBreakerStateChange(name string, from gobreaker.State, to gobreaker.State) {
+func (c *memcachedClient) circuitBreakerStateChange(name string, from, to gobreaker.State) {
 	level.Info(c.logger).Log("msg", "circuit-breaker state change", "name", name, "from-state", from, "to-state", to)
 }
 

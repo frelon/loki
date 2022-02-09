@@ -12,7 +12,7 @@ import (
 	"github.com/prometheus/prometheus/rules"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util"
 )
 
 var (
@@ -35,7 +35,6 @@ func (xs MockRuleIter) AlertingRules() []*rules.AlertingRule { return xs }
 
 func testStore(queryFunc rules.QueryFunc) *MemStore {
 	return NewMemStore("test", queryFunc, NilMetrics, time.Minute, NilLogger)
-
 }
 
 func TestSelectRestores(t *testing.T) {
@@ -216,5 +215,4 @@ func TestMemstoreBlocks(t *testing.T) {
 	case <-time.After(time.Millisecond):
 		t.FailNow()
 	}
-
 }

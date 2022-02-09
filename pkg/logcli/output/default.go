@@ -8,7 +8,7 @@ import (
 
 	"github.com/fatih/color"
 
-	"github.com/grafana/loki/pkg/loghttp"
+	"github.com/frelon/loki/v2/pkg/loghttp"
 )
 
 // DefaultOutput provides logs and metadata in human readable format
@@ -32,7 +32,6 @@ func (o *DefaultOutput) FormatAndPrintln(ts time.Time, lbls loghttp.LabelSet, ma
 	} else {
 		fmt.Fprintf(o.w, "%s %s %s\n", color.BlueString(timestamp), color.RedString(padLabel(lbls, maxLabelsLen)), line)
 	}
-
 }
 
 // add some padding after labels

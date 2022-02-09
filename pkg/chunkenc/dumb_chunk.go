@@ -6,9 +6,9 @@ import (
 	"sort"
 	"time"
 
-	"github.com/grafana/loki/pkg/iter"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logql/log"
+	"github.com/frelon/loki/v2/pkg/iter"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logql/log"
 )
 
 const (
@@ -110,7 +110,7 @@ func (c *dumbChunk) BytesWith(_ []byte) ([]byte, error) {
 
 func (c *dumbChunk) WriteTo(w io.Writer) (int64, error) { return 0, nil }
 
-func (c *dumbChunk) Blocks(_ time.Time, _ time.Time) []Block {
+func (c *dumbChunk) Blocks(_, _ time.Time) []Block {
 	return nil
 }
 

@@ -8,7 +8,7 @@ import (
 	"github.com/prometheus/prometheus/tsdb/encoding"
 	"github.com/prometheus/prometheus/tsdb/record"
 
-	"github.com/grafana/loki/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logproto"
 )
 
 // RecordType represents the type of the WAL/Checkpoint record.

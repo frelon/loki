@@ -10,8 +10,8 @@ import (
 	jsoniter "github.com/json-iterator/go"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logqlmodel/stats"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logqlmodel/stats"
 )
 
 func TestParseRangeQuery(t *testing.T) {
@@ -65,8 +65,8 @@ func TestParseRangeQuery(t *testing.T) {
 				Step:      time.Hour,
 				Query:     `{foo="bar"}`,
 				Direction: logproto.BACKWARD,
-				Start:     time.Date(2017, 06, 10, 21, 42, 24, 760738998, time.UTC),
-				End:       time.Date(2017, 07, 10, 21, 42, 24, 760738998, time.UTC),
+				Start:     time.Date(2017, 0o6, 10, 21, 42, 24, 760738998, time.UTC),
+				End:       time.Date(2017, 0o7, 10, 21, 42, 24, 760738998, time.UTC),
 				Limit:     1000,
 			}, false,
 		},
@@ -110,7 +110,7 @@ func TestParseInstantQuery(t *testing.T) {
 			}, &InstantQuery{
 				Query:     `{foo="bar"}`,
 				Direction: logproto.BACKWARD,
-				Ts:        time.Date(2017, 06, 10, 21, 42, 24, 760738998, time.UTC),
+				Ts:        time.Date(2017, 0o6, 10, 21, 42, 24, 760738998, time.UTC),
 				Limit:     1000,
 			}, false,
 		},

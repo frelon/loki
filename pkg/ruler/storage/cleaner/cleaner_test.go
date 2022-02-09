@@ -12,7 +12,7 @@ import (
 	"github.com/go-kit/log"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/ruler/storage/instance"
+	"github.com/frelon/loki/v2/pkg/ruler/storage/instance"
 )
 
 func TestWALCleaner_getAllStorageNoRoot(t *testing.T) {
@@ -29,7 +29,7 @@ func TestWALCleaner_getAllStorageSuccess(t *testing.T) {
 	walRoot := t.TempDir()
 
 	walDir := filepath.Join(walRoot, "instance-1")
-	err := os.MkdirAll(walDir, 0755)
+	err := os.MkdirAll(walDir, 0o755)
 	require.NoError(t, err)
 
 	cleaner := newCleaner(walRoot, Config{})
@@ -42,7 +42,7 @@ func TestWALCleaner_getAbandonedStorageBeforeCutoff(t *testing.T) {
 	walRoot := t.TempDir()
 
 	walDir := filepath.Join(walRoot, "instance-1")
-	err := os.MkdirAll(walDir, 0755)
+	err := os.MkdirAll(walDir, 0o755)
 	require.NoError(t, err)
 
 	all := []string{walDir}
@@ -65,7 +65,7 @@ func TestWALCleaner_getAbandonedStorageAfterCutoff(t *testing.T) {
 	walRoot := t.TempDir()
 
 	walDir := filepath.Join(walRoot, "instance-1")
-	err := os.MkdirAll(walDir, 0755)
+	err := os.MkdirAll(walDir, 0o755)
 	require.NoError(t, err)
 
 	all := []string{walDir}
@@ -91,7 +91,7 @@ func TestWALCleaner_cleanup(t *testing.T) {
 	walRoot := t.TempDir()
 
 	walDir := filepath.Join(walRoot, "instance-1")
-	err := os.MkdirAll(walDir, 0755)
+	err := os.MkdirAll(walDir, 0o755)
 	require.NoError(t, err)
 
 	now := time.Now()

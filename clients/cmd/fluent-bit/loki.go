@@ -17,12 +17,12 @@ import (
 	"github.com/prometheus/common/model"
 	"github.com/weaveworks/common/logging"
 
-	"github.com/grafana/loki/clients/pkg/promtail/api"
-	"github.com/grafana/loki/clients/pkg/promtail/client"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/api"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/client"
 
-	"github.com/grafana/loki/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util"
 
-	"github.com/grafana/loki/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logproto"
 )
 
 var (
@@ -179,7 +179,7 @@ func extractLabels(records map[string]interface{}, keys []string) model.LabelSet
 }
 
 // mapLabels convert records into labels using a json map[string]interface{} mapping
-func mapLabels(records map[string]interface{}, mapping map[string]interface{}, res model.LabelSet) {
+func mapLabels(records, mapping map[string]interface{}, res model.LabelSet) {
 	for k, v := range mapping {
 		switch nextKey := v.(type) {
 		// if the next level is a map we are expecting we need to move deeper in the tree

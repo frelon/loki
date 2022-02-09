@@ -15,10 +15,10 @@ import (
 	json "github.com/json-iterator/go"
 	"github.com/prometheus/common/config"
 
-	"github.com/grafana/loki/pkg/loghttp"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/util"
-	"github.com/grafana/loki/pkg/util/build"
+	"github.com/frelon/loki/v2/pkg/loghttp"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util/build"
 )
 
 const (
@@ -153,7 +153,7 @@ func (c *DefaultClient) GetOrgID() string {
 	return c.OrgID
 }
 
-func (c *DefaultClient) doQuery(path string, query string, quiet bool) (*loghttp.QueryResponse, error) {
+func (c *DefaultClient) doQuery(path, query string, quiet bool) (*loghttp.QueryResponse, error) {
 	var err error
 	var r loghttp.QueryResponse
 

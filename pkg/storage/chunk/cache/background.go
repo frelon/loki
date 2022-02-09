@@ -11,7 +11,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 
-	util_log "github.com/grafana/loki/pkg/util/log"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 // BackgroundConfig is config for a Background Cache.
@@ -21,7 +21,7 @@ type BackgroundConfig struct {
 }
 
 // RegisterFlagsWithPrefix adds the flags required to config this to the given FlagSet
-func (cfg *BackgroundConfig) RegisterFlagsWithPrefix(prefix string, description string, f *flag.FlagSet) {
+func (cfg *BackgroundConfig) RegisterFlagsWithPrefix(prefix, description string, f *flag.FlagSet) {
 	f.IntVar(&cfg.WriteBackGoroutines, prefix+"background.write-back-concurrency", 10, description+"At what concurrency to write back to cache.")
 	f.IntVar(&cfg.WriteBackBuffer, prefix+"background.write-back-buffer", 10000, description+"How many key batches to buffer for background write-back.")
 }

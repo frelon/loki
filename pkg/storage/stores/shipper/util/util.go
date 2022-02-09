@@ -17,9 +17,9 @@ import (
 	gzip "github.com/klauspost/pgzip"
 	"go.etcd.io/bbolt"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/storage/chunk/local"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/local"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 const (
@@ -77,7 +77,7 @@ type IndexStorageClient interface {
 type GetFileFunc func() (io.ReadCloser, error)
 
 // DownloadFileFromStorage downloads a file from storage to given location.
-func DownloadFileFromStorage(destination string, decompressFile bool, sync bool, logger log.Logger, getFileFunc GetFileFunc) error {
+func DownloadFileFromStorage(destination string, decompressFile, sync bool, logger log.Logger, getFileFunc GetFileFunc) error {
 	start := time.Now()
 	readCloser, err := getFileFunc()
 	if err != nil {

@@ -12,8 +12,8 @@ import (
 	"github.com/prometheus/prometheus/tsdb/wal"
 	"golang.org/x/net/context"
 
-	"github.com/grafana/loki/pkg/logproto"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 type WALReader interface {
@@ -99,7 +99,6 @@ type ingesterRecoverer struct {
 }
 
 func newIngesterRecoverer(i *Ingester) *ingesterRecoverer {
-
 	return &ingesterRecoverer{
 		ing:  i,
 		done: make(chan struct{}),
@@ -111,14 +110,12 @@ func (r *ingesterRecoverer) NumWorkers() int { return runtime.GOMAXPROCS(0) }
 
 func (r *ingesterRecoverer) Series(series *Series) error {
 	return r.ing.replayController.WithBackPressure(func() error {
-
 		inst := r.ing.GetOrCreateInstance(series.UserID)
 
 		// TODO(owen-d): create another fn to avoid unnecessary label type conversions.
 		stream, err := inst.getOrCreateStream(logproto.Stream{
 			Labels: logproto.FromLabelAdaptersToLabels(series.Labels).String(),
 		}, nil)
-
 		if err != nil {
 			return err
 		}
@@ -272,7 +269,6 @@ func RecoverWAL(reader WALReader, recoverer Recoverer) error {
 					firstErr = err
 				}
 			}
-
 		}
 
 		for _, entries := range rec.RefEntries {
@@ -318,7 +314,6 @@ func RecoverWAL(reader WALReader, recoverer Recoverer) error {
 		dispatch,
 		process,
 	)
-
 }
 
 func RecoverCheckpoint(reader WALReader, recoverer Recoverer) error {

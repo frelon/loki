@@ -7,7 +7,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/model"
 
-	"github.com/grafana/loki/pkg/util/flagext"
+	"github.com/frelon/loki/v2/pkg/util/flagext"
 )
 
 type OverridesExporter struct {
@@ -64,7 +64,6 @@ func (oe *OverridesExporter) Collect(ch chan<- prometheus.Metric) {
 			metricLabelValue := defs.Type().Field(i).Tag.Get("yaml")
 			ch <- prometheus.MustNewConstMetric(oe.defaultsDesc, prometheus.GaugeValue, v, metricLabelValue)
 		}
-
 	}
 
 	for tenant, limits := range oe.overrides.AllByUserID() {
@@ -76,12 +75,10 @@ func (oe *OverridesExporter) Collect(ch chan<- prometheus.Metric) {
 			// Only report fields which are explicitly overridden
 			if !ok || rv.Field(i).Interface() == defs.Field(i).Interface() {
 				continue
-
 			}
 
 			metricLabelValue := rv.Type().Field(i).Tag.Get("yaml")
 			ch <- prometheus.MustNewConstMetric(oe.tenantDesc, prometheus.GaugeValue, v, metricLabelValue, tenant)
 		}
 	}
-
 }

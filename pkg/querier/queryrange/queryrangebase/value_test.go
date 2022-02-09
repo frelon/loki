@@ -9,11 +9,11 @@ import (
 	"github.com/prometheus/prometheus/promql"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logproto"
 )
 
 func TestFromValue(t *testing.T) {
-	var testExpr = []struct {
+	testExpr := []struct {
 		input    *promql.Result
 		err      bool
 		expected []SampleStream

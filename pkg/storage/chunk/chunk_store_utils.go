@@ -12,9 +12,9 @@ import (
 	"github.com/prometheus/prometheus/model/labels"
 	"github.com/prometheus/prometheus/promql"
 
-	"github.com/grafana/loki/pkg/storage/chunk/cache"
-	util_log "github.com/grafana/loki/pkg/util/log"
-	"github.com/grafana/loki/pkg/util/spanlogger"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/cache"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/util/spanlogger"
 )
 
 var (
@@ -126,7 +126,7 @@ type decodeResponse struct {
 }
 
 // NewChunkFetcher makes a new ChunkFetcher.
-func NewChunkFetcher(cacher cache.Cache, cacheStubs bool, schema SchemaConfig, storage Client, maxAsyncConcurrency int, maxAsyncBufferSize int) (*Fetcher, error) {
+func NewChunkFetcher(cacher cache.Cache, cacheStubs bool, schema SchemaConfig, storage Client, maxAsyncConcurrency, maxAsyncBufferSize int) (*Fetcher, error) {
 	c := &Fetcher{
 		schema:              schema,
 		storage:             storage,

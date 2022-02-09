@@ -4,7 +4,7 @@ import (
 	"container/heap"
 	"sort"
 
-	promchunk "github.com/grafana/loki/pkg/storage/chunk/encoding"
+	promchunk "github.com/frelon/loki/v2/pkg/storage/chunk/encoding"
 )
 
 type mergeIterator struct {
@@ -51,7 +51,6 @@ func newMergeIterator(cs []GenericChunk) *mergeIterator {
 }
 
 func (c *mergeIterator) Seek(t int64, size int) bool {
-
 	// Optimisation to see if the seek is within our current caches batches.
 found:
 	for len(c.batches) > 0 {

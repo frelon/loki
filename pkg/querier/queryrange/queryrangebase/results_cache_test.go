@@ -15,8 +15,8 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaveworks/common/user"
 
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/storage/chunk/cache"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/cache"
 )
 
 const (
@@ -430,7 +430,8 @@ func TestPartition(t *testing.T) {
 				&PrometheusRequest{
 					Start: 0,
 					End:   100,
-				}},
+				},
+			},
 		},
 		{
 			name: "Test a partial hit.",
@@ -1024,8 +1025,7 @@ func TestResultsCacheShouldCacheFunc(t *testing.T) {
 	}
 }
 
-type mockCacheGenNumberLoader struct {
-}
+type mockCacheGenNumberLoader struct{}
 
 func newMockCacheGenNumberLoader() CacheGenNumberLoader {
 	return mockCacheGenNumberLoader{}

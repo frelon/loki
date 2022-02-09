@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"gopkg.in/yaml.v2"
 
-	util_log "github.com/grafana/loki/pkg/util/log"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 var testReplaceYamlSingleStageWithoutSource = `
@@ -19,6 +19,7 @@ pipeline_stages:
     expression: "11.11.11.11 - (\\S+) .*"
     replace: "dummy"
 `
+
 var testReplaceYamlMultiStageWithSource = `
 pipeline_stages:
 - json:
@@ -76,9 +77,11 @@ pipeline_stages:
       replace: ''
 `
 
-var testReplaceLogLine = `11.11.11.11 - frank [25/Jan/2000:14:00:01 -0500] "GET /1986.js HTTP/1.1" 200 932 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 GTB6"`
-var testReplaceLogJSONLine = `{"time":"2019-01-01T01:00:00.000000001Z", "level": "info", "msg": "11.11.11.11 - \"POST /loki/api/push/ HTTP/1.1\" 200 932 \"-\" \"Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 GTB6\""}`
-var testReplaceLogLineAdjacentCaptureGroups = `abc`
+var (
+	testReplaceLogLine                      = `11.11.11.11 - frank [25/Jan/2000:14:00:01 -0500] "GET /1986.js HTTP/1.1" 200 932 "-" "Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 GTB6"`
+	testReplaceLogJSONLine                  = `{"time":"2019-01-01T01:00:00.000000001Z", "level": "info", "msg": "11.11.11.11 - \"POST /loki/api/push/ HTTP/1.1\" 200 932 \"-\" \"Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 GTB6\""}`
+	testReplaceLogLineAdjacentCaptureGroups = `abc`
+)
 
 func TestPipeline_Replace(t *testing.T) {
 	t.Parallel()

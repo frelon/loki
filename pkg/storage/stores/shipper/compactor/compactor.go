@@ -17,17 +17,17 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/model"
 
-	loki_storage "github.com/grafana/loki/pkg/storage"
-	"github.com/grafana/loki/pkg/storage/chunk/local"
-	"github.com/grafana/loki/pkg/storage/chunk/objectclient"
-	"github.com/grafana/loki/pkg/storage/chunk/storage"
-	chunk_util "github.com/grafana/loki/pkg/storage/chunk/util"
-	"github.com/grafana/loki/pkg/storage/stores/shipper/compactor/deletion"
-	"github.com/grafana/loki/pkg/storage/stores/shipper/compactor/retention"
-	shipper_storage "github.com/grafana/loki/pkg/storage/stores/shipper/storage"
-	shipper_util "github.com/grafana/loki/pkg/storage/stores/shipper/util"
-	"github.com/grafana/loki/pkg/util"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	loki_storage "github.com/frelon/loki/v2/pkg/storage"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/local"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/objectclient"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/storage"
+	chunk_util "github.com/frelon/loki/v2/pkg/storage/chunk/util"
+	"github.com/frelon/loki/v2/pkg/storage/stores/shipper/compactor/deletion"
+	"github.com/frelon/loki/v2/pkg/storage/stores/shipper/compactor/retention"
+	shipper_storage "github.com/frelon/loki/v2/pkg/storage/stores/shipper/storage"
+	shipper_util "github.com/frelon/loki/v2/pkg/storage/stores/shipper/util"
+	"github.com/frelon/loki/v2/pkg/util"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 const (
@@ -553,7 +553,7 @@ func (e *expirationChecker) IntervalMayHaveExpiredChunks(interval model.Interval
 	return e.retentionExpiryChecker.IntervalMayHaveExpiredChunks(interval, userID) || e.deletionExpiryChecker.IntervalMayHaveExpiredChunks(interval, userID)
 }
 
-func (e *expirationChecker) DropFromIndex(ref retention.ChunkEntry, tableEndTime model.Time, now model.Time) bool {
+func (e *expirationChecker) DropFromIndex(ref retention.ChunkEntry, tableEndTime, now model.Time) bool {
 	return e.retentionExpiryChecker.DropFromIndex(ref, tableEndTime, now) || e.deletionExpiryChecker.DropFromIndex(ref, tableEndTime, now)
 }
 

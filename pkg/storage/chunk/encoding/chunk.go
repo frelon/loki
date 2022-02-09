@@ -24,7 +24,7 @@ import (
 	"github.com/prometheus/common/model"
 	errs "github.com/weaveworks/common/errors"
 
-	"github.com/grafana/loki/pkg/prom1/storage/metric"
+	"github.com/frelon/loki/v2/pkg/prom1/storage/metric"
 )
 
 const (
@@ -142,7 +142,7 @@ func addToOverflowChunk(s model.SamplePair) (Chunk, error) {
 // provided src chunk (plus the necessary overflow chunks) and then adds the
 // provided sample. It returns the new chunks (transcoded plus overflow) with
 // the new sample at the end.
-func transcodeAndAdd(dst Chunk, src Chunk, s model.SamplePair) ([]Chunk, error) {
+func transcodeAndAdd(dst, src Chunk, s model.SamplePair) ([]Chunk, error) {
 	var (
 		head     = dst
 		newChunk Chunk

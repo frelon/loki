@@ -8,8 +8,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
-	chunk_util "github.com/grafana/loki/pkg/storage/chunk/util"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	chunk_util "github.com/frelon/loki/v2/pkg/storage/chunk/util"
 )
 
 type mockTableQuerier struct {

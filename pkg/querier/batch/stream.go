@@ -1,7 +1,7 @@
 package batch
 
 import (
-	promchunk "github.com/grafana/loki/pkg/storage/chunk/encoding"
+	promchunk "github.com/frelon/loki/v2/pkg/storage/chunk/encoding"
 )
 
 // batchStream deals with iteratoring through multiple, non-overlapping batches,
@@ -37,7 +37,7 @@ func (bs *batchStream) at() (int64, float64) {
 	return b.Timestamps[b.Index], b.Values[b.Index]
 }
 
-func mergeStreams(left, right batchStream, result batchStream, size int) batchStream {
+func mergeStreams(left, right, result batchStream, size int) batchStream {
 	// Reset the Index and Length of existing batches.
 	for i := range result {
 		result[i].Index = 0

@@ -14,7 +14,7 @@ import (
 	"github.com/weaveworks/common/httpgrpc"
 	"github.com/weaveworks/common/user"
 
-	"github.com/grafana/loki/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logproto"
 )
 
 func TestRequest(t *testing.T) {
@@ -325,7 +325,8 @@ func TestMergeAPIResponses(t *testing.T) {
 					},
 				},
 			},
-		}} {
+		},
+	} {
 		t.Run(tc.name, func(t *testing.T) {
 			output, err := PrometheusCodec.MergeResponse(tc.input...)
 			require.NoError(t, err)

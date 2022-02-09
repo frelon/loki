@@ -8,8 +8,8 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 
-	"github.com/grafana/loki/pkg/querier/astmapper"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/querier/astmapper"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 // keys used in metrics

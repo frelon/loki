@@ -19,12 +19,12 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaveworks/common/server"
 
-	"github.com/grafana/loki/clients/pkg/promtail/api"
-	"github.com/grafana/loki/clients/pkg/promtail/client"
-	"github.com/grafana/loki/clients/pkg/promtail/client/fake"
-	"github.com/grafana/loki/clients/pkg/promtail/scrapeconfig"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/api"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/client"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/client/fake"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/scrapeconfig"
 
-	"github.com/grafana/loki/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logproto"
 )
 
 const localhost = "127.0.0.1"
@@ -33,7 +33,7 @@ func TestLokiPushTarget(t *testing.T) {
 	w := log.NewSyncWriter(os.Stderr)
 	logger := log.NewLogfmtLogger(w)
 
-	//Create PushTarget
+	// Create PushTarget
 	eh := fake.New(func() {})
 	defer eh.Stop()
 
@@ -125,14 +125,13 @@ func TestLokiPushTarget(t *testing.T) {
 	require.Equal(t, time.Unix(99, 0).Unix(), eh.Received()[99].Timestamp.Unix())
 
 	_ = pt.Stop()
-
 }
 
 func TestPlaintextPushTarget(t *testing.T) {
 	w := log.NewSyncWriter(os.Stderr)
 	logger := log.NewLogfmtLogger(w)
 
-	//Create PushTarget
+	// Create PushTarget
 	eh := fake.New(func() {})
 	defer eh.Stop()
 
@@ -197,5 +196,4 @@ func TestPlaintextPushTarget(t *testing.T) {
 	require.GreaterOrEqual(t, ts.Unix(), eh.Received()[99].Timestamp.Unix())
 
 	_ = pt.Stop()
-
 }

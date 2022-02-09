@@ -13,16 +13,16 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/distributor"
-	"github.com/grafana/loki/pkg/loki/common"
-	"github.com/grafana/loki/pkg/storage/bucket/swift"
-	"github.com/grafana/loki/pkg/storage/chunk/aws"
-	"github.com/grafana/loki/pkg/storage/chunk/azure"
-	"github.com/grafana/loki/pkg/storage/chunk/gcp"
-	"github.com/grafana/loki/pkg/storage/chunk/storage"
-	"github.com/grafana/loki/pkg/util"
-	"github.com/grafana/loki/pkg/util/cfg"
-	loki_net "github.com/grafana/loki/pkg/util/net"
+	"github.com/frelon/loki/v2/pkg/distributor"
+	"github.com/frelon/loki/v2/pkg/loki/common"
+	"github.com/frelon/loki/v2/pkg/storage/bucket/swift"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/aws"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/azure"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/gcp"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/storage"
+	"github.com/frelon/loki/v2/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util/cfg"
+	loki_net "github.com/frelon/loki/v2/pkg/util/net"
 )
 
 // Can't use a totally empty yaml file or it causes weird behavior in the unmarshalling.
@@ -72,8 +72,8 @@ func Test_ApplyDynamicConfig(t *testing.T) {
 		return config, defaults
 	}
 
-	//the unmarshaller overwrites default values with 0s when a completely empty
-	//config file is passed, so our "empty" config has some non-relevant config in it
+	// the unmarshaller overwrites default values with 0s when a completely empty
+	// config file is passed, so our "empty" config has some non-relevant config in it
 	const emptyConfigString = `---
 server:
   http_listen_port: 80`
@@ -190,8 +190,8 @@ memberlist:
 	})
 
 	t.Run("common object store config", func(t *testing.T) {
-		//config file structure
-		//common:
+		// config file structure
+		// common:
 		//  storage:
 		//    azure: azure.BlobStorageConfig
 		//    gcs: gcp.GCSConfig
@@ -277,13 +277,13 @@ memberlist:
 					"idle connection timeout should equal default value")
 			}
 
-			//should remain empty
+			// should remain empty
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.Azure, config.Ruler.StoreConfig.Azure)
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.GCS, config.Ruler.StoreConfig.GCS)
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.Swift, config.Ruler.StoreConfig.Swift)
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.Local, config.Ruler.StoreConfig.Local)
 
-			//should remain empty
+			// should remain empty
 			assert.EqualValues(t, defaults.StorageConfig.AzureStorageConfig, config.StorageConfig.AzureStorageConfig)
 			assert.EqualValues(t, defaults.StorageConfig.GCSConfig, config.StorageConfig.GCSConfig)
 			assert.EqualValues(t, defaults.StorageConfig.Swift, config.StorageConfig.Swift)
@@ -312,12 +312,12 @@ memberlist:
 				assert.Equal(t, true, actual.EnableOpenCensus, "should get default value for unspecified oc config")
 			}
 
-			//should remain empty
+			// should remain empty
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.Azure, config.Ruler.StoreConfig.Azure)
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.S3, config.Ruler.StoreConfig.S3)
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.Swift, config.Ruler.StoreConfig.Swift)
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.Local, config.Ruler.StoreConfig.Local)
-			//should remain empty
+			// should remain empty
 			assert.EqualValues(t, defaults.StorageConfig.AzureStorageConfig, config.StorageConfig.AzureStorageConfig)
 			assert.EqualValues(t, defaults.StorageConfig.AWSStorageConfig.S3Config, config.StorageConfig.AWSStorageConfig.S3Config)
 			assert.EqualValues(t, defaults.StorageConfig.Swift, config.StorageConfig.Swift)
@@ -362,13 +362,13 @@ memberlist:
 				assert.Equal(t, 10*time.Minute, actual.MaxRetryDelay)
 			}
 
-			//should remain empty
+			// should remain empty
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.GCS, config.Ruler.StoreConfig.GCS)
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.S3, config.Ruler.StoreConfig.S3)
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.Swift, config.Ruler.StoreConfig.Swift)
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.Local, config.Ruler.StoreConfig.Local)
 
-			//should remain empty
+			// should remain empty
 			assert.EqualValues(t, defaults.StorageConfig.GCSConfig, config.StorageConfig.GCSConfig)
 			assert.EqualValues(t, defaults.StorageConfig.AWSStorageConfig.S3Config, config.StorageConfig.AWSStorageConfig.S3Config)
 			assert.EqualValues(t, defaults.StorageConfig.Swift, config.StorageConfig.Swift)
@@ -427,13 +427,13 @@ memberlist:
 					"unspecified connection timeout should get default value")
 			}
 
-			//should remain empty
+			// should remain empty
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.GCS, config.Ruler.StoreConfig.GCS)
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.S3, config.Ruler.StoreConfig.S3)
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.Azure, config.Ruler.StoreConfig.Azure)
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.Local, config.Ruler.StoreConfig.Local)
 
-			//should remain empty
+			// should remain empty
 			assert.EqualValues(t, defaults.StorageConfig.GCSConfig, config.StorageConfig.GCSConfig)
 			assert.EqualValues(t, defaults.StorageConfig.AWSStorageConfig.S3Config, config.StorageConfig.AWSStorageConfig.S3Config)
 			assert.EqualValues(t, defaults.StorageConfig.AzureStorageConfig, config.StorageConfig.AzureStorageConfig)
@@ -454,13 +454,13 @@ memberlist:
 			assert.Equal(t, "/tmp/rules", config.Ruler.StoreConfig.Local.Directory)
 			assert.Equal(t, "/tmp/chunks", config.StorageConfig.FSConfig.Directory)
 
-			//should remain empty
+			// should remain empty
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.GCS, config.Ruler.StoreConfig.GCS)
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.S3, config.Ruler.StoreConfig.S3)
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.Azure, config.Ruler.StoreConfig.Azure)
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.Swift, config.Ruler.StoreConfig.Swift)
 
-			//should remain empty
+			// should remain empty
 			assert.EqualValues(t, defaults.StorageConfig.GCSConfig, config.StorageConfig.GCSConfig)
 			assert.EqualValues(t, defaults.StorageConfig.AWSStorageConfig.S3Config, config.StorageConfig.AWSStorageConfig.S3Config)
 			assert.EqualValues(t, defaults.StorageConfig.AzureStorageConfig, config.StorageConfig.AzureStorageConfig)
@@ -490,12 +490,12 @@ ruler:
 			assert.Equal(t, "abc123", config.Ruler.StoreConfig.S3.AccessKeyID)
 			assert.Equal(t, "def789", config.Ruler.StoreConfig.S3.SecretAccessKey)
 
-			//should be set by common config
+			// should be set by common config
 			assert.EqualValues(t, "foobar", config.StorageConfig.GCSConfig.BucketName)
 			assert.EqualValues(t, 27, config.StorageConfig.GCSConfig.ChunkBufferSize)
 			assert.EqualValues(t, 5*time.Minute, config.StorageConfig.GCSConfig.RequestTimeout)
 
-			//should remain empty
+			// should remain empty
 			assert.EqualValues(t, defaults.StorageConfig.AWSStorageConfig.S3Config, config.StorageConfig.AWSStorageConfig.S3Config)
 		})
 
@@ -520,12 +520,12 @@ storage_config:
 			assert.Equal(t, "abc123", config.StorageConfig.AWSStorageConfig.S3Config.AccessKeyID)
 			assert.Equal(t, "def789", config.StorageConfig.AWSStorageConfig.S3Config.SecretAccessKey)
 
-			//should be set by common config
+			// should be set by common config
 			assert.EqualValues(t, "foobar", config.Ruler.StoreConfig.GCS.BucketName)
 			assert.EqualValues(t, 27, config.Ruler.StoreConfig.GCS.ChunkBufferSize)
 			assert.EqualValues(t, 5*time.Minute, config.Ruler.StoreConfig.GCS.RequestTimeout)
 
-			//should remain empty
+			// should remain empty
 			assert.EqualValues(t, defaults.Ruler.StoreConfig.S3, config.Ruler.StoreConfig.S3)
 		})
 
@@ -545,7 +545,7 @@ ruler:
 
 			assert.EqualValues(t, "rules", config.Ruler.StoreConfig.GCS.BucketName)
 
-			//from common config
+			// from common config
 			assert.EqualValues(t, 27, config.Ruler.StoreConfig.GCS.ChunkBufferSize)
 			assert.EqualValues(t, 5*time.Minute, config.Ruler.StoreConfig.GCS.RequestTimeout)
 		})
@@ -565,7 +565,7 @@ storage_config:
 
 			assert.EqualValues(t, "chunks", config.StorageConfig.GCSConfig.BucketName)
 
-			//from common config
+			// from common config
 			assert.EqualValues(t, 27, config.StorageConfig.GCSConfig.ChunkBufferSize)
 			assert.EqualValues(t, 5*time.Minute, config.StorageConfig.GCSConfig.RequestTimeout)
 		})
@@ -1328,7 +1328,6 @@ storage_config:
 		assert.NoError(t, err)
 		assert.Equal(t, 11*time.Minute, config.Ingester.RetainPeriod)
 	})
-
 }
 
 func Test_replicationFactor(t *testing.T) {

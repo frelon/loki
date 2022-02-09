@@ -3,10 +3,10 @@ package indexgateway
 import (
 	"github.com/grafana/dskit/services"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/storage/stores/shipper"
-	"github.com/grafana/loki/pkg/storage/stores/shipper/indexgateway/indexgatewaypb"
-	"github.com/grafana/loki/pkg/storage/stores/shipper/util"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/stores/shipper"
+	"github.com/frelon/loki/v2/pkg/storage/stores/shipper/indexgateway/indexgatewaypb"
+	"github.com/frelon/loki/v2/pkg/storage/stores/shipper/util"
 )
 
 const maxIndexEntriesPerResponse = 1000

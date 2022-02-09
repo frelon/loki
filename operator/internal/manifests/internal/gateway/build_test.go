@@ -3,9 +3,10 @@ package gateway
 import (
 	"testing"
 
-	lokiv1beta1 "github.com/grafana/loki/operator/api/v1beta1"
-	"github.com/grafana/loki/operator/internal/manifests/openshift"
 	"github.com/stretchr/testify/require"
+
+	lokiv1beta1 "github.com/frelon/loki/v2/operator/api/v1beta1"
+	"github.com/frelon/loki/v2/operator/internal/manifests/openshift"
 )
 
 func TestBuild_StaticMode(t *testing.T) {

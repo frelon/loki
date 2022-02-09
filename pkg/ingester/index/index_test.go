@@ -9,9 +9,9 @@ import (
 	"github.com/prometheus/prometheus/model/labels"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/querier/astmapper"
-	"github.com/grafana/loki/pkg/util"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/querier/astmapper"
+	"github.com/frelon/loki/v2/pkg/util"
 )
 
 func Test_GetShards(t *testing.T) {
@@ -175,5 +175,4 @@ func Test_ConsistentMapping(t *testing.T) {
 
 		require.Equal(t, aIDs, bIDs, "incorrect shard mapping for shard %v", shard)
 	}
-
 }

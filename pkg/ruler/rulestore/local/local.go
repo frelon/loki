@@ -10,7 +10,7 @@ import (
 	"github.com/pkg/errors"
 	promRules "github.com/prometheus/prometheus/rules"
 
-	"github.com/grafana/loki/pkg/ruler/rulespb"
+	"github.com/frelon/loki/v2/pkg/ruler/rulespb"
 )
 
 const (
@@ -93,7 +93,7 @@ func (l *Client) ListAllRuleGroups(ctx context.Context) (map[string]rulespb.Rule
 }
 
 // ListRuleGroupsForUserAndNamespace implements rules.RuleStore. This method also loads the rules.
-func (l *Client) ListRuleGroupsForUserAndNamespace(ctx context.Context, userID string, namespace string) (rulespb.RuleGroupList, error) {
+func (l *Client) ListRuleGroupsForUserAndNamespace(ctx context.Context, userID, namespace string) (rulespb.RuleGroupList, error) {
 	if namespace != "" {
 		return l.loadAllRulesGroupsForUserAndNamespace(ctx, userID, namespace)
 	}
@@ -117,7 +117,7 @@ func (l *Client) SetRuleGroup(ctx context.Context, userID, namespace string, gro
 }
 
 // DeleteRuleGroup implements RuleStore
-func (l *Client) DeleteRuleGroup(ctx context.Context, userID, namespace string, group string) error {
+func (l *Client) DeleteRuleGroup(ctx context.Context, userID, namespace, group string) error {
 	return errors.New("DeleteRuleGroup unsupported in rule local store")
 }
 
@@ -163,7 +163,7 @@ func (l *Client) loadAllRulesGroupsForUser(ctx context.Context, userID string) (
 	return allLists, nil
 }
 
-func (l *Client) loadAllRulesGroupsForUserAndNamespace(_ context.Context, userID string, namespace string) (rulespb.RuleGroupList, error) {
+func (l *Client) loadAllRulesGroupsForUserAndNamespace(_ context.Context, userID, namespace string) (rulespb.RuleGroupList, error) {
 	filename := filepath.Join(l.cfg.Directory, userID, namespace)
 
 	rulegroups, allErrors := l.loader.Load(filename)

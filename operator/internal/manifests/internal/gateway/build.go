@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"text/template"
 
-	lokiv1beta1 "github.com/grafana/loki/operator/api/v1beta1"
+	lokiv1beta1 "github.com/frelon/loki/v2/operator/api/v1beta1"
 
 	"github.com/ViaQ/logerr/kverrors"
 )
@@ -50,7 +50,7 @@ var (
 )
 
 // Build builds a loki gateway configuration files
-func Build(opts Options) (rbacCfg []byte, tenantsCfg []byte, regoCfg []byte, err error) {
+func Build(opts Options) (rbacCfg, tenantsCfg, regoCfg []byte, err error) {
 	// Build loki gateway rbac yaml
 	w := bytes.NewBuffer(nil)
 	err = lokiGatewayRbacYAMLTmpl.Execute(w, opts)

@@ -7,30 +7,35 @@ import (
 	context "context"
 	encoding_binary "encoding/binary"
 	fmt "fmt"
-	_ "github.com/gogo/protobuf/gogoproto"
-	proto "github.com/gogo/protobuf/proto"
-	_ "github.com/gogo/protobuf/types"
-	github_com_gogo_protobuf_types "github.com/gogo/protobuf/types"
-	_ "github.com/golang/protobuf/ptypes/duration"
-	_ "github.com/grafana/loki/pkg/logproto"
-	github_com_grafana_loki_pkg_logproto "github.com/grafana/loki/pkg/logproto"
-	rulespb "github.com/grafana/loki/pkg/ruler/rulespb"
-	grpc "google.golang.org/grpc"
-	codes "google.golang.org/grpc/codes"
-	status "google.golang.org/grpc/status"
 	io "io"
 	math "math"
 	math_bits "math/bits"
 	reflect "reflect"
 	strings "strings"
 	time "time"
+
+	_ "github.com/gogo/protobuf/gogoproto"
+	proto "github.com/gogo/protobuf/proto"
+	_ "github.com/gogo/protobuf/types"
+	github_com_gogo_protobuf_types "github.com/gogo/protobuf/types"
+	_ "github.com/golang/protobuf/ptypes/duration"
+	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
+
+	_ "github.com/frelon/loki/v2/pkg/logproto"
+	rulespb "github.com/frelon/loki/v2/pkg/ruler/rulespb"
+
+	github_com_frelon_loki_pkg_logproto "github.com/grafana/loki/v2/pkg/logproto"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
-var _ = proto.Marshal
-var _ = fmt.Errorf
-var _ = math.Inf
-var _ = time.Kitchen
+var (
+	_ = proto.Marshal
+	_ = fmt.Errorf
+	_ = math.Inf
+	_ = time.Kitchen
+)
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the proto package it is being compiled against.
@@ -38,17 +43,18 @@ var _ = time.Kitchen
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-type RulesRequest struct {
-}
+type RulesRequest struct{}
 
 func (m *RulesRequest) Reset()      { *m = RulesRequest{} }
 func (*RulesRequest) ProtoMessage() {}
 func (*RulesRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ca810a0fd7057a73, []int{0}
 }
+
 func (m *RulesRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *RulesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_RulesRequest.Marshal(b, m, deterministic)
@@ -61,12 +67,15 @@ func (m *RulesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)
 		return b[:n], nil
 	}
 }
+
 func (m *RulesRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_RulesRequest.Merge(m, src)
 }
+
 func (m *RulesRequest) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *RulesRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_RulesRequest.DiscardUnknown(m)
 }
@@ -82,9 +91,11 @@ func (*RulesResponse) ProtoMessage() {}
 func (*RulesResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ca810a0fd7057a73, []int{1}
 }
+
 func (m *RulesResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *RulesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_RulesResponse.Marshal(b, m, deterministic)
@@ -97,12 +108,15 @@ func (m *RulesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error
 		return b[:n], nil
 	}
 }
+
 func (m *RulesResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_RulesResponse.Merge(m, src)
 }
+
 func (m *RulesResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *RulesResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_RulesResponse.DiscardUnknown(m)
 }
@@ -129,9 +143,11 @@ func (*GroupStateDesc) ProtoMessage() {}
 func (*GroupStateDesc) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ca810a0fd7057a73, []int{2}
 }
+
 func (m *GroupStateDesc) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *GroupStateDesc) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_GroupStateDesc.Marshal(b, m, deterministic)
@@ -144,12 +160,15 @@ func (m *GroupStateDesc) XXX_Marshal(b []byte, deterministic bool) ([]byte, erro
 		return b[:n], nil
 	}
 }
+
 func (m *GroupStateDesc) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_GroupStateDesc.Merge(m, src)
 }
+
 func (m *GroupStateDesc) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *GroupStateDesc) XXX_DiscardUnknown() {
 	xxx_messageInfo_GroupStateDesc.DiscardUnknown(m)
 }
@@ -200,9 +219,11 @@ func (*RuleStateDesc) ProtoMessage() {}
 func (*RuleStateDesc) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ca810a0fd7057a73, []int{3}
 }
+
 func (m *RuleStateDesc) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *RuleStateDesc) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_RuleStateDesc.Marshal(b, m, deterministic)
@@ -215,12 +236,15 @@ func (m *RuleStateDesc) XXX_Marshal(b []byte, deterministic bool) ([]byte, error
 		return b[:n], nil
 	}
 }
+
 func (m *RuleStateDesc) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_RuleStateDesc.Merge(m, src)
 }
+
 func (m *RuleStateDesc) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *RuleStateDesc) XXX_DiscardUnknown() {
 	xxx_messageInfo_RuleStateDesc.DiscardUnknown(m)
 }
@@ -277,15 +301,15 @@ func (m *RuleStateDesc) GetEvaluationDuration() time.Duration {
 }
 
 type AlertStateDesc struct {
-	State       string                                              `protobuf:"bytes,1,opt,name=state,proto3" json:"state,omitempty"`
-	Labels      []github_com_grafana_loki_pkg_logproto.LabelAdapter `protobuf:"bytes,2,rep,name=labels,proto3,customtype=github.com/grafana/loki/pkg/logproto.LabelAdapter" json:"labels"`
-	Annotations []github_com_grafana_loki_pkg_logproto.LabelAdapter `protobuf:"bytes,3,rep,name=annotations,proto3,customtype=github.com/grafana/loki/pkg/logproto.LabelAdapter" json:"annotations"`
-	Value       float64                                             `protobuf:"fixed64,4,opt,name=value,proto3" json:"value,omitempty"`
-	ActiveAt    time.Time                                           `protobuf:"bytes,5,opt,name=active_at,json=activeAt,proto3,stdtime" json:"active_at"`
-	FiredAt     time.Time                                           `protobuf:"bytes,6,opt,name=fired_at,json=firedAt,proto3,stdtime" json:"fired_at"`
-	ResolvedAt  time.Time                                           `protobuf:"bytes,7,opt,name=resolved_at,json=resolvedAt,proto3,stdtime" json:"resolved_at"`
-	LastSentAt  time.Time                                           `protobuf:"bytes,8,opt,name=last_sent_at,json=lastSentAt,proto3,stdtime" json:"last_sent_at"`
-	ValidUntil  time.Time                                           `protobuf:"bytes,9,opt,name=valid_until,json=validUntil,proto3,stdtime" json:"valid_until"`
+	State       string                                             `protobuf:"bytes,1,opt,name=state,proto3" json:"state,omitempty"`
+	Labels      []github_com_frelon_loki_pkg_logproto.LabelAdapter `protobuf:"bytes,2,rep,name=labels,proto3,customtype=github.com/grafana/loki/v2/pkg/logproto.LabelAdapter" json:"labels"`
+	Annotations []github_com_frelon_loki_pkg_logproto.LabelAdapter `protobuf:"bytes,3,rep,name=annotations,proto3,customtype=github.com/grafana/loki/v2/pkg/logproto.LabelAdapter" json:"annotations"`
+	Value       float64                                            `protobuf:"fixed64,4,opt,name=value,proto3" json:"value,omitempty"`
+	ActiveAt    time.Time                                          `protobuf:"bytes,5,opt,name=active_at,json=activeAt,proto3,stdtime" json:"active_at"`
+	FiredAt     time.Time                                          `protobuf:"bytes,6,opt,name=fired_at,json=firedAt,proto3,stdtime" json:"fired_at"`
+	ResolvedAt  time.Time                                          `protobuf:"bytes,7,opt,name=resolved_at,json=resolvedAt,proto3,stdtime" json:"resolved_at"`
+	LastSentAt  time.Time                                          `protobuf:"bytes,8,opt,name=last_sent_at,json=lastSentAt,proto3,stdtime" json:"last_sent_at"`
+	ValidUntil  time.Time                                          `protobuf:"bytes,9,opt,name=valid_until,json=validUntil,proto3,stdtime" json:"valid_until"`
 }
 
 func (m *AlertStateDesc) Reset()      { *m = AlertStateDesc{} }
@@ -293,9 +317,11 @@ func (*AlertStateDesc) ProtoMessage() {}
 func (*AlertStateDesc) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ca810a0fd7057a73, []int{4}
 }
+
 func (m *AlertStateDesc) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *AlertStateDesc) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_AlertStateDesc.Marshal(b, m, deterministic)
@@ -308,12 +334,15 @@ func (m *AlertStateDesc) XXX_Marshal(b []byte, deterministic bool) ([]byte, erro
 		return b[:n], nil
 	}
 }
+
 func (m *AlertStateDesc) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_AlertStateDesc.Merge(m, src)
 }
+
 func (m *AlertStateDesc) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *AlertStateDesc) XXX_DiscardUnknown() {
 	xxx_messageInfo_AlertStateDesc.DiscardUnknown(m)
 }
@@ -447,6 +476,7 @@ func (this *RulesRequest) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *RulesResponse) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -476,6 +506,7 @@ func (this *RulesResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *GroupStateDesc) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -514,6 +545,7 @@ func (this *GroupStateDesc) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *RuleStateDesc) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -561,6 +593,7 @@ func (this *RuleStateDesc) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *AlertStateDesc) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -619,6 +652,7 @@ func (this *AlertStateDesc) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *RulesRequest) GoString() string {
 	if this == nil {
 		return "nil"
@@ -628,6 +662,7 @@ func (this *RulesRequest) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *RulesResponse) GoString() string {
 	if this == nil {
 		return "nil"
@@ -640,6 +675,7 @@ func (this *RulesResponse) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *GroupStateDesc) GoString() string {
 	if this == nil {
 		return "nil"
@@ -657,6 +693,7 @@ func (this *GroupStateDesc) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *RuleStateDesc) GoString() string {
 	if this == nil {
 		return "nil"
@@ -677,6 +714,7 @@ func (this *RuleStateDesc) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *AlertStateDesc) GoString() string {
 	if this == nil {
 		return "nil"
@@ -695,6 +733,7 @@ func (this *AlertStateDesc) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func valueToGoStringRuler(v interface{}, typ string) string {
 	rv := reflect.ValueOf(v)
 	if rv.IsNil() {
@@ -705,8 +744,10 @@ func valueToGoStringRuler(v interface{}, typ string) string {
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
-var _ context.Context
-var _ grpc.ClientConn
+var (
+	_ context.Context
+	_ grpc.ClientConn
+)
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
@@ -742,8 +783,7 @@ type RulerServer interface {
 }
 
 // UnimplementedRulerServer can be embedded to have forward compatible implementations.
-type UnimplementedRulerServer struct {
-}
+type UnimplementedRulerServer struct{}
 
 func (*UnimplementedRulerServer) Rules(ctx context.Context, req *RulesRequest) (*RulesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Rules not implemented")
@@ -1110,6 +1150,7 @@ func encodeVarintRuler(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
+
 func (m *RulesRequest) Size() (n int) {
 	if m == nil {
 		return 0
@@ -1233,18 +1274,22 @@ func (m *AlertStateDesc) Size() (n int) {
 func sovRuler(x uint64) (n int) {
 	return (math_bits.Len64(x|1) + 6) / 7
 }
+
 func sozRuler(x uint64) (n int) {
 	return sovRuler(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
+
 func (this *RulesRequest) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&RulesRequest{`,
+	s := strings.Join([]string{
+		`&RulesRequest{`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *RulesResponse) String() string {
 	if this == nil {
 		return "nil"
@@ -1254,12 +1299,14 @@ func (this *RulesResponse) String() string {
 		repeatedStringForGroups += strings.Replace(f.String(), "GroupStateDesc", "GroupStateDesc", 1) + ","
 	}
 	repeatedStringForGroups += "}"
-	s := strings.Join([]string{`&RulesResponse{`,
+	s := strings.Join([]string{
+		`&RulesResponse{`,
 		`Groups:` + repeatedStringForGroups + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *GroupStateDesc) String() string {
 	if this == nil {
 		return "nil"
@@ -1269,7 +1316,8 @@ func (this *GroupStateDesc) String() string {
 		repeatedStringForActiveRules += strings.Replace(f.String(), "RuleStateDesc", "RuleStateDesc", 1) + ","
 	}
 	repeatedStringForActiveRules += "}"
-	s := strings.Join([]string{`&GroupStateDesc{`,
+	s := strings.Join([]string{
+		`&GroupStateDesc{`,
 		`Group:` + strings.Replace(fmt.Sprintf("%v", this.Group), "RuleGroupDesc", "rulespb.RuleGroupDesc", 1) + `,`,
 		`ActiveRules:` + repeatedStringForActiveRules + `,`,
 		`EvaluationTimestamp:` + strings.Replace(strings.Replace(fmt.Sprintf("%v", this.EvaluationTimestamp), "Timestamp", "types.Timestamp", 1), `&`, ``, 1) + `,`,
@@ -1278,6 +1326,7 @@ func (this *GroupStateDesc) String() string {
 	}, "")
 	return s
 }
+
 func (this *RuleStateDesc) String() string {
 	if this == nil {
 		return "nil"
@@ -1287,7 +1336,8 @@ func (this *RuleStateDesc) String() string {
 		repeatedStringForAlerts += strings.Replace(f.String(), "AlertStateDesc", "AlertStateDesc", 1) + ","
 	}
 	repeatedStringForAlerts += "}"
-	s := strings.Join([]string{`&RuleStateDesc{`,
+	s := strings.Join([]string{
+		`&RuleStateDesc{`,
 		`Rule:` + strings.Replace(fmt.Sprintf("%v", this.Rule), "RuleDesc", "rulespb.RuleDesc", 1) + `,`,
 		`State:` + fmt.Sprintf("%v", this.State) + `,`,
 		`Health:` + fmt.Sprintf("%v", this.Health) + `,`,
@@ -1299,11 +1349,13 @@ func (this *RuleStateDesc) String() string {
 	}, "")
 	return s
 }
+
 func (this *AlertStateDesc) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&AlertStateDesc{`,
+	s := strings.Join([]string{
+		`&AlertStateDesc{`,
 		`State:` + fmt.Sprintf("%v", this.State) + `,`,
 		`Labels:` + fmt.Sprintf("%v", this.Labels) + `,`,
 		`Annotations:` + fmt.Sprintf("%v", this.Annotations) + `,`,
@@ -1317,6 +1369,7 @@ func (this *AlertStateDesc) String() string {
 	}, "")
 	return s
 }
+
 func valueToStringRuler(v interface{}) string {
 	rv := reflect.ValueOf(v)
 	if rv.IsNil() {
@@ -1325,6 +1378,7 @@ func valueToStringRuler(v interface{}) string {
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("*%v", pv)
 }
+
 func (m *RulesRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -1378,6 +1432,7 @@ func (m *RulesRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *RulesResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -1465,6 +1520,7 @@ func (m *RulesResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *GroupStateDesc) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -1654,6 +1710,7 @@ func (m *GroupStateDesc) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *RuleStateDesc) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -1939,6 +1996,7 @@ func (m *RuleStateDesc) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *AlertStateDesc) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -2268,6 +2326,7 @@ func (m *AlertStateDesc) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func skipRuler(dAtA []byte) (n int, err error) {
 	l := len(dAtA)
 	iNdEx := 0

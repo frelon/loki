@@ -9,12 +9,10 @@ import (
 	"github.com/influxdata/go-syslog/v3/rfc5424"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/clients/pkg/promtail/targets/syslog/syslogparser"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/targets/syslog/syslogparser"
 )
 
-var (
-	defaultMaxMessageLength = 8192
-)
+var defaultMaxMessageLength = 8192
 
 func TestParseStream_OctetCounting(t *testing.T) {
 	r := strings.NewReader("23 <13>1 - - - - - - First24 <13>1 - - - - - - Second")

@@ -11,11 +11,11 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/weaveworks/common/httpgrpc"
 
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logql"
-	"github.com/grafana/loki/pkg/querier/queryrange/queryrangebase"
-	"github.com/grafana/loki/pkg/tenant"
-	"github.com/grafana/loki/pkg/util"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logql"
+	"github.com/frelon/loki/v2/pkg/querier/queryrange/queryrangebase"
+	"github.com/frelon/loki/v2/pkg/tenant"
+	"github.com/frelon/loki/v2/pkg/util"
 )
 
 type lokiResult struct {

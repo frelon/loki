@@ -35,10 +35,10 @@ import (
 	"github.com/weaveworks/common/httpgrpc"
 	"github.com/weaveworks/common/user"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/storage/chunk/cache"
-	"github.com/grafana/loki/pkg/tenant"
-	"github.com/grafana/loki/pkg/util"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/cache"
+	"github.com/frelon/loki/v2/pkg/tenant"
+	"github.com/frelon/loki/v2/pkg/util"
 )
 
 const day = 24 * time.Hour
@@ -265,7 +265,6 @@ func NewRoundTripper(next http.RoundTripper, codec Codec, headers []string, midd
 }
 
 func (q roundTripper) RoundTrip(r *http.Request) (*http.Response, error) {
-
 	// include the headers specified in the roundTripper during decoding the request.
 	request, err := q.codec.DecodeRequest(r.Context(), r, q.headers)
 	if err != nil {

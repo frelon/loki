@@ -8,8 +8,8 @@ import (
 	"github.com/prometheus/common/model"
 	"github.com/prometheus/prometheus/model/labels"
 
-	util_log "github.com/grafana/loki/pkg/util/log"
-	"github.com/grafana/loki/pkg/validation"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/validation"
 )
 
 type ExpirationChecker interface {
@@ -18,7 +18,7 @@ type ExpirationChecker interface {
 	MarkPhaseStarted()
 	MarkPhaseFailed()
 	MarkPhaseFinished()
-	DropFromIndex(ref ChunkEntry, tableEndTime model.Time, now model.Time) bool
+	DropFromIndex(ref ChunkEntry, tableEndTime, now model.Time) bool
 }
 
 type expirationChecker struct {
@@ -49,7 +49,7 @@ func (e *expirationChecker) Expired(ref ChunkEntry, now model.Time) (bool, []mod
 // DropFromIndex tells if it is okay to drop the chunk entry from index table.
 // We check if tableEndTime is out of retention period, calculated using the labels from the chunk.
 // If the tableEndTime is out of retention then we can drop the chunk entry without removing the chunk from the store.
-func (e *expirationChecker) DropFromIndex(ref ChunkEntry, tableEndTime model.Time, now model.Time) bool {
+func (e *expirationChecker) DropFromIndex(ref ChunkEntry, tableEndTime, now model.Time) bool {
 	userID := unsafeGetString(ref.UserID)
 	period := e.tenantsRetention.RetentionPeriodFor(userID, ref.Labels)
 	return now.Sub(tableEndTime) > period

@@ -16,14 +16,14 @@ import (
 	"google.golang.org/grpc/health/grpc_health_v1"
 	grpc_metadata "google.golang.org/grpc/metadata"
 
-	"github.com/grafana/loki/pkg/distributor/clientpool"
-	"github.com/grafana/loki/pkg/ingester/client"
-	"github.com/grafana/loki/pkg/iter"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logql"
-	"github.com/grafana/loki/pkg/storage"
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/util"
+	"github.com/frelon/loki/v2/pkg/distributor/clientpool"
+	"github.com/frelon/loki/v2/pkg/ingester/client"
+	"github.com/frelon/loki/v2/pkg/iter"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logql"
+	"github.com/frelon/loki/v2/pkg/storage"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/util"
 )
 
 // querierClientMock is a mockable version of QuerierClient, used in querier
@@ -245,7 +245,7 @@ func (s *storeMock) PutOne(ctx context.Context, from, through model.Time, chunk 
 	return errors.New("storeMock.PutOne() has not been mocked")
 }
 
-func (s *storeMock) LabelValuesForMetricName(ctx context.Context, userID string, from, through model.Time, metricName string, labelName string, matchers ...*labels.Matcher) ([]string, error) {
+func (s *storeMock) LabelValuesForMetricName(ctx context.Context, userID string, from, through model.Time, metricName, labelName string, matchers ...*labels.Matcher) ([]string, error) {
 	args := s.Called(ctx, userID, from, through, metricName, labelName)
 	return args.Get(0).([]string), args.Error(1)
 }
@@ -304,7 +304,7 @@ func (r *readRingMock) Describe(ch chan<- *prometheus.Desc) {
 func (r *readRingMock) Collect(ch chan<- prometheus.Metric) {
 }
 
-func (r *readRingMock) Get(key uint32, op ring.Operation, buf []ring.InstanceDesc, _ []string, _ []string) (ring.ReplicationSet, error) {
+func (r *readRingMock) Get(key uint32, op ring.Operation, buf []ring.InstanceDesc, _, _ []string) (ring.ReplicationSet, error) {
 	return r.replicationSet, nil
 }
 
@@ -377,17 +377,17 @@ func mockInstanceDesc(addr string, state ring.InstanceState) ring.InstanceDesc {
 // mockStreamIterator returns an iterator with 1 stream and quantity entries,
 // where entries timestamp and line string are constructed as sequential numbers
 // starting at from
-func mockStreamIterator(from int, quantity int) iter.EntryIterator {
+func mockStreamIterator(from, quantity int) iter.EntryIterator {
 	return iter.NewStreamIterator(mockStream(from, quantity))
 }
 
 // mockStream return a stream with quantity entries, where entries timestamp and
 // line string are constructed as sequential numbers starting at from
-func mockStream(from int, quantity int) logproto.Stream {
+func mockStream(from, quantity int) logproto.Stream {
 	return mockStreamWithLabels(from, quantity, `{type="test"}`)
 }
 
-func mockStreamWithLabels(from int, quantity int, labels string) logproto.Stream {
+func mockStreamWithLabels(from, quantity int, labels string) logproto.Stream {
 	entries := make([]logproto.Entry, 0, quantity)
 
 	for i := from; i < from+quantity; i++ {

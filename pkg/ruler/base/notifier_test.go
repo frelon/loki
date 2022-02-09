@@ -12,7 +12,7 @@ import (
 	"github.com/prometheus/prometheus/discovery/dns"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util"
 )
 
 func TestBuildNotifierConfig(t *testing.T) {
@@ -99,9 +99,10 @@ func TestBuildNotifierConfig(t *testing.T) {
 							Scheme:     "http",
 							PathPrefix: "/alertmanager",
 							ServiceDiscoveryConfigs: discovery.Configs{
-								discovery.StaticConfig{{
-									Targets: []model.LabelSet{{"__address__": "alertmanager-0.default.svc.cluster.local"}},
-								},
+								discovery.StaticConfig{
+									{
+										Targets: []model.LabelSet{{"__address__": "alertmanager-0.default.svc.cluster.local"}},
+									},
 								},
 							},
 						},
@@ -110,9 +111,10 @@ func TestBuildNotifierConfig(t *testing.T) {
 							Scheme:     "http",
 							PathPrefix: "/alertmanager",
 							ServiceDiscoveryConfigs: discovery.Configs{
-								discovery.StaticConfig{{
-									Targets: []model.LabelSet{{"__address__": "alertmanager-1.default.svc.cluster.local"}},
-								},
+								discovery.StaticConfig{
+									{
+										Targets: []model.LabelSet{{"__address__": "alertmanager-1.default.svc.cluster.local"}},
+									},
 								},
 							},
 						},

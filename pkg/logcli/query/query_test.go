@@ -13,11 +13,11 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/logcli/output"
-	"github.com/grafana/loki/pkg/loghttp"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logql"
-	"github.com/grafana/loki/pkg/util/marshal"
+	"github.com/frelon/loki/v2/pkg/logcli/output"
+	"github.com/frelon/loki/v2/pkg/loghttp"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logql"
+	"github.com/frelon/loki/v2/pkg/util/marshal"
 )
 
 func Test_commonLabels(t *testing.T) {
@@ -513,7 +513,6 @@ func (t *testQueryClient) Query(queryStr string, limit int, time time.Time, dire
 }
 
 func (t *testQueryClient) QueryRange(queryStr string, limit int, from, through time.Time, direction logproto.Direction, step, interval time.Duration, quiet bool) (*loghttp.QueryResponse, error) {
-
 	params := logql.NewLiteralParams(queryStr, from, through, step, interval, direction, uint32(limit), nil)
 
 	v, err := t.engine.Query(params).Exec(context.Background())

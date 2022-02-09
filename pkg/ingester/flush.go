@@ -15,12 +15,12 @@ import (
 	"github.com/weaveworks/common/user"
 	"golang.org/x/net/context"
 
-	"github.com/grafana/loki/pkg/chunkenc"
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/tenant"
-	"github.com/grafana/loki/pkg/util"
-	loki_util "github.com/grafana/loki/pkg/util"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/chunkenc"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/tenant"
+	"github.com/frelon/loki/v2/pkg/util"
+	loki_util "github.com/frelon/loki/v2/pkg/util"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 var (

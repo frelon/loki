@@ -15,14 +15,14 @@ import (
 	"github.com/prometheus/prometheus/model/labels"
 	"github.com/weaveworks/common/httpgrpc"
 
-	"github.com/grafana/loki/pkg/chunkenc"
-	"github.com/grafana/loki/pkg/iter"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logql/log"
-	"github.com/grafana/loki/pkg/logqlmodel/stats"
-	"github.com/grafana/loki/pkg/util/flagext"
-	util_log "github.com/grafana/loki/pkg/util/log"
-	"github.com/grafana/loki/pkg/validation"
+	"github.com/frelon/loki/v2/pkg/chunkenc"
+	"github.com/frelon/loki/v2/pkg/iter"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logql/log"
+	"github.com/frelon/loki/v2/pkg/logqlmodel/stats"
+	"github.com/frelon/loki/v2/pkg/util/flagext"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/validation"
 )
 
 var (

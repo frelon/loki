@@ -5,12 +5,13 @@ import (
 	"time"
 
 	"github.com/go-logr/logr"
-	"github.com/grafana/loki/operator/controllers/internal/management/state"
-	"github.com/grafana/loki/operator/internal/external/k8s"
-	"github.com/grafana/loki/operator/internal/handlers"
-	"github.com/grafana/loki/operator/internal/manifests"
-	"github.com/grafana/loki/operator/internal/status"
 	routev1 "github.com/openshift/api/route/v1"
+
+	"github.com/frelon/loki/v2/operator/controllers/internal/management/state"
+	"github.com/frelon/loki/v2/operator/internal/external/k8s"
+	"github.com/frelon/loki/v2/operator/internal/handlers"
+	"github.com/frelon/loki/v2/operator/internal/manifests"
+	"github.com/frelon/loki/v2/operator/internal/status"
 
 	appsv1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
@@ -24,7 +25,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 	"sigs.k8s.io/controller-runtime/pkg/predicate"
 
-	lokiv1beta1 "github.com/grafana/loki/operator/api/v1beta1"
+	lokiv1beta1 "github.com/frelon/loki/v2/operator/api/v1beta1"
 )
 
 var (

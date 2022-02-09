@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/logql/log"
+	"github.com/frelon/loki/v2/pkg/logql/log"
 )
 
 func Test_logSelectorExpr_String(t *testing.T) {
@@ -394,7 +394,6 @@ func BenchmarkContainsFilter(b *testing.B) {
 			}
 		})
 	}
-
 }
 
 func Test_parserExpr_Parser(t *testing.T) {

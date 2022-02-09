@@ -10,7 +10,7 @@ import (
 	"github.com/go-kit/log"
 	"github.com/stretchr/testify/require"
 
-	util_log "github.com/grafana/loki/pkg/util/log"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 func tempFilename(t *testing.T) string {
@@ -43,7 +43,7 @@ func TestReadPositionsOK(t *testing.T) {
 	yaml := []byte(`positions:
   /tmp/random.log: "17623"
 `)
-	err := ioutil.WriteFile(temp, yaml, 0644)
+	err := ioutil.WriteFile(temp, yaml, 0o644)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -63,7 +63,7 @@ func TestReadPositionsEmptyFile(t *testing.T) {
 	}()
 
 	yaml := []byte(``)
-	err := ioutil.WriteFile(temp, yaml, 0644)
+	err := ioutil.WriteFile(temp, yaml, 0o644)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -78,7 +78,7 @@ func TestReadPositionsEmptyFile(t *testing.T) {
 
 func TestReadPositionsFromDir(t *testing.T) {
 	temp := tempFilename(t)
-	err := os.Mkdir(temp, 0644)
+	err := os.Mkdir(temp, 0o644)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -104,7 +104,7 @@ func TestReadPositionsFromBadYaml(t *testing.T) {
 	badYaml := []byte(`positions:
   /tmp/random.log: "176
 `)
-	err := ioutil.WriteFile(temp, badYaml, 0644)
+	err := ioutil.WriteFile(temp, badYaml, 0o644)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -126,7 +126,7 @@ func TestReadPositionsFromBadYamlIgnoreCorruption(t *testing.T) {
 	badYaml := []byte(`positions:
   /tmp/random.log: "176
 `)
-	err := ioutil.WriteFile(temp, badYaml, 0644)
+	err := ioutil.WriteFile(temp, badYaml, 0o644)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -148,7 +148,7 @@ func Test_ReadOnly(t *testing.T) {
 	yaml := []byte(`positions:
   /tmp/random.log: "17623"
 `)
-	err := ioutil.WriteFile(temp, yaml, 0644)
+	err := ioutil.WriteFile(temp, yaml, 0o644)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -179,5 +179,4 @@ func Test_ReadOnly(t *testing.T) {
 	require.Equal(t, map[string]string{
 		"/tmp/random.log": "17623",
 	}, out)
-
 }

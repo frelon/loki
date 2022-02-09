@@ -13,8 +13,8 @@ import (
 	"github.com/prometheus/common/model"
 	"github.com/weaveworks/common/mtime"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 const (
@@ -223,7 +223,7 @@ func computeScaleDown(currentName string, usageRates map[string]float64, targetV
 	return int64(usageRate * 100.0 / targetValue)
 }
 
-func scaleDown(tableName string, currentValue, minValue int64, newValue int64, lastUpdated map[string]time.Time, coolDown int64, msg, operation string, usageRates map[string]float64) int64 {
+func scaleDown(tableName string, currentValue, minValue, newValue int64, lastUpdated map[string]time.Time, coolDown int64, msg, operation string, usageRates map[string]float64) int64 {
 	if newValue < minValue {
 		newValue = minValue
 	}
@@ -263,7 +263,7 @@ func scaleDown(tableName string, currentValue, minValue int64, newValue int64, l
 	return newValue
 }
 
-func scaleUp(tableName string, currentValue, maxValue int64, newValue int64, lastUpdated map[string]time.Time, coolDown int64, msg, operation string) int64 {
+func scaleUp(tableName string, currentValue, maxValue, newValue int64, lastUpdated map[string]time.Time, coolDown int64, msg, operation string) int64 {
 	if newValue > maxValue {
 		newValue = maxValue
 	}

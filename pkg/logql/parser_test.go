@@ -9,8 +9,8 @@ import (
 	"github.com/prometheus/prometheus/model/labels"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/logql/log"
-	"github.com/grafana/loki/pkg/logqlmodel"
+	"github.com/frelon/loki/v2/pkg/logql/log"
+	"github.com/frelon/loki/v2/pkg/logqlmodel"
 )
 
 func NewStringLabelFilter(s string) *string {
@@ -2208,7 +2208,8 @@ func TestParse(t *testing.T) {
 							) by (foo,bar)
 					`,
 			exp: mustNewBinOpExpr(OpTypeAdd, &BinOpOptions{
-				VectorMatching: &VectorMatching{Card: CardOneToOne}, ReturnBool: false},
+				VectorMatching: &VectorMatching{Card: CardOneToOne}, ReturnBool: false,
+			},
 				mustNewVectorAggregationExpr(
 					newRangeAggregationExpr(
 						newLogRange(&PipelineExpr{
@@ -3221,7 +3222,7 @@ func Test_match(t *testing.T) {
 	}
 }
 
-func mustMatcher(t labels.MatchType, n string, v string) *labels.Matcher {
+func mustMatcher(t labels.MatchType, n, v string) *labels.Matcher {
 	m, err := labels.NewMatcher(t, n, v)
 	if err != nil {
 		panic(err)

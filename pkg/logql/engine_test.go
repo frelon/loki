@@ -18,12 +18,12 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaveworks/common/user"
 
-	"github.com/grafana/loki/pkg/iter"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logqlmodel"
-	"github.com/grafana/loki/pkg/logqlmodel/stats"
-	"github.com/grafana/loki/pkg/util"
-	"github.com/grafana/loki/pkg/util/httpreq"
+	"github.com/frelon/loki/v2/pkg/iter"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logqlmodel"
+	"github.com/frelon/loki/v2/pkg/logqlmodel/stats"
+	"github.com/frelon/loki/v2/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util/httpreq"
 )
 
 var (
@@ -2292,7 +2292,7 @@ type querierRecorder struct {
 	match   bool
 }
 
-func newQuerierRecorder(t *testing.T, data interface{}, params interface{}) *querierRecorder {
+func newQuerierRecorder(t *testing.T, data, params interface{}) *querierRecorder {
 	t.Helper()
 	streams := map[string][]logproto.Stream{}
 	if streamsIn, ok := data.([][]logproto.Stream); ok {

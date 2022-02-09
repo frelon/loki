@@ -13,7 +13,7 @@ import (
 
 	"github.com/go-kit/log/level"
 
-	"github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/util/log"
 )
 
 type MockStorageMode int
@@ -534,7 +534,7 @@ func (b *mockWriteBatch) Delete(tableName, hashValue string, rangeValue []byte) 
 	}{tableName: tableName, hashValue: hashValue, rangeValue: rangeValue})
 }
 
-func (b *mockWriteBatch) Add(tableName, hashValue string, rangeValue []byte, value []byte) {
+func (b *mockWriteBatch) Add(tableName, hashValue string, rangeValue, value []byte) {
 	b.inserts = append(b.inserts, struct {
 		tableName, hashValue string
 		rangeValue           []byte

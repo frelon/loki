@@ -12,10 +12,10 @@ import (
 	"github.com/prometheus/prometheus/model/labels"
 	"github.com/prometheus/prometheus/promql"
 
-	"github.com/grafana/loki/pkg/iter"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logql/log"
-	"github.com/grafana/loki/pkg/logqlmodel"
+	"github.com/frelon/loki/v2/pkg/iter"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logql/log"
+	"github.com/frelon/loki/v2/pkg/logqlmodel"
 )
 
 // Expr is the root expression which can be a SampleExpr or LogSelectorExpr
@@ -277,7 +277,7 @@ func newLineFilterExpr(ty labels.MatchType, op, match string) *LineFilterExpr {
 	}
 }
 
-func newNestedLineFilterExpr(left *LineFilterExpr, right *LineFilterExpr) *LineFilterExpr {
+func newNestedLineFilterExpr(left, right *LineFilterExpr) *LineFilterExpr {
 	return &LineFilterExpr{
 		Left:  left,
 		Ty:    right.Ty,
@@ -339,10 +339,8 @@ func (e *LineFilterExpr) String() string {
 }
 
 func (e *LineFilterExpr) Filter() (log.Filterer, error) {
-
 	acc := make([]log.Filterer, 0)
 	for curr := e; curr != nil; curr = curr.Left {
-
 		switch curr.Op {
 		case OpFilterIP:
 			var err error
@@ -591,7 +589,7 @@ func (u *UnwrapExpr) addPostFilter(f log.LabelFilterer) *UnwrapExpr {
 	return u
 }
 
-func newUnwrapExpr(id string, operation string) *UnwrapExpr {
+func newUnwrapExpr(id, operation string) *UnwrapExpr {
 	return &UnwrapExpr{Identifier: id, Operation: operation}
 }
 

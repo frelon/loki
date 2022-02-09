@@ -13,9 +13,9 @@ import (
 	"github.com/prometheus/common/model"
 	"github.com/weaveworks/common/logging"
 
-	"github.com/grafana/loki/clients/pkg/promtail/client"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/client"
 
-	lokiflag "github.com/grafana/loki/pkg/util/flagext"
+	lokiflag "github.com/frelon/loki/v2/pkg/util/flagext"
 )
 
 type fakeConfig map[string]string
@@ -34,7 +34,8 @@ func Test_parseConfig(t *testing.T) {
 		want    *config
 		wantErr bool
 	}{
-		{"defaults",
+		{
+			"defaults",
 			map[string]string{},
 			&config{
 				lineFormat: jsonFormat,
@@ -49,8 +50,10 @@ func Test_parseConfig(t *testing.T) {
 				logLevel:      mustParseLogLevel("info"),
 				dropSingleKey: true,
 			},
-			false},
-		{"setting values",
+			false,
+		},
+		{
+			"setting values",
 			map[string]string{
 				"URL":           "http://somewhere.com:3100/loki/api/v1/push",
 				"TenantID":      "my-tenant-id",
@@ -83,8 +86,10 @@ func Test_parseConfig(t *testing.T) {
 				removeKeys:    []string{"buzz", "fuzz"},
 				dropSingleKey: false,
 			},
-			false},
-		{"with label map",
+			false,
+		},
+		{
+			"with label map",
 			map[string]string{
 				"URL":           "http://somewhere.com:3100/loki/api/v1/push",
 				"LineFormat":    "key_value",
@@ -130,7 +135,8 @@ func Test_parseConfig(t *testing.T) {
 					"stream": "stream",
 				},
 			},
-			false},
+			false,
+		},
 		{"bad url", map[string]string{"URL": "::doh.com"}, nil, true},
 		{"bad BatchWait", map[string]string{"BatchWait": "30sa"}, nil, true},
 		{"bad BatchSize", map[string]string{"BatchSize": "a"}, nil, true},

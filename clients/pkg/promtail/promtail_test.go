@@ -30,17 +30,17 @@ import (
 	"github.com/stretchr/testify/require"
 	serverww "github.com/weaveworks/common/server"
 
-	"github.com/grafana/loki/clients/pkg/logentry/stages"
-	"github.com/grafana/loki/clients/pkg/promtail/client"
-	"github.com/grafana/loki/clients/pkg/promtail/config"
-	"github.com/grafana/loki/clients/pkg/promtail/positions"
-	"github.com/grafana/loki/clients/pkg/promtail/scrapeconfig"
-	"github.com/grafana/loki/clients/pkg/promtail/server"
-	file2 "github.com/grafana/loki/clients/pkg/promtail/targets/file"
+	"github.com/frelon/loki/v2/clients/pkg/logentry/stages"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/client"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/config"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/positions"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/scrapeconfig"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/server"
+	file2 "github.com/frelon/loki/v2/clients/pkg/promtail/targets/file"
 
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/util"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/util"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 const httpTestPort = 9080
@@ -56,7 +56,7 @@ func TestPromtail(t *testing.T) {
 	dirName := "/tmp/promtail_test_" + randName()
 	positionsFileName := dirName + "/positions.yml"
 
-	err := os.MkdirAll(dirName, 0750)
+	err := os.MkdirAll(dirName, 0o750)
 	if err != nil {
 		t.Error(err)
 		return
@@ -65,7 +65,7 @@ func TestPromtail(t *testing.T) {
 	defer func() { _ = os.RemoveAll(dirName) }()
 
 	testDir := dirName + "/logs"
-	err = os.MkdirAll(testDir, 0750)
+	err = os.MkdirAll(testDir, 0o750)
 	if err != nil {
 		t.Error(err)
 		return
@@ -262,14 +262,14 @@ func verifyPipeline(t *testing.T, expected int, expectedEntries map[string]int, 
 	}
 }
 
-func verifyMetricAbsent(t *testing.T, metrics map[string]float64, metric string, label string) {
+func verifyMetricAbsent(t *testing.T, metrics map[string]float64, metric, label string) {
 	if _, ok := metrics[label]; ok {
 		t.Error("Found metric", metric, "with label", label, "which was not expected, "+
 			"this metric should not be present")
 	}
 }
 
-func verifyMetric(t *testing.T, metrics map[string]float64, metric string, label string, expected float64) {
+func verifyMetric(t *testing.T, metrics map[string]float64, metric, label string, expected float64) {
 	if _, ok := metrics[label]; !ok {
 		t.Error("Expected to find metric ", metric, " with", label, "but it was not present")
 	} else {
@@ -278,7 +278,7 @@ func verifyMetric(t *testing.T, metrics map[string]float64, metric string, label
 	}
 }
 
-func singleFile(t *testing.T, filename string, prefix string) int {
+func singleFile(t *testing.T, filename, prefix string) int {
 	f, err := os.Create(filename)
 	if err != nil {
 		t.Fatal(err)
@@ -314,7 +314,7 @@ func pipelineFile(t *testing.T, filename string, entries []string) int {
 	return len(entries)
 }
 
-func fileRoll(t *testing.T, filename string, prefix string) int {
+func fileRoll(t *testing.T, filename, prefix string) int {
 	f, err := os.Create(filename)
 	if err != nil {
 		t.Fatal(err)
@@ -347,9 +347,9 @@ func fileRoll(t *testing.T, filename string, prefix string) int {
 	return 200
 }
 
-func symlinkRoll(t *testing.T, testDir string, filename string, prefix string) int {
+func symlinkRoll(t *testing.T, testDir, filename, prefix string) int {
 	symlinkDir := testDir + "/symlink"
-	if err := os.Mkdir(symlinkDir, 0750); err != nil {
+	if err := os.Mkdir(symlinkDir, 0o750); err != nil {
 		t.Fatal(err)
 	}
 
@@ -397,8 +397,8 @@ func symlinkRoll(t *testing.T, testDir string, filename string, prefix string) i
 	return 200
 }
 
-func subdirSingleFile(t *testing.T, filename string, prefix string) int {
-	if err := os.MkdirAll(filepath.Dir(filename), 0750); err != nil {
+func subdirSingleFile(t *testing.T, filename, prefix string) int {
+	if err := os.MkdirAll(filepath.Dir(filename), 0o750); err != nil {
 		t.Fatal(err)
 	}
 	f, err := os.Create(filename)
@@ -509,7 +509,7 @@ func getPromMetrics(t *testing.T) ([]byte, string) {
 	return b, ct
 }
 
-func parsePromMetrics(t *testing.T, bytes []byte, contentType string, metricName string, label string) map[string]float64 {
+func parsePromMetrics(t *testing.T, bytes []byte, contentType, metricName, label string) map[string]float64 {
 	rb := map[string]float64{}
 
 	pr := textparse.New(bytes, contentType)
@@ -540,7 +540,7 @@ func parsePromMetrics(t *testing.T, bytes []byte, contentType string, metricName
 	return rb
 }
 
-func buildTestConfig(t *testing.T, positionsFileName string, logDirName string) config.Config {
+func buildTestConfig(t *testing.T, positionsFileName, logDirName string) config.Config {
 	var clientURL flagext.URLValue
 	err := clientURL.Set("http://localhost:3100/loki/api/v1/push")
 	if err != nil {

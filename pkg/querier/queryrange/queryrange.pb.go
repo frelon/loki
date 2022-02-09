@@ -5,28 +5,33 @@ package queryrange
 
 import (
 	fmt "fmt"
-	_ "github.com/gogo/protobuf/gogoproto"
-	proto "github.com/gogo/protobuf/proto"
-	_ "github.com/gogo/protobuf/types"
-	github_com_gogo_protobuf_types "github.com/gogo/protobuf/types"
-	github_com_grafana_loki_pkg_logproto "github.com/grafana/loki/pkg/logproto"
-	logproto "github.com/grafana/loki/pkg/logproto"
-	stats "github.com/grafana/loki/pkg/logqlmodel/stats"
-	github_com_grafana_loki_pkg_querier_queryrange_queryrangebase "github.com/grafana/loki/pkg/querier/queryrange/queryrangebase"
-	queryrangebase "github.com/grafana/loki/pkg/querier/queryrange/queryrangebase"
 	io "io"
 	math "math"
 	math_bits "math/bits"
 	reflect "reflect"
 	strings "strings"
 	time "time"
+
+	_ "github.com/gogo/protobuf/gogoproto"
+	proto "github.com/gogo/protobuf/proto"
+	_ "github.com/gogo/protobuf/types"
+	github_com_gogo_protobuf_types "github.com/gogo/protobuf/types"
+
+	logproto "github.com/frelon/loki/v2/pkg/logproto"
+	stats "github.com/frelon/loki/v2/pkg/logqlmodel/stats"
+	queryrangebase "github.com/frelon/loki/v2/pkg/querier/queryrange/queryrangebase"
+
+	github_com_frelon_loki_pkg_logproto "github.com/grafana/loki/v2/pkg/logproto"
+	github_com_frelon_loki_pkg_querier_queryrange_queryrangebase "github.com/grafana/loki/v2/pkg/querier/queryrange/queryrangebase"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
-var _ = proto.Marshal
-var _ = fmt.Errorf
-var _ = math.Inf
-var _ = time.Kitchen
+var (
+	_ = proto.Marshal
+	_ = fmt.Errorf
+	_ = math.Inf
+	_ = time.Kitchen
+)
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the proto package it is being compiled against.
@@ -50,9 +55,11 @@ func (*LokiRequest) ProtoMessage() {}
 func (*LokiRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_51b9d53b40d11902, []int{0}
 }
+
 func (m *LokiRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *LokiRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_LokiRequest.Marshal(b, m, deterministic)
@@ -65,12 +72,15 @@ func (m *LokiRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) 
 		return b[:n], nil
 	}
 }
+
 func (m *LokiRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_LokiRequest.Merge(m, src)
 }
+
 func (m *LokiRequest) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *LokiRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_LokiRequest.DiscardUnknown(m)
 }
@@ -147,9 +157,11 @@ func (*LokiInstantRequest) ProtoMessage() {}
 func (*LokiInstantRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_51b9d53b40d11902, []int{1}
 }
+
 func (m *LokiInstantRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *LokiInstantRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_LokiInstantRequest.Marshal(b, m, deterministic)
@@ -162,12 +174,15 @@ func (m *LokiInstantRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, 
 		return b[:n], nil
 	}
 }
+
 func (m *LokiInstantRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_LokiInstantRequest.Merge(m, src)
 }
+
 func (m *LokiInstantRequest) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *LokiInstantRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_LokiInstantRequest.DiscardUnknown(m)
 }
@@ -217,15 +232,15 @@ func (m *LokiInstantRequest) GetShards() []string {
 }
 
 type LokiResponse struct {
-	Status     string                                                                                   `protobuf:"bytes,1,opt,name=Status,proto3" json:"status"`
-	Data       LokiData                                                                                 `protobuf:"bytes,2,opt,name=Data,proto3" json:"data,omitempty"`
-	ErrorType  string                                                                                   `protobuf:"bytes,3,opt,name=ErrorType,proto3" json:"errorType,omitempty"`
-	Error      string                                                                                   `protobuf:"bytes,4,opt,name=Error,proto3" json:"error,omitempty"`
-	Direction  logproto.Direction                                                                       `protobuf:"varint,5,opt,name=direction,proto3,enum=logproto.Direction" json:"direction,omitempty"`
-	Limit      uint32                                                                                   `protobuf:"varint,6,opt,name=limit,proto3" json:"limit,omitempty"`
-	Version    uint32                                                                                   `protobuf:"varint,7,opt,name=version,proto3" json:"version,omitempty"`
-	Statistics stats.Result                                                                             `protobuf:"bytes,8,opt,name=statistics,proto3" json:"statistics"`
-	Headers    []github_com_grafana_loki_pkg_querier_queryrange_queryrangebase.PrometheusResponseHeader `protobuf:"bytes,9,rep,name=Headers,proto3,customtype=github.com/grafana/loki/pkg/querier/queryrange/queryrangebase.PrometheusResponseHeader" json:"-"`
+	Status     string                                                                                  `protobuf:"bytes,1,opt,name=Status,proto3" json:"status"`
+	Data       LokiData                                                                                `protobuf:"bytes,2,opt,name=Data,proto3" json:"data,omitempty"`
+	ErrorType  string                                                                                  `protobuf:"bytes,3,opt,name=ErrorType,proto3" json:"errorType,omitempty"`
+	Error      string                                                                                  `protobuf:"bytes,4,opt,name=Error,proto3" json:"error,omitempty"`
+	Direction  logproto.Direction                                                                      `protobuf:"varint,5,opt,name=direction,proto3,enum=logproto.Direction" json:"direction,omitempty"`
+	Limit      uint32                                                                                  `protobuf:"varint,6,opt,name=limit,proto3" json:"limit,omitempty"`
+	Version    uint32                                                                                  `protobuf:"varint,7,opt,name=version,proto3" json:"version,omitempty"`
+	Statistics stats.Result                                                                            `protobuf:"bytes,8,opt,name=statistics,proto3" json:"statistics"`
+	Headers    []github_com_frelon_loki_pkg_querier_queryrange_queryrangebase.PrometheusResponseHeader `protobuf:"bytes,9,rep,name=Headers,proto3,customtype=github.com/grafana/loki/v2/pkg/querier/queryrange/queryrangebase.PrometheusResponseHeader" json:"-"`
 }
 
 func (m *LokiResponse) Reset()      { *m = LokiResponse{} }
@@ -233,9 +248,11 @@ func (*LokiResponse) ProtoMessage() {}
 func (*LokiResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_51b9d53b40d11902, []int{2}
 }
+
 func (m *LokiResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *LokiResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_LokiResponse.Marshal(b, m, deterministic)
@@ -248,12 +265,15 @@ func (m *LokiResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)
 		return b[:n], nil
 	}
 }
+
 func (m *LokiResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_LokiResponse.Merge(m, src)
 }
+
 func (m *LokiResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *LokiResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_LokiResponse.DiscardUnknown(m)
 }
@@ -329,9 +349,11 @@ func (*LokiSeriesRequest) ProtoMessage() {}
 func (*LokiSeriesRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_51b9d53b40d11902, []int{3}
 }
+
 func (m *LokiSeriesRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *LokiSeriesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_LokiSeriesRequest.Marshal(b, m, deterministic)
@@ -344,12 +366,15 @@ func (m *LokiSeriesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, e
 		return b[:n], nil
 	}
 }
+
 func (m *LokiSeriesRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_LokiSeriesRequest.Merge(m, src)
 }
+
 func (m *LokiSeriesRequest) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *LokiSeriesRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_LokiSeriesRequest.DiscardUnknown(m)
 }
@@ -392,10 +417,10 @@ func (m *LokiSeriesRequest) GetShards() []string {
 }
 
 type LokiSeriesResponse struct {
-	Status  string                                                                                   `protobuf:"bytes,1,opt,name=Status,proto3" json:"status"`
-	Data    []logproto.SeriesIdentifier                                                              `protobuf:"bytes,2,rep,name=Data,proto3" json:"data,omitempty"`
-	Version uint32                                                                                   `protobuf:"varint,3,opt,name=version,proto3" json:"version,omitempty"`
-	Headers []github_com_grafana_loki_pkg_querier_queryrange_queryrangebase.PrometheusResponseHeader `protobuf:"bytes,4,rep,name=Headers,proto3,customtype=github.com/grafana/loki/pkg/querier/queryrange/queryrangebase.PrometheusResponseHeader" json:"-"`
+	Status  string                                                                                  `protobuf:"bytes,1,opt,name=Status,proto3" json:"status"`
+	Data    []logproto.SeriesIdentifier                                                             `protobuf:"bytes,2,rep,name=Data,proto3" json:"data,omitempty"`
+	Version uint32                                                                                  `protobuf:"varint,3,opt,name=version,proto3" json:"version,omitempty"`
+	Headers []github_com_frelon_loki_pkg_querier_queryrange_queryrangebase.PrometheusResponseHeader `protobuf:"bytes,4,rep,name=Headers,proto3,customtype=github.com/grafana/loki/v2/pkg/querier/queryrange/queryrangebase.PrometheusResponseHeader" json:"-"`
 }
 
 func (m *LokiSeriesResponse) Reset()      { *m = LokiSeriesResponse{} }
@@ -403,9 +428,11 @@ func (*LokiSeriesResponse) ProtoMessage() {}
 func (*LokiSeriesResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_51b9d53b40d11902, []int{4}
 }
+
 func (m *LokiSeriesResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *LokiSeriesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_LokiSeriesResponse.Marshal(b, m, deterministic)
@@ -418,12 +445,15 @@ func (m *LokiSeriesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, 
 		return b[:n], nil
 	}
 }
+
 func (m *LokiSeriesResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_LokiSeriesResponse.Merge(m, src)
 }
+
 func (m *LokiSeriesResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *LokiSeriesResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_LokiSeriesResponse.DiscardUnknown(m)
 }
@@ -462,9 +492,11 @@ func (*LokiLabelNamesRequest) ProtoMessage() {}
 func (*LokiLabelNamesRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_51b9d53b40d11902, []int{5}
 }
+
 func (m *LokiLabelNamesRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *LokiLabelNamesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_LokiLabelNamesRequest.Marshal(b, m, deterministic)
@@ -477,12 +509,15 @@ func (m *LokiLabelNamesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byt
 		return b[:n], nil
 	}
 }
+
 func (m *LokiLabelNamesRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_LokiLabelNamesRequest.Merge(m, src)
 }
+
 func (m *LokiLabelNamesRequest) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *LokiLabelNamesRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_LokiLabelNamesRequest.DiscardUnknown(m)
 }
@@ -511,10 +546,10 @@ func (m *LokiLabelNamesRequest) GetPath() string {
 }
 
 type LokiLabelNamesResponse struct {
-	Status  string                                                                                   `protobuf:"bytes,1,opt,name=Status,proto3" json:"status"`
-	Data    []string                                                                                 `protobuf:"bytes,2,rep,name=Data,proto3" json:"data,omitempty"`
-	Version uint32                                                                                   `protobuf:"varint,3,opt,name=version,proto3" json:"version,omitempty"`
-	Headers []github_com_grafana_loki_pkg_querier_queryrange_queryrangebase.PrometheusResponseHeader `protobuf:"bytes,4,rep,name=Headers,proto3,customtype=github.com/grafana/loki/pkg/querier/queryrange/queryrangebase.PrometheusResponseHeader" json:"-"`
+	Status  string                                                                                  `protobuf:"bytes,1,opt,name=Status,proto3" json:"status"`
+	Data    []string                                                                                `protobuf:"bytes,2,rep,name=Data,proto3" json:"data,omitempty"`
+	Version uint32                                                                                  `protobuf:"varint,3,opt,name=version,proto3" json:"version,omitempty"`
+	Headers []github_com_frelon_loki_pkg_querier_queryrange_queryrangebase.PrometheusResponseHeader `protobuf:"bytes,4,rep,name=Headers,proto3,customtype=github.com/grafana/loki/v2/pkg/querier/queryrange/queryrangebase.PrometheusResponseHeader" json:"-"`
 }
 
 func (m *LokiLabelNamesResponse) Reset()      { *m = LokiLabelNamesResponse{} }
@@ -522,9 +557,11 @@ func (*LokiLabelNamesResponse) ProtoMessage() {}
 func (*LokiLabelNamesResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_51b9d53b40d11902, []int{6}
 }
+
 func (m *LokiLabelNamesResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *LokiLabelNamesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_LokiLabelNamesResponse.Marshal(b, m, deterministic)
@@ -537,12 +574,15 @@ func (m *LokiLabelNamesResponse) XXX_Marshal(b []byte, deterministic bool) ([]by
 		return b[:n], nil
 	}
 }
+
 func (m *LokiLabelNamesResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_LokiLabelNamesResponse.Merge(m, src)
 }
+
 func (m *LokiLabelNamesResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *LokiLabelNamesResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_LokiLabelNamesResponse.DiscardUnknown(m)
 }
@@ -571,8 +611,8 @@ func (m *LokiLabelNamesResponse) GetVersion() uint32 {
 }
 
 type LokiData struct {
-	ResultType string                                        `protobuf:"bytes,1,opt,name=ResultType,proto3" json:"resultType"`
-	Result     []github_com_grafana_loki_pkg_logproto.Stream `protobuf:"bytes,2,rep,name=Result,proto3,customtype=github.com/grafana/loki/pkg/logproto.Stream" json:"result"`
+	ResultType string                                       `protobuf:"bytes,1,opt,name=ResultType,proto3" json:"resultType"`
+	Result     []github_com_frelon_loki_pkg_logproto.Stream `protobuf:"bytes,2,rep,name=Result,proto3,customtype=github.com/grafana/loki/v2/pkg/logproto.Stream" json:"result"`
 }
 
 func (m *LokiData) Reset()      { *m = LokiData{} }
@@ -580,9 +620,11 @@ func (*LokiData) ProtoMessage() {}
 func (*LokiData) Descriptor() ([]byte, []int) {
 	return fileDescriptor_51b9d53b40d11902, []int{7}
 }
+
 func (m *LokiData) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *LokiData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_LokiData.Marshal(b, m, deterministic)
@@ -595,12 +637,15 @@ func (m *LokiData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
+
 func (m *LokiData) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_LokiData.Merge(m, src)
 }
+
 func (m *LokiData) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *LokiData) XXX_DiscardUnknown() {
 	xxx_messageInfo_LokiData.DiscardUnknown(m)
 }
@@ -625,9 +670,11 @@ func (*LokiPromResponse) ProtoMessage() {}
 func (*LokiPromResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_51b9d53b40d11902, []int{8}
 }
+
 func (m *LokiPromResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *LokiPromResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_LokiPromResponse.Marshal(b, m, deterministic)
@@ -640,12 +687,15 @@ func (m *LokiPromResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, er
 		return b[:n], nil
 	}
 }
+
 func (m *LokiPromResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_LokiPromResponse.Merge(m, src)
 }
+
 func (m *LokiPromResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *LokiPromResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_LokiPromResponse.DiscardUnknown(m)
 }
@@ -793,6 +843,7 @@ func (this *LokiRequest) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *LokiInstantRequest) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -837,6 +888,7 @@ func (this *LokiInstantRequest) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *LokiResponse) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -890,6 +942,7 @@ func (this *LokiResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *LokiSeriesRequest) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -936,6 +989,7 @@ func (this *LokiSeriesRequest) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *LokiSeriesResponse) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -979,6 +1033,7 @@ func (this *LokiSeriesResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *LokiLabelNamesRequest) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1009,6 +1064,7 @@ func (this *LokiLabelNamesRequest) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *LokiLabelNamesResponse) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1052,6 +1108,7 @@ func (this *LokiLabelNamesResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *LokiData) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1084,6 +1141,7 @@ func (this *LokiData) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *LokiPromResponse) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1111,6 +1169,7 @@ func (this *LokiPromResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *LokiRequest) GoString() string {
 	if this == nil {
 		return "nil"
@@ -1128,6 +1187,7 @@ func (this *LokiRequest) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *LokiInstantRequest) GoString() string {
 	if this == nil {
 		return "nil"
@@ -1143,6 +1203,7 @@ func (this *LokiInstantRequest) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *LokiResponse) GoString() string {
 	if this == nil {
 		return "nil"
@@ -1161,6 +1222,7 @@ func (this *LokiResponse) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *LokiSeriesRequest) GoString() string {
 	if this == nil {
 		return "nil"
@@ -1175,6 +1237,7 @@ func (this *LokiSeriesRequest) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *LokiSeriesResponse) GoString() string {
 	if this == nil {
 		return "nil"
@@ -1194,6 +1257,7 @@ func (this *LokiSeriesResponse) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *LokiLabelNamesRequest) GoString() string {
 	if this == nil {
 		return "nil"
@@ -1206,6 +1270,7 @@ func (this *LokiLabelNamesRequest) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *LokiLabelNamesResponse) GoString() string {
 	if this == nil {
 		return "nil"
@@ -1219,6 +1284,7 @@ func (this *LokiLabelNamesResponse) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *LokiData) GoString() string {
 	if this == nil {
 		return "nil"
@@ -1230,6 +1296,7 @@ func (this *LokiData) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *LokiPromResponse) GoString() string {
 	if this == nil {
 		return "nil"
@@ -1243,6 +1310,7 @@ func (this *LokiPromResponse) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func valueToGoStringQueryrange(v interface{}, typ string) string {
 	rv := reflect.ValueOf(v)
 	if rv.IsNil() {
@@ -1251,6 +1319,7 @@ func valueToGoStringQueryrange(v interface{}, typ string) string {
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("func(v %v) *%v { return &v } ( %#v )", typ, typ, pv)
 }
+
 func (m *LokiRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -1816,6 +1885,7 @@ func encodeVarintQueryrange(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
+
 func (m *LokiRequest) Size() (n int) {
 	if m == nil {
 		return 0
@@ -2062,14 +2132,17 @@ func (m *LokiPromResponse) Size() (n int) {
 func sovQueryrange(x uint64) (n int) {
 	return (math_bits.Len64(x|1) + 6) / 7
 }
+
 func sozQueryrange(x uint64) (n int) {
 	return sovQueryrange(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
+
 func (this *LokiRequest) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&LokiRequest{`,
+	s := strings.Join([]string{
+		`&LokiRequest{`,
 		`Query:` + fmt.Sprintf("%v", this.Query) + `,`,
 		`Limit:` + fmt.Sprintf("%v", this.Limit) + `,`,
 		`Step:` + fmt.Sprintf("%v", this.Step) + `,`,
@@ -2082,11 +2155,13 @@ func (this *LokiRequest) String() string {
 	}, "")
 	return s
 }
+
 func (this *LokiInstantRequest) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&LokiInstantRequest{`,
+	s := strings.Join([]string{
+		`&LokiInstantRequest{`,
 		`Query:` + fmt.Sprintf("%v", this.Query) + `,`,
 		`Limit:` + fmt.Sprintf("%v", this.Limit) + `,`,
 		`TimeTs:` + strings.Replace(strings.Replace(fmt.Sprintf("%v", this.TimeTs), "Timestamp", "types.Timestamp", 1), `&`, ``, 1) + `,`,
@@ -2097,11 +2172,13 @@ func (this *LokiInstantRequest) String() string {
 	}, "")
 	return s
 }
+
 func (this *LokiResponse) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&LokiResponse{`,
+	s := strings.Join([]string{
+		`&LokiResponse{`,
 		`Status:` + fmt.Sprintf("%v", this.Status) + `,`,
 		`Data:` + strings.Replace(strings.Replace(this.Data.String(), "LokiData", "LokiData", 1), `&`, ``, 1) + `,`,
 		`ErrorType:` + fmt.Sprintf("%v", this.ErrorType) + `,`,
@@ -2115,11 +2192,13 @@ func (this *LokiResponse) String() string {
 	}, "")
 	return s
 }
+
 func (this *LokiSeriesRequest) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&LokiSeriesRequest{`,
+	s := strings.Join([]string{
+		`&LokiSeriesRequest{`,
 		`Match:` + fmt.Sprintf("%v", this.Match) + `,`,
 		`StartTs:` + strings.Replace(strings.Replace(fmt.Sprintf("%v", this.StartTs), "Timestamp", "types.Timestamp", 1), `&`, ``, 1) + `,`,
 		`EndTs:` + strings.Replace(strings.Replace(fmt.Sprintf("%v", this.EndTs), "Timestamp", "types.Timestamp", 1), `&`, ``, 1) + `,`,
@@ -2129,6 +2208,7 @@ func (this *LokiSeriesRequest) String() string {
 	}, "")
 	return s
 }
+
 func (this *LokiSeriesResponse) String() string {
 	if this == nil {
 		return "nil"
@@ -2138,7 +2218,8 @@ func (this *LokiSeriesResponse) String() string {
 		repeatedStringForData += fmt.Sprintf("%v", f) + ","
 	}
 	repeatedStringForData += "}"
-	s := strings.Join([]string{`&LokiSeriesResponse{`,
+	s := strings.Join([]string{
+		`&LokiSeriesResponse{`,
 		`Status:` + fmt.Sprintf("%v", this.Status) + `,`,
 		`Data:` + repeatedStringForData + `,`,
 		`Version:` + fmt.Sprintf("%v", this.Version) + `,`,
@@ -2147,11 +2228,13 @@ func (this *LokiSeriesResponse) String() string {
 	}, "")
 	return s
 }
+
 func (this *LokiLabelNamesRequest) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&LokiLabelNamesRequest{`,
+	s := strings.Join([]string{
+		`&LokiLabelNamesRequest{`,
 		`StartTs:` + strings.Replace(strings.Replace(fmt.Sprintf("%v", this.StartTs), "Timestamp", "types.Timestamp", 1), `&`, ``, 1) + `,`,
 		`EndTs:` + strings.Replace(strings.Replace(fmt.Sprintf("%v", this.EndTs), "Timestamp", "types.Timestamp", 1), `&`, ``, 1) + `,`,
 		`Path:` + fmt.Sprintf("%v", this.Path) + `,`,
@@ -2159,11 +2242,13 @@ func (this *LokiLabelNamesRequest) String() string {
 	}, "")
 	return s
 }
+
 func (this *LokiLabelNamesResponse) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&LokiLabelNamesResponse{`,
+	s := strings.Join([]string{
+		`&LokiLabelNamesResponse{`,
 		`Status:` + fmt.Sprintf("%v", this.Status) + `,`,
 		`Data:` + fmt.Sprintf("%v", this.Data) + `,`,
 		`Version:` + fmt.Sprintf("%v", this.Version) + `,`,
@@ -2172,28 +2257,33 @@ func (this *LokiLabelNamesResponse) String() string {
 	}, "")
 	return s
 }
+
 func (this *LokiData) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&LokiData{`,
+	s := strings.Join([]string{
+		`&LokiData{`,
 		`ResultType:` + fmt.Sprintf("%v", this.ResultType) + `,`,
 		`Result:` + fmt.Sprintf("%v", this.Result) + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *LokiPromResponse) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&LokiPromResponse{`,
+	s := strings.Join([]string{
+		`&LokiPromResponse{`,
 		`Response:` + strings.Replace(fmt.Sprintf("%v", this.Response), "PrometheusResponse", "queryrangebase.PrometheusResponse", 1) + `,`,
 		`Statistics:` + strings.Replace(strings.Replace(fmt.Sprintf("%v", this.Statistics), "Result", "stats.Result", 1), `&`, ``, 1) + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func valueToStringQueryrange(v interface{}) string {
 	rv := reflect.ValueOf(v)
 	if rv.IsNil() {
@@ -2202,6 +2292,7 @@ func valueToStringQueryrange(v interface{}) string {
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("*%v", pv)
 }
+
 func (m *LokiRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -2474,6 +2565,7 @@ func (m *LokiRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *LokiInstantRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -2694,6 +2786,7 @@ func (m *LokiInstantRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *LokiResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -3000,6 +3093,7 @@ func (m *LokiResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *LokiSeriesRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -3215,6 +3309,7 @@ func (m *LokiSeriesRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *LokiSeriesResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -3387,6 +3482,7 @@ func (m *LokiSeriesResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *LokiLabelNamesRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -3538,6 +3634,7 @@ func (m *LokiLabelNamesRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *LokiLabelNamesResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -3708,6 +3805,7 @@ func (m *LokiLabelNamesResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *LokiData) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -3827,6 +3925,7 @@ func (m *LokiData) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *LokiPromResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -3949,6 +4048,7 @@ func (m *LokiPromResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func skipQueryrange(dAtA []byte) (n int, err error) {
 	l := len(dAtA)
 	iNdEx := 0

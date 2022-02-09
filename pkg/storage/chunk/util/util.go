@@ -9,8 +9,8 @@ import (
 
 	ot "github.com/opentracing/opentracing-go"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/util/math"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/util/math"
 )
 
 // Callback from an IndexQuery.
@@ -119,7 +119,7 @@ func QueryFilter(callback Callback) Callback {
 func EnsureDirectory(dir string) error {
 	info, err := os.Stat(dir)
 	if os.IsNotExist(err) {
-		return os.MkdirAll(dir, 0777)
+		return os.MkdirAll(dir, 0o777)
 	} else if err == nil && !info.IsDir() {
 		return fmt.Errorf("not a directory: %s", dir)
 	}

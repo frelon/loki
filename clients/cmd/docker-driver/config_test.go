@@ -12,9 +12,9 @@ import (
 	"github.com/prometheus/common/model"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/clients/pkg/logentry/stages"
+	"github.com/frelon/loki/v2/clients/pkg/logentry/stages"
 
-	util_log "github.com/grafana/loki/pkg/util/log"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 var jobRename = `
@@ -25,7 +25,6 @@ var jobRename = `
   action: labeldrop`
 
 func Test_relabelConfig(t *testing.T) {
-
 	tests := []struct {
 		name    string
 		config  string
@@ -66,6 +65,7 @@ var pipelineString = `
 - labels:
     level:
 `
+
 var pipeline = PipelineConfig{
 	PipelineStages: []interface{}{
 		map[interface{}]interface{}{
@@ -122,7 +122,6 @@ func Test_parsePipeline(t *testing.T) {
 			if err != nil {
 				t.Error(err)
 			}
-
 		})
 	}
 }

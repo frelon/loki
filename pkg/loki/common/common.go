@@ -5,12 +5,12 @@ import (
 
 	"github.com/grafana/dskit/flagext"
 
-	"github.com/grafana/loki/pkg/storage/chunk/aws"
-	"github.com/grafana/loki/pkg/storage/chunk/azure"
-	"github.com/grafana/loki/pkg/storage/chunk/gcp"
-	"github.com/grafana/loki/pkg/storage/chunk/hedging"
-	"github.com/grafana/loki/pkg/storage/chunk/openstack"
-	"github.com/grafana/loki/pkg/util"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/aws"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/azure"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/gcp"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/hedging"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/openstack"
+	"github.com/frelon/loki/v2/pkg/util"
 )
 
 // Config holds common config that can be shared between multiple other config sections.

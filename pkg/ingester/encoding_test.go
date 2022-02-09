@@ -9,8 +9,8 @@ import (
 	"github.com/prometheus/prometheus/tsdb/record"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/chunkenc"
-	"github.com/grafana/loki/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/chunkenc"
+	"github.com/frelon/loki/v2/pkg/logproto"
 )
 
 func Test_Encoding_Series(t *testing.T) {
@@ -245,7 +245,6 @@ func Test_EncodingChunks(t *testing.T) {
 					conf: defaultIngesterTestConfig(t),
 				},
 			} {
-
 				t.Run(fmt.Sprintf("%v-%v-%s", f, close, tc.desc), func(t *testing.T) {
 					conf := tc.conf
 					c := chunkenc.NewMemChunk(chunkenc.EncGZIP, f, conf.BlockSize, conf.TargetChunkSize)
@@ -300,7 +299,6 @@ func Test_EncodingChunks(t *testing.T) {
 						require.Equal(t, matched, to)
 
 					}
-
 				})
 			}
 		}

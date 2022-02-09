@@ -13,9 +13,9 @@ import (
 	"github.com/prometheus/prometheus/model/labels"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/ingester/client"
-	"github.com/grafana/loki/pkg/storage/chunk/encoding"
-	"github.com/grafana/loki/pkg/util"
+	"github.com/frelon/loki/v2/pkg/ingester/client"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/encoding"
+	"github.com/frelon/loki/v2/pkg/util"
 )
 
 const userID = "userID"
@@ -485,9 +485,11 @@ func TestChunkKeys(t *testing.T) {
 func BenchmarkParseNewerExternalKey(b *testing.B) {
 	benchmarkParseExternalKey(b, "fake/57f628c7f6d57aad/162c699f000:162c69a07eb:eb242d99")
 }
+
 func BenchmarkParseNewExternalKey(b *testing.B) {
 	benchmarkParseExternalKey(b, "fake/57f628c7f6d57aad:162c699f000:162c69a07eb:eb242d99")
 }
+
 func BenchmarkParseLegacyExternalKey(b *testing.B) {
 	benchmarkParseExternalKey(b, "2:1484661279394:1484664879394")
 }

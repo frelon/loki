@@ -5,26 +5,31 @@ package rulespb
 
 import (
 	fmt "fmt"
-	_ "github.com/gogo/protobuf/gogoproto"
-	proto "github.com/gogo/protobuf/proto"
-	github_com_gogo_protobuf_types "github.com/gogo/protobuf/types"
-	types "github.com/gogo/protobuf/types"
-	_ "github.com/golang/protobuf/ptypes/duration"
-	_ "github.com/grafana/loki/pkg/logproto"
-	github_com_grafana_loki_pkg_logproto "github.com/grafana/loki/pkg/logproto"
 	io "io"
 	math "math"
 	math_bits "math/bits"
 	reflect "reflect"
 	strings "strings"
 	time "time"
+
+	_ "github.com/gogo/protobuf/gogoproto"
+	proto "github.com/gogo/protobuf/proto"
+	github_com_gogo_protobuf_types "github.com/gogo/protobuf/types"
+	types "github.com/gogo/protobuf/types"
+	_ "github.com/golang/protobuf/ptypes/duration"
+
+	_ "github.com/frelon/loki/v2/pkg/logproto"
+
+	github_com_frelon_loki_pkg_logproto "github.com/grafana/loki/v2/pkg/logproto"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
-var _ = proto.Marshal
-var _ = fmt.Errorf
-var _ = math.Inf
-var _ = time.Kitchen
+var (
+	_ = proto.Marshal
+	_ = fmt.Errorf
+	_ = math.Inf
+	_ = time.Kitchen
+)
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the proto package it is being compiled against.
@@ -51,9 +56,11 @@ func (*RuleGroupDesc) ProtoMessage() {}
 func (*RuleGroupDesc) Descriptor() ([]byte, []int) {
 	return fileDescriptor_dd3ef3757f506fba, []int{0}
 }
+
 func (m *RuleGroupDesc) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *RuleGroupDesc) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_RuleGroupDesc.Marshal(b, m, deterministic)
@@ -66,12 +73,15 @@ func (m *RuleGroupDesc) XXX_Marshal(b []byte, deterministic bool) ([]byte, error
 		return b[:n], nil
 	}
 }
+
 func (m *RuleGroupDesc) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_RuleGroupDesc.Merge(m, src)
 }
+
 func (m *RuleGroupDesc) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *RuleGroupDesc) XXX_DiscardUnknown() {
 	xxx_messageInfo_RuleGroupDesc.DiscardUnknown(m)
 }
@@ -122,12 +132,12 @@ func (m *RuleGroupDesc) GetOptions() []*types.Any {
 
 // RuleDesc is a proto representation of a Prometheus Rule
 type RuleDesc struct {
-	Expr        string                                              `protobuf:"bytes,1,opt,name=expr,proto3" json:"expr,omitempty"`
-	Record      string                                              `protobuf:"bytes,2,opt,name=record,proto3" json:"record,omitempty"`
-	Alert       string                                              `protobuf:"bytes,3,opt,name=alert,proto3" json:"alert,omitempty"`
-	For         time.Duration                                       `protobuf:"bytes,4,opt,name=for,proto3,stdduration" json:"for"`
-	Labels      []github_com_grafana_loki_pkg_logproto.LabelAdapter `protobuf:"bytes,5,rep,name=labels,proto3,customtype=github.com/grafana/loki/pkg/logproto.LabelAdapter" json:"labels"`
-	Annotations []github_com_grafana_loki_pkg_logproto.LabelAdapter `protobuf:"bytes,6,rep,name=annotations,proto3,customtype=github.com/grafana/loki/pkg/logproto.LabelAdapter" json:"annotations"`
+	Expr        string                                             `protobuf:"bytes,1,opt,name=expr,proto3" json:"expr,omitempty"`
+	Record      string                                             `protobuf:"bytes,2,opt,name=record,proto3" json:"record,omitempty"`
+	Alert       string                                             `protobuf:"bytes,3,opt,name=alert,proto3" json:"alert,omitempty"`
+	For         time.Duration                                      `protobuf:"bytes,4,opt,name=for,proto3,stdduration" json:"for"`
+	Labels      []github_com_frelon_loki_pkg_logproto.LabelAdapter `protobuf:"bytes,5,rep,name=labels,proto3,customtype=github.com/grafana/loki/v2/pkg/logproto.LabelAdapter" json:"labels"`
+	Annotations []github_com_frelon_loki_pkg_logproto.LabelAdapter `protobuf:"bytes,6,rep,name=annotations,proto3,customtype=github.com/grafana/loki/v2/pkg/logproto.LabelAdapter" json:"annotations"`
 }
 
 func (m *RuleDesc) Reset()      { *m = RuleDesc{} }
@@ -135,9 +145,11 @@ func (*RuleDesc) ProtoMessage() {}
 func (*RuleDesc) Descriptor() ([]byte, []int) {
 	return fileDescriptor_dd3ef3757f506fba, []int{1}
 }
+
 func (m *RuleDesc) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *RuleDesc) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_RuleDesc.Marshal(b, m, deterministic)
@@ -150,12 +162,15 @@ func (m *RuleDesc) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
+
 func (m *RuleDesc) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_RuleDesc.Merge(m, src)
 }
+
 func (m *RuleDesc) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *RuleDesc) XXX_DiscardUnknown() {
 	xxx_messageInfo_RuleDesc.DiscardUnknown(m)
 }
@@ -281,6 +296,7 @@ func (this *RuleGroupDesc) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *RuleDesc) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -330,6 +346,7 @@ func (this *RuleDesc) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *RuleGroupDesc) GoString() string {
 	if this == nil {
 		return "nil"
@@ -349,6 +366,7 @@ func (this *RuleGroupDesc) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *RuleDesc) GoString() string {
 	if this == nil {
 		return "nil"
@@ -364,6 +382,7 @@ func (this *RuleDesc) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func valueToGoStringRules(v interface{}, typ string) string {
 	rv := reflect.ValueOf(v)
 	if rv.IsNil() {
@@ -372,6 +391,7 @@ func valueToGoStringRules(v interface{}, typ string) string {
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("func(v %v) *%v { return &v } ( %#v )", typ, typ, pv)
 }
+
 func (m *RuleGroupDesc) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -543,6 +563,7 @@ func encodeVarintRules(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
+
 func (m *RuleGroupDesc) Size() (n int) {
 	if m == nil {
 		return 0
@@ -616,9 +637,11 @@ func (m *RuleDesc) Size() (n int) {
 func sovRules(x uint64) (n int) {
 	return (math_bits.Len64(x|1) + 6) / 7
 }
+
 func sozRules(x uint64) (n int) {
 	return sovRules(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
+
 func (this *RuleGroupDesc) String() string {
 	if this == nil {
 		return "nil"
@@ -633,7 +656,8 @@ func (this *RuleGroupDesc) String() string {
 		repeatedStringForOptions += strings.Replace(fmt.Sprintf("%v", f), "Any", "types.Any", 1) + ","
 	}
 	repeatedStringForOptions += "}"
-	s := strings.Join([]string{`&RuleGroupDesc{`,
+	s := strings.Join([]string{
+		`&RuleGroupDesc{`,
 		`Name:` + fmt.Sprintf("%v", this.Name) + `,`,
 		`Namespace:` + fmt.Sprintf("%v", this.Namespace) + `,`,
 		`Interval:` + strings.Replace(strings.Replace(fmt.Sprintf("%v", this.Interval), "Duration", "duration.Duration", 1), `&`, ``, 1) + `,`,
@@ -644,11 +668,13 @@ func (this *RuleGroupDesc) String() string {
 	}, "")
 	return s
 }
+
 func (this *RuleDesc) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&RuleDesc{`,
+	s := strings.Join([]string{
+		`&RuleDesc{`,
 		`Expr:` + fmt.Sprintf("%v", this.Expr) + `,`,
 		`Record:` + fmt.Sprintf("%v", this.Record) + `,`,
 		`Alert:` + fmt.Sprintf("%v", this.Alert) + `,`,
@@ -659,6 +685,7 @@ func (this *RuleDesc) String() string {
 	}, "")
 	return s
 }
+
 func valueToStringRules(v interface{}) string {
 	rv := reflect.ValueOf(v)
 	if rv.IsNil() {
@@ -667,6 +694,7 @@ func valueToStringRules(v interface{}) string {
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("*%v", pv)
 }
+
 func (m *RuleGroupDesc) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -917,6 +945,7 @@ func (m *RuleGroupDesc) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *RuleDesc) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -1167,6 +1196,7 @@ func (m *RuleDesc) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func skipRules(dAtA []byte) (n int, err error) {
 	l := len(dAtA)
 	iNdEx := 0

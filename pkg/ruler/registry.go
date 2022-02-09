@@ -21,9 +21,9 @@ import (
 	"github.com/weaveworks/common/user"
 	"gopkg.in/yaml.v2"
 
-	"github.com/grafana/loki/pkg/ruler/storage/cleaner"
-	"github.com/grafana/loki/pkg/ruler/storage/instance"
-	"github.com/grafana/loki/pkg/ruler/storage/wal"
+	"github.com/frelon/loki/v2/pkg/ruler/storage/cleaner"
+	"github.com/frelon/loki/v2/pkg/ruler/storage/instance"
+	"github.com/frelon/loki/v2/pkg/ruler/storage/wal"
 )
 
 type walRegistry struct {
@@ -335,6 +335,7 @@ type notReadyAppender struct{}
 func (n notReadyAppender) Append(ref storage.SeriesRef, l labels.Labels, t int64, v float64) (storage.SeriesRef, error) {
 	return 0, errNotReady
 }
+
 func (n notReadyAppender) AppendExemplar(ref storage.SeriesRef, l labels.Labels, e exemplar.Exemplar) (storage.SeriesRef, error) {
 	return 0, errNotReady
 }
@@ -346,6 +347,7 @@ type discardingAppender struct{}
 func (n discardingAppender) Append(ref storage.SeriesRef, l labels.Labels, t int64, v float64) (storage.SeriesRef, error) {
 	return 0, nil
 }
+
 func (n discardingAppender) AppendExemplar(ref storage.SeriesRef, l labels.Labels, e exemplar.Exemplar) (storage.SeriesRef, error) {
 	return 0, nil
 }
