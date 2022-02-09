@@ -12,15 +12,15 @@ import (
 	"github.com/prometheus/prometheus/scrape"
 	"github.com/prometheus/prometheus/storage"
 
-	"github.com/grafana/loki/pkg/ingester/client"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/prom1/storage/metric"
-	"github.com/grafana/loki/pkg/querier/series"
-	"github.com/grafana/loki/pkg/tenant"
-	"github.com/grafana/loki/pkg/util"
-	"github.com/grafana/loki/pkg/util/chunkcompat"
-	"github.com/grafana/loki/pkg/util/math"
-	"github.com/grafana/loki/pkg/util/spanlogger"
+	"github.com/frelon/loki/v2/pkg/ingester/client"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/prom1/storage/metric"
+	"github.com/frelon/loki/v2/pkg/querier/series"
+	"github.com/frelon/loki/v2/pkg/tenant"
+	"github.com/frelon/loki/v2/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util/chunkcompat"
+	"github.com/frelon/loki/v2/pkg/util/math"
+	"github.com/frelon/loki/v2/pkg/util/spanlogger"
 )
 
 // Distributor is the read interface to the distributor, made an interface here
@@ -262,7 +262,6 @@ type distributorExemplarQuerier struct {
 // Select querys for exemplars, prometheus' storage.ExemplarQuerier's Select function takes the time range as two int64 values.
 func (q *distributorExemplarQuerier) Select(start, end int64, matchers ...[]*labels.Matcher) ([]exemplar.QueryResult, error) {
 	allResults, err := q.distributor.QueryExemplars(q.ctx, model.Time(start), model.Time(end), matchers...)
-
 	if err != nil {
 		return nil, err
 	}

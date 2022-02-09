@@ -9,7 +9,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"golang.org/x/time/rate"
 
-	"github.com/grafana/loki/clients/pkg/promtail/api"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/api"
 )
 
 // PipelineStages contains configuration for each stage within a pipeline
@@ -18,9 +18,11 @@ type PipelineStages = []interface{}
 // PipelineStage contains configuration for a single pipeline stage
 type PipelineStage = map[interface{}]interface{}
 
-var rateLimiter *rate.Limiter
-var rateLimiterDrop bool
-var rateLimiterDropReason = "global_rate_limiter_drop"
+var (
+	rateLimiter           *rate.Limiter
+	rateLimiterDrop       bool
+	rateLimiterDropReason = "global_rate_limiter_drop"
+)
 
 // Pipeline pass down a log entry to each stage for mutation and/or label extraction.
 type Pipeline struct {

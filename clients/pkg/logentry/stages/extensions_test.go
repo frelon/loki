@@ -7,7 +7,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/stretchr/testify/assert"
 
-	util_log "github.com/grafana/loki/pkg/util/log"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 var (
@@ -36,7 +36,7 @@ func TestNewDocker(t *testing.T) {
 			dockerRaw,
 			dockerProcessed,
 			time.Now(),
-			time.Date(2019, 4, 30, 02, 12, 41, 844351500, loc),
+			time.Date(2019, 4, 30, 0o2, 12, 41, 844351500, loc),
 			map[string]string{},
 			map[string]string{
 				"stream": "stderr",
@@ -153,5 +153,4 @@ func TestNewCri(t *testing.T) {
 			}
 		})
 	}
-
 }

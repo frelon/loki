@@ -12,16 +12,14 @@ import (
 	"github.com/weaveworks/common/httpgrpc"
 	"google.golang.org/grpc"
 
-	"github.com/grafana/loki/pkg/lokifrontend/frontend/v1/frontendv1pb"
-	querier_stats "github.com/grafana/loki/pkg/querier/stats"
+	"github.com/frelon/loki/v2/pkg/lokifrontend/frontend/v1/frontendv1pb"
+	querier_stats "github.com/frelon/loki/v2/pkg/querier/stats"
 )
 
-var (
-	processorBackoffConfig = backoff.Config{
-		MinBackoff: 500 * time.Millisecond,
-		MaxBackoff: 5 * time.Second,
-	}
-)
+var processorBackoffConfig = backoff.Config{
+	MinBackoff: 500 * time.Millisecond,
+	MaxBackoff: 5 * time.Second,
+}
 
 func newFrontendProcessor(cfg Config, handler RequestHandler, log log.Logger) processor {
 	return &frontendProcessor{

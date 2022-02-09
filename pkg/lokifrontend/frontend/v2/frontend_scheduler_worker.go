@@ -15,10 +15,10 @@ import (
 	"github.com/weaveworks/common/httpgrpc"
 	"google.golang.org/grpc"
 
-	"github.com/grafana/loki/pkg/lokifrontend/frontend/v2/frontendv2pb"
-	"github.com/grafana/loki/pkg/scheduler/schedulerpb"
-	"github.com/grafana/loki/pkg/util"
-	lokiutil "github.com/grafana/loki/pkg/util"
+	"github.com/frelon/loki/v2/pkg/lokifrontend/frontend/v2/frontendv2pb"
+	"github.com/frelon/loki/v2/pkg/scheduler/schedulerpb"
+	"github.com/frelon/loki/v2/pkg/util"
+	lokiutil "github.com/frelon/loki/v2/pkg/util"
 )
 
 type frontendSchedulerWorkers struct {
@@ -183,7 +183,7 @@ type frontendSchedulerWorker struct {
 	cancelCh chan uint64
 }
 
-func newFrontendSchedulerWorker(conn *grpc.ClientConn, schedulerAddr string, frontendAddr string, requestCh <-chan *frontendRequest, concurrency int, log log.Logger) *frontendSchedulerWorker {
+func newFrontendSchedulerWorker(conn *grpc.ClientConn, schedulerAddr, frontendAddr string, requestCh <-chan *frontendRequest, concurrency int, log log.Logger) *frontendSchedulerWorker {
 	w := &frontendSchedulerWorker{
 		log:           log,
 		conn:          conn,

@@ -8,11 +8,11 @@ import (
 	"github.com/prometheus/prometheus/model/rulefmt"
 	"gopkg.in/yaml.v3"
 
-	"github.com/grafana/loki/pkg/logproto" //lint:ignore faillint allowed to import other protobuf
+	"github.com/frelon/loki/v2/pkg/logproto" //lint:ignore faillint allowed to import other protobuf
 )
 
 // ToProto transforms a formatted prometheus rulegroup to a rule group protobuf
-func ToProto(user string, namespace string, rl rulefmt.RuleGroup) *RuleGroupDesc {
+func ToProto(user, namespace string, rl rulefmt.RuleGroup) *RuleGroupDesc {
 	rg := RuleGroupDesc{
 		Name:      rl.Name,
 		Namespace: namespace,

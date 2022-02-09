@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaveworks/common/mtime"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
 )
 
 const (
@@ -462,7 +462,7 @@ func (m *mockPrometheus) SetResponseForWrites(q0, q1, q2 model.SampleValue, thro
 	}
 }
 
-func (m *mockPrometheus) SetResponseForReads(usageRates [][]int, errorRates [][]int) {
+func (m *mockPrometheus) SetResponseForReads(usageRates, errorRates [][]int) {
 	// Mock metrics from Prometheus. In Read tests, these aren't used but must be
 	// filled out in a basic way for the underlying functions to get the right amount of prometheus results
 	m.rangeValues = []model.Value{

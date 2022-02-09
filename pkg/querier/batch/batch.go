@@ -4,9 +4,9 @@ import (
 	"github.com/prometheus/common/model"
 	"github.com/prometheus/prometheus/tsdb/chunkenc"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/storage/chunk/encoding"
-	promchunk "github.com/grafana/loki/pkg/storage/chunk/encoding"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/encoding"
+	promchunk "github.com/frelon/loki/v2/pkg/storage/chunk/encoding"
 )
 
 // GenericChunk is a generic chunk used by the batch iterator, in order to make the batch
@@ -83,16 +83,15 @@ func newIteratorAdapter(underlying iterator) chunkenc.Iterator {
 
 // Seek implements chunkenc.Iterator.
 func (a *iteratorAdapter) Seek(t int64) bool {
-
 	// Optimisation: fulfill the seek using current batch if possible.
 	if a.curr.Length > 0 && a.curr.Index < a.curr.Length {
 		if t <= a.curr.Timestamps[a.curr.Index] {
-			//In this case, the interface's requirement is met, so state of this
-			//iterator does not need any change.
+			// In this case, the interface's requirement is met, so state of this
+			// iterator does not need any change.
 			return true
 		} else if t <= a.curr.Timestamps[a.curr.Length-1] {
-			//In this case, some timestamp between current sample and end of batch can fulfill
-			//the seek. Let's find it.
+			// In this case, some timestamp between current sample and end of batch can fulfill
+			// the seek. Let's find it.
 			for a.curr.Index < a.curr.Length && t > a.curr.Timestamps[a.curr.Index] {
 				a.curr.Index++
 			}

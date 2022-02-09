@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/grafana/loki/pkg/ruler/rulespb"
+	"github.com/frelon/loki/v2/pkg/ruler/rulespb"
 )
 
 var (
@@ -28,7 +28,7 @@ type RuleStore interface {
 
 	// ListRuleGroupsForUserAndNamespace returns all the active rule groups for a user from given namespace.
 	// If namespace is empty, groups from all namespaces are returned.
-	ListRuleGroupsForUserAndNamespace(ctx context.Context, userID string, namespace string) (rulespb.RuleGroupList, error)
+	ListRuleGroupsForUserAndNamespace(ctx context.Context, userID, namespace string) (rulespb.RuleGroupList, error)
 
 	// LoadRuleGroups loads rules for each rule group in the map.
 	// Parameter with groups to load *MUST* be coming from one of the List methods.
@@ -39,7 +39,7 @@ type RuleStore interface {
 	SetRuleGroup(ctx context.Context, userID, namespace string, group *rulespb.RuleGroupDesc) error
 
 	// DeleteRuleGroup deletes single rule group.
-	DeleteRuleGroup(ctx context.Context, userID, namespace string, group string) error
+	DeleteRuleGroup(ctx context.Context, userID, namespace, group string) error
 
 	// DeleteNamespace lists rule groups for given user and namespace, and deletes all rule groups.
 	// If namespace is empty, deletes all rule groups for user.

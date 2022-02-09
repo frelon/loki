@@ -18,20 +18,22 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaveworks/common/user"
 
-	"github.com/grafana/loki/pkg/ruler/storage/instance"
-	"github.com/grafana/loki/pkg/ruler/util"
-	"github.com/grafana/loki/pkg/util/test"
-	"github.com/grafana/loki/pkg/validation"
+	"github.com/frelon/loki/v2/pkg/ruler/storage/instance"
+	"github.com/frelon/loki/v2/pkg/ruler/util"
+	"github.com/frelon/loki/v2/pkg/util/test"
+	"github.com/frelon/loki/v2/pkg/validation"
 )
 
-const enabledRWTenant = "enabled"
-const disabledRWTenant = "disabled"
-const additionalHeadersRWTenant = "additional-headers"
-const noHeadersRWTenant = "no-headers"
-const customRelabelsTenant = "custom-relabels"
-const badRelabelsTenant = "bad-relabels"
-const nilRelabelsTenant = "nil-relabels"
-const emptySliceRelabelsTenant = "empty-slice-relabels"
+const (
+	enabledRWTenant           = "enabled"
+	disabledRWTenant          = "disabled"
+	additionalHeadersRWTenant = "additional-headers"
+	noHeadersRWTenant         = "no-headers"
+	customRelabelsTenant      = "custom-relabels"
+	badRelabelsTenant         = "bad-relabels"
+	nilRelabelsTenant         = "nil-relabels"
+	emptySliceRelabelsTenant  = "empty-slice-relabels"
+)
 
 const defaultCapacity = 1000
 

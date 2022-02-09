@@ -10,12 +10,11 @@ import (
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc/metadata"
 
-	"github.com/grafana/loki/pkg/scheduler/schedulerpb"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/scheduler/schedulerpb"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 func TestScheduler_setRunState(t *testing.T) {
-
 	// This test is a bit crude, the method is not the most directly testable but
 	// this covers us to make sure we don't accidentally change the behavior of
 	// the little bit of logic which runs/stops the scheduler and makes sure we
@@ -60,7 +59,6 @@ func TestScheduler_setRunState(t *testing.T) {
 	// not_running -> not_running, shouldRun == false, no shutdown message sent
 	s.setRunState(false)
 	assert.Nil(t, mock.msg)
-
 }
 
 type mockSchedulerForFrontendFrontendLoopServer struct {

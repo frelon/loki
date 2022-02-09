@@ -9,11 +9,10 @@ import (
 	"github.com/prometheus/prometheus/model/labels"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/logqlmodel"
+	"github.com/frelon/loki/v2/pkg/logqlmodel"
 )
 
 func TestBinary_Filter(t *testing.T) {
-
 	tests := []struct {
 		f   LabelFilterer
 		lbs labels.Labels
@@ -286,14 +285,16 @@ func TestReduceAndLabelFilter(t *testing.T) {
 	}{
 		{"empty", nil, NoopLabelFilter},
 		{"1", []LabelFilterer{NewBytesLabelFilter(LabelFilterEqual, "foo", 5)}, NewBytesLabelFilter(LabelFilterEqual, "foo", 5)},
-		{"2",
+		{
+			"2",
 			[]LabelFilterer{
 				NewBytesLabelFilter(LabelFilterEqual, "foo", 5),
 				NewBytesLabelFilter(LabelFilterGreaterThanOrEqual, "bar", 6),
 			},
 			NewAndLabelFilter(NewBytesLabelFilter(LabelFilterEqual, "foo", 5), NewBytesLabelFilter(LabelFilterGreaterThanOrEqual, "bar", 6)),
 		},
-		{"3",
+		{
+			"3",
 			[]LabelFilterer{
 				NewBytesLabelFilter(LabelFilterEqual, "foo", 5),
 				NewBytesLabelFilter(LabelFilterGreaterThanOrEqual, "bar", 6),

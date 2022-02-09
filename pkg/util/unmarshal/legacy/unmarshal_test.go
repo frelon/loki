@@ -9,7 +9,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logproto"
 )
 
 // covers requests to /api/prom/push
@@ -46,7 +46,6 @@ var pushTests = []struct {
 }
 
 func Test_DecodePushRequest(t *testing.T) {
-
 	for i, pushTest := range pushTests {
 		var actual logproto.PushRequest
 		closer := ioutil.NopCloser(strings.NewReader(pushTest.actual))
@@ -58,7 +57,7 @@ func Test_DecodePushRequest(t *testing.T) {
 	}
 }
 
-func mustParse(l string, t string) time.Time {
+func mustParse(l, t string) time.Time {
 	ret, err := time.Parse(l, t)
 	if err != nil {
 		log.Fatalf("Failed to parse %s", t)

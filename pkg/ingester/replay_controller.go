@@ -7,7 +7,7 @@ import (
 	"github.com/go-kit/log/level"
 	"go.uber.org/atomic"
 
-	util_log "github.com/grafana/loki/pkg/util/log"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 type replayFlusher struct {
@@ -24,14 +24,11 @@ func (f *replayFlusher) Flush() {
 	instances := f.i.getInstances()
 
 	for _, instance := range instances {
-
 		_ = instance.streams.ForEach(func(s *stream) (bool, error) {
 			f.i.removeFlushedChunks(instance, s, false)
 			return true, nil
 		})
-
 	}
-
 }
 
 type Flusher interface {
@@ -71,7 +68,6 @@ func (c *replayController) Add(x int64) {
 
 func (c *replayController) Sub(x int64) {
 	c.metrics.setRecoveryBytesInUse(c.currentBytes.Sub(x))
-
 }
 
 func (c *replayController) Cur() int {

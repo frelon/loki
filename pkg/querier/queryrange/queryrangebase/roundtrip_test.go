@@ -16,7 +16,7 @@ import (
 	"github.com/weaveworks/common/middleware"
 	"github.com/weaveworks/common/user"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
 )
 
 func TestRoundTrip(t *testing.T) {
@@ -61,7 +61,6 @@ func TestRoundTrip(t *testing.T) {
 		nil,
 		nil,
 	)
-
 	if err != nil {
 		t.Fatal(err)
 	}

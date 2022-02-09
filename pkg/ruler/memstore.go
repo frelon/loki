@@ -16,8 +16,8 @@ import (
 	"github.com/prometheus/prometheus/rules"
 	"github.com/prometheus/prometheus/storage"
 
-	"github.com/grafana/loki/pkg/querier/series"
-	"github.com/grafana/loki/pkg/util"
+	"github.com/frelon/loki/v2/pkg/querier/series"
+	"github.com/frelon/loki/v2/pkg/util"
 )
 
 const (
@@ -87,7 +87,6 @@ func NewMemStore(userID string, queryFunc rules.QueryFunc, metrics *memstoreMetr
 		done:      make(chan struct{}),
 	}
 	return s
-
 }
 
 // Calling Start will set the RuleIter, unblock the MemStore, and start the run() function in a separate goroutine.
@@ -171,7 +170,6 @@ func (m *MemStore) Querier(ctx context.Context, mint, maxt int64) (storage.Queri
 		MemStore: m,
 		ctx:      ctx,
 	}, nil
-
 }
 
 type memStoreQuerier struct {
@@ -351,7 +349,6 @@ func (c *RuleCache) Get(ts time.Time, ls labels.Labels) (*promql.Sample, bool) {
 		return nil, true
 	}
 	return &smp, true
-
 }
 
 // CleanupOldSamples removes samples that are outside of the rule's `For` duration.
@@ -367,7 +364,6 @@ func (c *RuleCache) CleanupOldSamples(olderThan time.Time) (empty bool) {
 			delete(c.data, ts)
 			c.metrics.samples.Add(-float64(len(tsMap)))
 		}
-
 	}
 	return len(c.data) == 0
 }

@@ -9,9 +9,9 @@ import (
 	"github.com/prometheus/prometheus/scrape"
 	"github.com/stretchr/testify/mock"
 
-	"github.com/grafana/loki/pkg/ingester/client"
-	"github.com/grafana/loki/pkg/prom1/storage/metric"
-	"github.com/grafana/loki/pkg/util/validation"
+	"github.com/frelon/loki/v2/pkg/ingester/client"
+	"github.com/frelon/loki/v2/pkg/prom1/storage/metric"
+	"github.com/frelon/loki/v2/pkg/util/validation"
 )
 
 type MockDistributor struct {
@@ -22,22 +22,27 @@ func (m *MockDistributor) Query(ctx context.Context, from, to model.Time, matche
 	args := m.Called(ctx, from, to, matchers)
 	return args.Get(0).(model.Matrix), args.Error(1)
 }
+
 func (m *MockDistributor) QueryExemplars(ctx context.Context, from, to model.Time, matchers ...[]*labels.Matcher) (*client.ExemplarQueryResponse, error) {
 	args := m.Called(ctx, from, to, matchers)
 	return args.Get(0).(*client.ExemplarQueryResponse), args.Error(1)
 }
+
 func (m *MockDistributor) QueryStream(ctx context.Context, from, to model.Time, matchers ...*labels.Matcher) (*client.QueryStreamResponse, error) {
 	args := m.Called(ctx, from, to, matchers)
 	return args.Get(0).(*client.QueryStreamResponse), args.Error(1)
 }
+
 func (m *MockDistributor) LabelValuesForLabelName(ctx context.Context, from, to model.Time, lbl model.LabelName, matchers ...*labels.Matcher) ([]string, error) {
 	args := m.Called(ctx, from, to, lbl, matchers)
 	return args.Get(0).([]string), args.Error(1)
 }
+
 func (m *MockDistributor) LabelNames(ctx context.Context, from, to model.Time) ([]string, error) {
 	args := m.Called(ctx, from, to)
 	return args.Get(0).([]string), args.Error(1)
 }
+
 func (m *MockDistributor) MetricsForLabelMatchers(ctx context.Context, from, to model.Time, matchers ...*labels.Matcher) ([]metric.Metric, error) {
 	args := m.Called(ctx, from, to, matchers)
 	return args.Get(0).([]metric.Metric), args.Error(1)

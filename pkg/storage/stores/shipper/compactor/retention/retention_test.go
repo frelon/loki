@@ -20,15 +20,15 @@ import (
 	"github.com/stretchr/testify/require"
 	"go.etcd.io/bbolt"
 
-	"github.com/grafana/loki/pkg/chunkenc"
-	"github.com/grafana/loki/pkg/ingester/client"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/storage/chunk/local"
-	"github.com/grafana/loki/pkg/storage/chunk/objectclient"
-	"github.com/grafana/loki/pkg/storage/chunk/storage"
-	"github.com/grafana/loki/pkg/storage/stores/shipper/util"
-	"github.com/grafana/loki/pkg/validation"
+	"github.com/frelon/loki/v2/pkg/chunkenc"
+	"github.com/frelon/loki/v2/pkg/ingester/client"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/local"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/objectclient"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/storage"
+	"github.com/frelon/loki/v2/pkg/storage/stores/shipper/util"
+	"github.com/frelon/loki/v2/pkg/validation"
 )
 
 type mockChunkClient struct {
@@ -240,7 +240,7 @@ func Test_EmptyTable(t *testing.T) {
 	require.NoError(t, err)
 }
 
-func createChunk(t testing.TB, userID string, lbs labels.Labels, from model.Time, through model.Time) chunk.Chunk {
+func createChunk(t testing.TB, userID string, lbs labels.Labels, from, through model.Time) chunk.Chunk {
 	t.Helper()
 	const (
 		targetSize = 1500 * 1024
@@ -467,7 +467,7 @@ func (m mockExpirationChecker) Expired(ref ChunkEntry, now model.Time) (bool, []
 	return ce.isExpired, ce.nonDeletedIntervals
 }
 
-func (m mockExpirationChecker) DropFromIndex(ref ChunkEntry, tableEndTime model.Time, now model.Time) bool {
+func (m mockExpirationChecker) DropFromIndex(ref ChunkEntry, tableEndTime, now model.Time) bool {
 	return false
 }
 

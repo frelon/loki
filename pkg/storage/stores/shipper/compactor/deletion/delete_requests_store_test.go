@@ -8,12 +8,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/grafana/loki/pkg/storage/stores/shipper/storage"
+	"github.com/frelon/loki/v2/pkg/storage/stores/shipper/storage"
 
 	"github.com/prometheus/common/model"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/storage/chunk/local"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/local"
 )
 
 func TestDeleteRequestsStore(t *testing.T) {
@@ -154,7 +154,7 @@ func TestDeleteRequestsStore(t *testing.T) {
 	compareRequests(t, remainingRequests, deleteRequests)
 }
 
-func compareRequests(t *testing.T, expected []DeleteRequest, actual []DeleteRequest) {
+func compareRequests(t *testing.T, expected, actual []DeleteRequest) {
 	require.Len(t, actual, len(expected))
 	sort.Slice(expected, func(i, j int) bool {
 		return expected[i].RequestID < expected[j].RequestID

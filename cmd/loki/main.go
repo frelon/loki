@@ -13,12 +13,12 @@ import (
 	"github.com/weaveworks/common/logging"
 	"github.com/weaveworks/common/tracing"
 
-	"github.com/grafana/loki/pkg/loki"
-	"github.com/grafana/loki/pkg/util"
-	_ "github.com/grafana/loki/pkg/util/build"
-	"github.com/grafana/loki/pkg/util/cfg"
-	util_log "github.com/grafana/loki/pkg/util/log"
-	"github.com/grafana/loki/pkg/validation"
+	"github.com/frelon/loki/v2/pkg/loki"
+	"github.com/frelon/loki/v2/pkg/util"
+	_ "github.com/frelon/loki/v2/pkg/util/build"
+	"github.com/frelon/loki/v2/pkg/util/cfg"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/validation"
 )
 
 func main() {
@@ -84,13 +84,12 @@ func main() {
 					level.Error(util_log.Logger).Log("msg", "error closing tracing", "err", err)
 				}
 			}
-
 		}()
 	}
 
 	// Allocate a block of memory to reduce the frequency of garbage collection.
 	// The larger the ballast, the lower the garbage collection frequency.
-	// https://github.com/grafana/loki/issues/781
+	// https://github.com/frelon/loki/v2/issues/781
 	ballast := make([]byte, config.BallastBytes)
 	runtime.KeepAlive(ballast)
 

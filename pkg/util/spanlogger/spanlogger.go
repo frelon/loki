@@ -7,8 +7,8 @@ import (
 	"github.com/grafana/dskit/spanlogger"
 	"github.com/opentracing/opentracing-go"
 
-	"github.com/grafana/loki/pkg/tenant"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/tenant"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 type loggerCtxMarker struct{}
@@ -18,9 +18,7 @@ const (
 	TenantIDsTagName = spanlogger.TenantIDsTagName
 )
 
-var (
-	loggerCtxKey = &loggerCtxMarker{}
-)
+var loggerCtxKey = &loggerCtxMarker{}
 
 // SpanLogger unifies tracing and logging, to reduce repetition.
 type SpanLogger = spanlogger.SpanLogger

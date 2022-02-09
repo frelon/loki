@@ -15,7 +15,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaveworks/common/test"
 
-	"github.com/grafana/loki/pkg/querier/astmapper"
+	"github.com/frelon/loki/v2/pkg/querier/astmapper"
 )
 
 type ByHashRangeKey []IndexEntry
@@ -416,7 +416,7 @@ func TestV10IndexQueries(t *testing.T) {
 		return res
 	}
 
-	var testExprs = []struct {
+	testExprs := []struct {
 		name     string
 		queries  []IndexQuery
 		shard    *astmapper.ShardAnnotation

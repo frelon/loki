@@ -9,9 +9,9 @@ import (
 	"github.com/prometheus/prometheus/promql"
 	"github.com/prometheus/prometheus/promql/parser"
 
-	"github.com/grafana/loki/pkg/loghttp"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logqlmodel"
+	"github.com/frelon/loki/v2/pkg/loghttp"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logqlmodel"
 )
 
 // NewResultValue constructs a ResultValue from a promql.Value
@@ -113,7 +113,6 @@ func NewScalar(s promql.Scalar) loghttp.Scalar {
 		Timestamp: model.Time(s.T),
 		Value:     model.SampleValue(s.V),
 	}
-
 }
 
 // NewVector constructs a Vector from a promql.Vector
@@ -129,7 +128,6 @@ func NewVector(v promql.Vector) loghttp.Vector {
 
 // NewSample constructs a model.Sample from a promql.Sample
 func NewSample(s promql.Sample) model.Sample {
-
 	ret := model.Sample{
 		Value:     model.SampleValue(s.V),
 		Timestamp: model.Time(s.T),

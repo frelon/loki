@@ -9,9 +9,10 @@ import (
 	"strings"
 
 	"github.com/ViaQ/logerr/log"
-	"github.com/grafana/loki/operator/api/v1beta1"
-	"github.com/grafana/loki/operator/internal/manifests"
 	"sigs.k8s.io/yaml"
+
+	"github.com/frelon/loki/v2/operator/api/v1beta1"
+	"github.com/frelon/loki/v2/operator/internal/manifests"
 )
 
 // Define the manifest options here as structured objects

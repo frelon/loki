@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
 )
 
 type TableClient struct {
@@ -35,7 +35,7 @@ func (c *TableClient) ListTables(ctx context.Context) ([]string, error) {
 }
 
 func (c *TableClient) CreateTable(ctx context.Context, desc chunk.TableDesc) error {
-	file, err := os.OpenFile(filepath.Join(c.directory, desc.Name), os.O_CREATE|os.O_RDONLY, 0666)
+	file, err := os.OpenFile(filepath.Join(c.directory, desc.Name), os.O_CREATE|os.O_RDONLY, 0o666)
 	if err != nil {
 		return err
 	}

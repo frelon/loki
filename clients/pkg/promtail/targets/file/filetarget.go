@@ -13,10 +13,10 @@ import (
 	"github.com/prometheus/common/model"
 	fsnotify "gopkg.in/fsnotify.v1"
 
-	"github.com/grafana/loki/clients/pkg/promtail/api"
-	"github.com/grafana/loki/clients/pkg/promtail/client"
-	"github.com/grafana/loki/clients/pkg/promtail/positions"
-	"github.com/grafana/loki/clients/pkg/promtail/targets/target"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/api"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/client"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/positions"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/targets/target"
 )
 
 const (
@@ -365,12 +365,11 @@ func (t *FileTarget) reportSize(ms []string) {
 			}
 			t.metrics.totalBytes.WithLabelValues(m).Set(float64(fi.Size()))
 		}
-
 	}
 }
 
 // Returns the elements from set b which are missing from set a
-func missing(as map[string]struct{}, bs map[string]struct{}) map[string]struct{} {
+func missing(as, bs map[string]struct{}) map[string]struct{} {
 	c := map[string]struct{}{}
 	for a := range bs {
 		if _, ok := as[a]; !ok {

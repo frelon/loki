@@ -5,7 +5,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/grafana/loki/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util"
 )
 
 // querier holds information about a querier registered in the queue.
@@ -281,7 +281,7 @@ func (q *queues) recomputeUserQueriers() {
 // shuffleQueriersForUser returns nil if queriersToSelect is 0 or there are not enough queriers to select from.
 // In that case *all* queriers should be used.
 // Scratchpad is used for shuffling, to avoid new allocations. If nil, new slice is allocated.
-func shuffleQueriersForUser(userSeed int64, queriersToSelect int, allSortedQueriers []string, scratchpad []string) map[string]struct{} {
+func shuffleQueriersForUser(userSeed int64, queriersToSelect int, allSortedQueriers, scratchpad []string) map[string]struct{} {
 	if queriersToSelect == 0 || len(allSortedQueriers) <= queriersToSelect {
 		return nil
 	}

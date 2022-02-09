@@ -11,15 +11,15 @@ import (
 	"github.com/prometheus/prometheus/model/labels"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/grafana/loki/pkg/chunkenc"
-	"github.com/grafana/loki/pkg/ingester/client"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logql"
-	"github.com/grafana/loki/pkg/querier/astmapper"
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/storage/chunk/cache"
-	loki_util "github.com/grafana/loki/pkg/util"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/chunkenc"
+	"github.com/frelon/loki/v2/pkg/ingester/client"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logql"
+	"github.com/frelon/loki/v2/pkg/querier/astmapper"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/cache"
+	loki_util "github.com/frelon/loki/v2/pkg/util"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 var (
@@ -34,8 +34,8 @@ func assertStream(t *testing.T, expected, actual []logproto.Stream) {
 		t.Fatalf("error stream length are different expected %d actual %d\n%s", len(expected), len(actual), spew.Sdump(expected, actual))
 		return
 	}
-	sort.Slice(expected, func(i int, j int) bool { return expected[i].Labels < expected[j].Labels })
-	sort.Slice(actual, func(i int, j int) bool { return actual[i].Labels < actual[j].Labels })
+	sort.Slice(expected, func(i, j int) bool { return expected[i].Labels < expected[j].Labels })
+	sort.Slice(actual, func(i, j int) bool { return actual[i].Labels < actual[j].Labels })
 	for i := range expected {
 		assert.Equal(t, expected[i].Labels, actual[i].Labels)
 		if len(expected[i].Entries) != len(actual[i].Entries) {
@@ -55,8 +55,8 @@ func assertSeries(t *testing.T, expected, actual []logproto.Series) {
 		t.Fatalf("error stream length are different expected %d actual %d\n%s", len(expected), len(actual), spew.Sdump(expected, actual))
 		return
 	}
-	sort.Slice(expected, func(i int, j int) bool { return expected[i].Labels < expected[j].Labels })
-	sort.Slice(actual, func(i int, j int) bool { return actual[i].Labels < actual[j].Labels })
+	sort.Slice(expected, func(i, j int) bool { return expected[i].Labels < expected[j].Labels })
+	sort.Slice(actual, func(i, j int) bool { return actual[i].Labels < actual[j].Labels })
 	for i := range expected {
 		assert.Equal(t, expected[i].Labels, actual[i].Labels)
 		if len(expected[i].Samples) != len(actual[i].Samples) {
@@ -169,7 +169,7 @@ func (m *mockChunkStore) PutOne(ctx context.Context, from, through model.Time, c
 	return nil
 }
 
-func (m *mockChunkStore) LabelValuesForMetricName(ctx context.Context, userID string, from, through model.Time, metricName string, labelName string, matchers ...*labels.Matcher) ([]string, error) {
+func (m *mockChunkStore) LabelValuesForMetricName(ctx context.Context, userID string, from, through model.Time, metricName, labelName string, matchers ...*labels.Matcher) ([]string, error) {
 	return nil, nil
 }
 

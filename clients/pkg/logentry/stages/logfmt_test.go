@@ -9,7 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"gopkg.in/yaml.v2"
 
-	util_log "github.com/grafana/loki/pkg/util/log"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 var testLogfmtYamlSingleStageWithoutSource = `
@@ -34,7 +34,7 @@ pipeline_stages:
 `
 
 func TestPipeline_Logfmt(t *testing.T) {
-	var testLogfmtLogLine = `
+	testLogfmtLogLine := `
 		time=2012-11-01T22:08:41+00:00 app=loki	level=WARN duration=125 message="this is a log line" extra="user=foo""
 	`
 	t.Parallel()

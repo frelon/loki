@@ -10,11 +10,11 @@ import (
 	"github.com/prometheus/common/model"
 	"github.com/prometheus/prometheus/model/labels"
 
-	"github.com/grafana/loki/pkg/ingester/client"
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/storage/chunk/cache"
-	promchunk "github.com/grafana/loki/pkg/storage/chunk/encoding"
-	"github.com/grafana/loki/pkg/util/validation"
+	"github.com/frelon/loki/v2/pkg/ingester/client"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/cache"
+	promchunk "github.com/frelon/loki/v2/pkg/storage/chunk/encoding"
+	"github.com/frelon/loki/v2/pkg/util/validation"
 )
 
 const (
@@ -68,7 +68,7 @@ func Setup(fixture Fixture, tableName string) (chunk.IndexClient, chunk.Client, 
 }
 
 // CreateChunks creates some chunks for testing
-func CreateChunks(scfg chunk.SchemaConfig, startIndex, batchSize int, from model.Time, through model.Time) ([]string, []chunk.Chunk, error) {
+func CreateChunks(scfg chunk.SchemaConfig, startIndex, batchSize int, from, through model.Time) ([]string, []chunk.Chunk, error) {
 	keys := []string{}
 	chunks := []chunk.Chunk{}
 	for j := 0; j < batchSize; j++ {

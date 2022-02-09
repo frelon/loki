@@ -19,15 +19,15 @@ import (
 	"github.com/prometheus/prometheus/model/timestamp"
 	"github.com/weaveworks/common/httpgrpc"
 
-	"github.com/grafana/loki/pkg/loghttp"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logql"
-	"github.com/grafana/loki/pkg/logqlmodel"
-	"github.com/grafana/loki/pkg/logqlmodel/stats"
-	"github.com/grafana/loki/pkg/querier/queryrange/queryrangebase"
-	"github.com/grafana/loki/pkg/util/httpreq"
-	"github.com/grafana/loki/pkg/util/marshal"
-	marshal_legacy "github.com/grafana/loki/pkg/util/marshal/legacy"
+	"github.com/frelon/loki/v2/pkg/loghttp"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logql"
+	"github.com/frelon/loki/v2/pkg/logqlmodel"
+	"github.com/frelon/loki/v2/pkg/logqlmodel/stats"
+	"github.com/frelon/loki/v2/pkg/querier/queryrange/queryrangebase"
+	"github.com/frelon/loki/v2/pkg/util/httpreq"
+	"github.com/frelon/loki/v2/pkg/util/marshal"
+	marshal_legacy "github.com/frelon/loki/v2/pkg/util/marshal/legacy"
 )
 
 var LokiCodec = &Codec{}
@@ -42,7 +42,7 @@ func (r *LokiRequest) GetStart() int64 {
 	return r.StartTs.UnixNano() / (int64(time.Millisecond) / int64(time.Nanosecond))
 }
 
-func (r *LokiRequest) WithStartEnd(s int64, e int64) queryrangebase.Request {
+func (r *LokiRequest) WithStartEnd(s, e int64) queryrangebase.Request {
 	new := *r
 	new.StartTs = time.Unix(0, s*int64(time.Millisecond))
 	new.EndTs = time.Unix(0, e*int64(time.Millisecond))
@@ -87,7 +87,7 @@ func (r *LokiInstantRequest) GetStart() int64 {
 	return r.TimeTs.UnixNano() / (int64(time.Millisecond) / int64(time.Nanosecond))
 }
 
-func (r *LokiInstantRequest) WithStartEnd(s int64, e int64) queryrangebase.Request {
+func (r *LokiInstantRequest) WithStartEnd(s, e int64) queryrangebase.Request {
 	new := *r
 	new.TimeTs = time.Unix(0, s*int64(time.Millisecond))
 	return &new
@@ -125,7 +125,7 @@ func (r *LokiSeriesRequest) GetStart() int64 {
 	return r.StartTs.UnixNano() / (int64(time.Millisecond) / int64(time.Nanosecond))
 }
 
-func (r *LokiSeriesRequest) WithStartEnd(s int64, e int64) queryrangebase.Request {
+func (r *LokiSeriesRequest) WithStartEnd(s, e int64) queryrangebase.Request {
 	new := *r
 	new.StartTs = time.Unix(0, s*int64(time.Millisecond))
 	new.EndTs = time.Unix(0, e*int64(time.Millisecond))
@@ -164,7 +164,7 @@ func (r *LokiLabelNamesRequest) GetStart() int64 {
 	return r.StartTs.UnixNano() / (int64(time.Millisecond) / int64(time.Nanosecond))
 }
 
-func (r *LokiLabelNamesRequest) WithStartEnd(s int64, e int64) queryrangebase.Request {
+func (r *LokiLabelNamesRequest) WithStartEnd(s, e int64) queryrangebase.Request {
 	new := *r
 	new.StartTs = time.Unix(0, s*int64(time.Millisecond))
 	new.EndTs = time.Unix(0, e*int64(time.Millisecond))

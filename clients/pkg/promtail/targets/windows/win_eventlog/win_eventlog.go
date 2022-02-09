@@ -38,7 +38,7 @@ import (
 	"github.com/influxdata/telegraf/plugins/inputs"
 	"golang.org/x/sys/windows"
 
-	util_log "github.com/grafana/loki/pkg/util/log"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 var sampleConfig = `
@@ -154,7 +154,6 @@ func (w *WinEventLog) SampleConfig() string {
 
 // Gather Windows Event Log entries
 func (w *WinEventLog) Gather(acc telegraf.Accumulator) error {
-
 	// var err error
 	// if w.subscription == 0 {
 	// 	w.subscription, err = w.evtSubscribe(w.EventlogName, w.Query)
@@ -327,7 +326,7 @@ func (w *WinEventLog) shouldProcessField(field string) (should bool, list string
 	return false, "excluded"
 }
 
-func (w *WinEventLog) shouldExcludeEmptyField(field string, fieldType string, fieldValue interface{}) (should bool) {
+func (w *WinEventLog) shouldExcludeEmptyField(field, fieldType string, fieldValue interface{}) (should bool) {
 	for _, pattern := range w.ExcludeEmpty {
 		if matched, _ := filepath.Match(pattern, field); matched {
 			switch fieldType {

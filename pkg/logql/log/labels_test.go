@@ -7,7 +7,7 @@ import (
 	"github.com/prometheus/prometheus/model/labels"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/logqlmodel"
+	"github.com/frelon/loki/v2/pkg/logqlmodel"
 )
 
 func TestLabelsBuilder_Get(t *testing.T) {
@@ -143,7 +143,6 @@ func TestLabelsBuilder_GroupedLabelsResult(t *testing.T) {
 	}
 	sort.Sort(expected)
 	assertLabelResult(t, expected, b.GroupedLabels())
-
 }
 
 func assertLabelResult(t *testing.T, lbs labels.Labels, res LabelsResult) {

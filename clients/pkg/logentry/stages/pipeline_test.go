@@ -14,11 +14,11 @@ import (
 	"github.com/stretchr/testify/require"
 	"gopkg.in/yaml.v2"
 
-	"github.com/grafana/loki/clients/pkg/promtail/api"
-	"github.com/grafana/loki/clients/pkg/promtail/client/fake"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/api"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/client/fake"
 
-	"github.com/grafana/loki/pkg/logproto"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 var (
@@ -119,7 +119,7 @@ func TestPipeline_Process(t *testing.T) {
 			rawTestLine,
 			processedTestLine,
 			time.Now(),
-			time.Date(2000, 01, 25, 14, 00, 01, 0, est),
+			time.Date(2000, 0o1, 25, 14, 0o0, 0o1, 0, est),
 			map[model.LabelName]model.LabelValue{
 				"match": "true",
 			},
@@ -148,7 +148,7 @@ func TestPipeline_Process(t *testing.T) {
 			rawTestLine,
 			processedTestLine,
 			time.Now(),
-			time.Date(2000, 01, 25, 14, 00, 01, 0, est),
+			time.Date(2000, 0o1, 25, 14, 0o0, 0o1, 0, est),
 			map[model.LabelName]model.LabelValue{
 				"match":    "true",
 				"filename": "/var/log/nginx/frontend.log",

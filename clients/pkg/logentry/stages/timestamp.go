@@ -12,7 +12,7 @@ import (
 	"github.com/mitchellh/mapstructure"
 	"github.com/prometheus/common/model"
 
-	"github.com/grafana/loki/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util"
 )
 
 const (
@@ -38,9 +38,7 @@ const (
 	maxLastKnownTimestampsCacheSize = 10000
 )
 
-var (
-	TimestampActionOnFailureOptions = []string{TimestampActionOnFailureSkip, TimestampActionOnFailureFudge}
-)
+var TimestampActionOnFailureOptions = []string{TimestampActionOnFailureSkip, TimestampActionOnFailureFudge}
 
 // TimestampConfig configures timestamp extraction
 type TimestampConfig struct {

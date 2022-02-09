@@ -22,9 +22,9 @@ import (
 	"github.com/prometheus/prometheus/model/timestamp"
 	"github.com/weaveworks/common/httpgrpc"
 
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/util"
-	"github.com/grafana/loki/pkg/util/spanlogger"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util/spanlogger"
 )
 
 // StatusSuccess Prometheus success result.
@@ -82,7 +82,7 @@ type Request interface {
 	// GetCachingOptions returns the caching options.
 	GetCachingOptions() CachingOptions
 	// WithStartEnd clone the current request with different start and end timestamp.
-	WithStartEnd(startTime int64, endTime int64) Request
+	WithStartEnd(startTime, endTime int64) Request
 	// WithQuery clone the current request with a different query.
 	WithQuery(string) Request
 	proto.Message
@@ -100,7 +100,7 @@ type Response interface {
 type prometheusCodec struct{}
 
 // WithStartEnd clones the current `PrometheusRequest` with a new `start` and `end` timestamp.
-func (q *PrometheusRequest) WithStartEnd(start int64, end int64) Request {
+func (q *PrometheusRequest) WithStartEnd(start, end int64) Request {
 	new := *q
 	new.Start = start
 	new.End = end
@@ -257,7 +257,7 @@ func (prometheusCodec) EncodeRequest(ctx context.Context, r Request) (*http.Requ
 		Path:     promReq.Path,
 		RawQuery: params.Encode(),
 	}
-	var h = http.Header{}
+	h := http.Header{}
 
 	for _, hv := range promReq.Headers {
 		for _, v := range hv.Values {

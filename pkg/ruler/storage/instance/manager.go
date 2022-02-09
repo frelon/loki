@@ -14,15 +14,13 @@ import (
 	"github.com/go-kit/log/level"
 	"github.com/prometheus/prometheus/storage"
 
-	util_log "github.com/grafana/loki/pkg/util/log"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
-var (
-	// DefaultBasicManagerConfig is the default config for the BasicManager.
-	DefaultBasicManagerConfig = BasicManagerConfig{
-		InstanceRestartBackoff: 5 * time.Second,
-	}
-)
+// DefaultBasicManagerConfig is the default config for the BasicManager.
+var DefaultBasicManagerConfig = BasicManagerConfig{
+	InstanceRestartBackoff: 5 * time.Second,
+}
 
 // Manager represents a set of methods for manipulating running instances at
 // runtime.

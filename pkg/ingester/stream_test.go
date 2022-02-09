@@ -14,23 +14,21 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaveworks/common/httpgrpc"
 
-	"github.com/grafana/loki/pkg/chunkenc"
-	"github.com/grafana/loki/pkg/iter"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logql/log"
-	"github.com/grafana/loki/pkg/util/flagext"
-	"github.com/grafana/loki/pkg/validation"
+	"github.com/frelon/loki/v2/pkg/chunkenc"
+	"github.com/frelon/loki/v2/pkg/iter"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logql/log"
+	"github.com/frelon/loki/v2/pkg/util/flagext"
+	"github.com/frelon/loki/v2/pkg/validation"
 )
 
-var (
-	countExtractor = func() log.StreamSampleExtractor {
-		ex, err := log.NewLineSampleExtractor(log.CountExtractor, nil, nil, false, false)
-		if err != nil {
-			panic(err)
-		}
-		return ex.ForStream(labels.Labels{})
+var countExtractor = func() log.StreamSampleExtractor {
+	ex, err := log.NewLineSampleExtractor(log.CountExtractor, nil, nil, false, false)
+	if err != nil {
+		panic(err)
 	}
-)
+	return ex.ForStream(labels.Labels{})
+}
 
 func TestMaxReturnedStreamsErrors(t *testing.T) {
 	numLogs := 100
@@ -160,7 +158,6 @@ func TestPushRejectOldCounter(t *testing.T) {
 		{Timestamp: time.Unix(1, 0), Line: "test"},
 	}, recordPool.GetRecord(), 3, true)
 	require.Nil(t, err)
-
 }
 
 func TestStreamIterator(t *testing.T) {
@@ -381,7 +378,6 @@ func TestReplayAppendIgnoresValidityWindow(t *testing.T) {
 	// Now pretend it's a replay. The same write should succeed.
 	_, err = s.Push(context.Background(), entries, nil, 2, true)
 	require.Nil(t, err)
-
 }
 
 func iterEq(t *testing.T, exp []logproto.Entry, got iter.EntryIterator) {

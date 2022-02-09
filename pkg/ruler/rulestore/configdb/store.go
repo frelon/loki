@@ -4,9 +4,9 @@ import (
 	"context"
 	"errors"
 
-	"github.com/grafana/loki/pkg/configs/client"
-	"github.com/grafana/loki/pkg/configs/userconfig"
-	"github.com/grafana/loki/pkg/ruler/rulespb"
+	"github.com/frelon/loki/v2/pkg/configs/client"
+	"github.com/frelon/loki/v2/pkg/configs/userconfig"
+	"github.com/frelon/loki/v2/pkg/ruler/rulespb"
 )
 
 const (
@@ -48,7 +48,6 @@ func (c *ConfigRuleStore) ListAllUsers(ctx context.Context) ([]string, error) {
 // ListAllRuleGroups implements RuleStore
 func (c *ConfigRuleStore) ListAllRuleGroups(ctx context.Context) (map[string]rulespb.RuleGroupList, error) {
 	configs, err := c.configClient.GetRules(ctx, c.since)
-
 	if err != nil {
 		return nil, err
 	}
@@ -88,7 +87,7 @@ func getLatestConfigID(cfgs map[string]userconfig.VersionedRulesConfig, latest u
 	return ret
 }
 
-func (c *ConfigRuleStore) ListRuleGroupsForUserAndNamespace(ctx context.Context, userID string, namespace string) (rulespb.RuleGroupList, error) {
+func (c *ConfigRuleStore) ListRuleGroupsForUserAndNamespace(ctx context.Context, userID, namespace string) (rulespb.RuleGroupList, error) {
 	r, err := c.ListAllRuleGroups(ctx)
 	if err != nil {
 		return nil, err
@@ -126,7 +125,7 @@ func (c *ConfigRuleStore) SetRuleGroup(ctx context.Context, userID, namespace st
 }
 
 // DeleteRuleGroup is not implemented
-func (c *ConfigRuleStore) DeleteRuleGroup(ctx context.Context, userID, namespace string, group string) error {
+func (c *ConfigRuleStore) DeleteRuleGroup(ctx context.Context, userID, namespace, group string) error {
 	return errors.New("not implemented by the config service rule store")
 }
 

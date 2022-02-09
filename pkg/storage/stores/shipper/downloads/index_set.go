@@ -15,14 +15,14 @@ import (
 	"github.com/grafana/dskit/concurrency"
 	"go.etcd.io/bbolt"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/storage/chunk/local"
-	chunk_util "github.com/grafana/loki/pkg/storage/chunk/util"
-	"github.com/grafana/loki/pkg/storage/stores/shipper/storage"
-	shipper_util "github.com/grafana/loki/pkg/storage/stores/shipper/util"
-	"github.com/grafana/loki/pkg/tenant"
-	util_log "github.com/grafana/loki/pkg/util/log"
-	"github.com/grafana/loki/pkg/util/spanlogger"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/local"
+	chunk_util "github.com/frelon/loki/v2/pkg/storage/chunk/util"
+	"github.com/frelon/loki/v2/pkg/storage/stores/shipper/storage"
+	shipper_util "github.com/frelon/loki/v2/pkg/storage/stores/shipper/util"
+	"github.com/frelon/loki/v2/pkg/tenant"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/util/spanlogger"
 )
 
 type IndexSet interface {
@@ -412,7 +412,6 @@ func (t *indexSet) doConcurrentDownload(ctx context.Context, files []storage.Ind
 
 		return nil
 	})
-
 	if err != nil {
 		return nil, err
 	}

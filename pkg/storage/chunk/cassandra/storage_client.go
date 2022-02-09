@@ -18,9 +18,9 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"golang.org/x/sync/semaphore"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/storage/chunk/util"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/util"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 // Config for a StorageClient
@@ -304,7 +304,7 @@ func (s *StorageClient) NewWriteBatch() chunk.WriteBatch {
 	return &writeBatch{}
 }
 
-func (b *writeBatch) Add(tableName, hashValue string, rangeValue []byte, value []byte) {
+func (b *writeBatch) Add(tableName, hashValue string, rangeValue, value []byte) {
 	b.entries = append(b.entries, chunk.IndexEntry{
 		TableName:  tableName,
 		HashValue:  hashValue,

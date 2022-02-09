@@ -22,7 +22,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/util/test"
+	"github.com/frelon/loki/v2/pkg/util/test"
 )
 
 func TestConfig_Unmarshal_Defaults(t *testing.T) {
@@ -77,7 +77,6 @@ func TestConfig_ApplyDefaults_Validations(t *testing.T) {
 
 	for _, tc := range tt {
 		t.Run(tc.name, func(t *testing.T) {
-
 			// Copy the input and all of its slices
 			input := cfg
 

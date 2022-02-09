@@ -17,8 +17,8 @@ import (
 
 	"github.com/go-kit/log"
 
-	"github.com/grafana/loki/clients/pkg/promtail/client/fake"
-	"github.com/grafana/loki/clients/pkg/promtail/positions"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/client/fake"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/positions"
 )
 
 func TestFileTargetSync(t *testing.T) {
@@ -81,7 +81,7 @@ func TestFileTargetSync(t *testing.T) {
 	}
 
 	// Create the base dir, still nothing watched.
-	err = os.MkdirAll(logDir1, 0750)
+	err = os.MkdirAll(logDir1, 0o750)
 	assert.NoError(t, err)
 
 	err = target.sync()
@@ -174,7 +174,7 @@ func TestHandleFileCreationEvent(t *testing.T) {
 	logDir := filepath.Join(dirName, "log")
 	logFile := filepath.Join(logDir, "test1.log")
 
-	if err := os.MkdirAll(logDir, 0750); err != nil {
+	if err := os.MkdirAll(logDir, 0o750); err != nil {
 		t.Fatal(err)
 	}
 
@@ -247,7 +247,6 @@ func TestToStopTailing(t *testing.T) {
 			t.Error("Results mismatch, expected", expected[i], "got", st[i])
 		}
 	}
-
 }
 
 func BenchmarkToStopTailing(b *testing.B) {
@@ -311,5 +310,4 @@ func TestMissing(t *testing.T) {
 	if _, ok := c["str3"]; !ok {
 		t.Error("Expected the set to contain str3 but it did not")
 	}
-
 }

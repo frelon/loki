@@ -9,25 +9,29 @@ package frontendv1pb
 import (
 	context "context"
 	fmt "fmt"
-	_ "github.com/gogo/protobuf/gogoproto"
-	proto "github.com/gogo/protobuf/proto"
-	stats "github.com/grafana/loki/pkg/querier/stats"
-	httpgrpc "github.com/weaveworks/common/httpgrpc"
-	grpc "google.golang.org/grpc"
-	codes "google.golang.org/grpc/codes"
-	status "google.golang.org/grpc/status"
 	io "io"
 	math "math"
 	math_bits "math/bits"
 	reflect "reflect"
 	strconv "strconv"
 	strings "strings"
+
+	_ "github.com/gogo/protobuf/gogoproto"
+	proto "github.com/gogo/protobuf/proto"
+	httpgrpc "github.com/weaveworks/common/httpgrpc"
+	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
+
+	stats "github.com/frelon/loki/v2/pkg/querier/stats"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
-var _ = proto.Marshal
-var _ = fmt.Errorf
-var _ = math.Inf
+var (
+	_ = proto.Marshal
+	_ = fmt.Errorf
+	_ = math.Inf
+)
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the proto package it is being compiled against.
@@ -69,9 +73,11 @@ func (*FrontendToClient) ProtoMessage() {}
 func (*FrontendToClient) Descriptor() ([]byte, []int) {
 	return fileDescriptor_e58870c6eb9e26f7, []int{0}
 }
+
 func (m *FrontendToClient) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *FrontendToClient) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_FrontendToClient.Marshal(b, m, deterministic)
@@ -84,12 +90,15 @@ func (m *FrontendToClient) XXX_Marshal(b []byte, deterministic bool) ([]byte, er
 		return b[:n], nil
 	}
 }
+
 func (m *FrontendToClient) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_FrontendToClient.Merge(m, src)
 }
+
 func (m *FrontendToClient) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *FrontendToClient) XXX_DiscardUnknown() {
 	xxx_messageInfo_FrontendToClient.DiscardUnknown(m)
 }
@@ -128,9 +137,11 @@ func (*ClientToFrontend) ProtoMessage() {}
 func (*ClientToFrontend) Descriptor() ([]byte, []int) {
 	return fileDescriptor_e58870c6eb9e26f7, []int{1}
 }
+
 func (m *ClientToFrontend) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *ClientToFrontend) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_ClientToFrontend.Marshal(b, m, deterministic)
@@ -143,12 +154,15 @@ func (m *ClientToFrontend) XXX_Marshal(b []byte, deterministic bool) ([]byte, er
 		return b[:n], nil
 	}
 }
+
 func (m *ClientToFrontend) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_ClientToFrontend.Merge(m, src)
 }
+
 func (m *ClientToFrontend) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *ClientToFrontend) XXX_DiscardUnknown() {
 	xxx_messageInfo_ClientToFrontend.DiscardUnknown(m)
 }
@@ -185,9 +199,11 @@ func (*NotifyClientShutdownRequest) ProtoMessage() {}
 func (*NotifyClientShutdownRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_e58870c6eb9e26f7, []int{2}
 }
+
 func (m *NotifyClientShutdownRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *NotifyClientShutdownRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_NotifyClientShutdownRequest.Marshal(b, m, deterministic)
@@ -200,12 +216,15 @@ func (m *NotifyClientShutdownRequest) XXX_Marshal(b []byte, deterministic bool) 
 		return b[:n], nil
 	}
 }
+
 func (m *NotifyClientShutdownRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_NotifyClientShutdownRequest.Merge(m, src)
 }
+
 func (m *NotifyClientShutdownRequest) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *NotifyClientShutdownRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_NotifyClientShutdownRequest.DiscardUnknown(m)
 }
@@ -219,17 +238,18 @@ func (m *NotifyClientShutdownRequest) GetClientID() string {
 	return ""
 }
 
-type NotifyClientShutdownResponse struct {
-}
+type NotifyClientShutdownResponse struct{}
 
 func (m *NotifyClientShutdownResponse) Reset()      { *m = NotifyClientShutdownResponse{} }
 func (*NotifyClientShutdownResponse) ProtoMessage() {}
 func (*NotifyClientShutdownResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_e58870c6eb9e26f7, []int{3}
 }
+
 func (m *NotifyClientShutdownResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *NotifyClientShutdownResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_NotifyClientShutdownResponse.Marshal(b, m, deterministic)
@@ -242,12 +262,15 @@ func (m *NotifyClientShutdownResponse) XXX_Marshal(b []byte, deterministic bool)
 		return b[:n], nil
 	}
 }
+
 func (m *NotifyClientShutdownResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_NotifyClientShutdownResponse.Merge(m, src)
 }
+
 func (m *NotifyClientShutdownResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *NotifyClientShutdownResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_NotifyClientShutdownResponse.DiscardUnknown(m)
 }
@@ -308,6 +331,7 @@ func (x Type) String() string {
 	}
 	return strconv.Itoa(int(x))
 }
+
 func (this *FrontendToClient) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -338,6 +362,7 @@ func (this *FrontendToClient) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *ClientToFrontend) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -368,6 +393,7 @@ func (this *ClientToFrontend) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *NotifyClientShutdownRequest) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -392,6 +418,7 @@ func (this *NotifyClientShutdownRequest) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *NotifyClientShutdownResponse) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -413,6 +440,7 @@ func (this *NotifyClientShutdownResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *FrontendToClient) GoString() string {
 	if this == nil {
 		return "nil"
@@ -427,6 +455,7 @@ func (this *FrontendToClient) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *ClientToFrontend) GoString() string {
 	if this == nil {
 		return "nil"
@@ -443,6 +472,7 @@ func (this *ClientToFrontend) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *NotifyClientShutdownRequest) GoString() string {
 	if this == nil {
 		return "nil"
@@ -453,6 +483,7 @@ func (this *NotifyClientShutdownRequest) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *NotifyClientShutdownResponse) GoString() string {
 	if this == nil {
 		return "nil"
@@ -462,6 +493,7 @@ func (this *NotifyClientShutdownResponse) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func valueToGoStringFrontend(v interface{}, typ string) string {
 	rv := reflect.ValueOf(v)
 	if rv.IsNil() {
@@ -472,8 +504,10 @@ func valueToGoStringFrontend(v interface{}, typ string) string {
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
-var _ context.Context
-var _ grpc.ClientConn
+var (
+	_ context.Context
+	_ grpc.ClientConn
+)
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
@@ -548,12 +582,12 @@ type FrontendServer interface {
 }
 
 // UnimplementedFrontendServer can be embedded to have forward compatible implementations.
-type UnimplementedFrontendServer struct {
-}
+type UnimplementedFrontendServer struct{}
 
 func (*UnimplementedFrontendServer) Process(srv Frontend_ProcessServer) error {
 	return status.Errorf(codes.Unimplemented, "method Process not implemented")
 }
+
 func (*UnimplementedFrontendServer) NotifyClientShutdown(ctx context.Context, req *NotifyClientShutdownRequest) (*NotifyClientShutdownResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method NotifyClientShutdown not implemented")
 }
@@ -794,6 +828,7 @@ func encodeVarintFrontend(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
+
 func (m *FrontendToClient) Size() (n int) {
 	if m == nil {
 		return 0
@@ -859,14 +894,17 @@ func (m *NotifyClientShutdownResponse) Size() (n int) {
 func sovFrontend(x uint64) (n int) {
 	return (math_bits.Len64(x|1) + 6) / 7
 }
+
 func sozFrontend(x uint64) (n int) {
 	return sovFrontend(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
+
 func (this *FrontendToClient) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&FrontendToClient{`,
+	s := strings.Join([]string{
+		`&FrontendToClient{`,
 		`HttpRequest:` + strings.Replace(fmt.Sprintf("%v", this.HttpRequest), "HTTPRequest", "httpgrpc.HTTPRequest", 1) + `,`,
 		`Type:` + fmt.Sprintf("%v", this.Type) + `,`,
 		`StatsEnabled:` + fmt.Sprintf("%v", this.StatsEnabled) + `,`,
@@ -874,11 +912,13 @@ func (this *FrontendToClient) String() string {
 	}, "")
 	return s
 }
+
 func (this *ClientToFrontend) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&ClientToFrontend{`,
+	s := strings.Join([]string{
+		`&ClientToFrontend{`,
 		`HttpResponse:` + strings.Replace(fmt.Sprintf("%v", this.HttpResponse), "HTTPResponse", "httpgrpc.HTTPResponse", 1) + `,`,
 		`ClientID:` + fmt.Sprintf("%v", this.ClientID) + `,`,
 		`Stats:` + strings.Replace(fmt.Sprintf("%v", this.Stats), "Stats", "stats.Stats", 1) + `,`,
@@ -886,25 +926,30 @@ func (this *ClientToFrontend) String() string {
 	}, "")
 	return s
 }
+
 func (this *NotifyClientShutdownRequest) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&NotifyClientShutdownRequest{`,
+	s := strings.Join([]string{
+		`&NotifyClientShutdownRequest{`,
 		`ClientID:` + fmt.Sprintf("%v", this.ClientID) + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *NotifyClientShutdownResponse) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&NotifyClientShutdownResponse{`,
+	s := strings.Join([]string{
+		`&NotifyClientShutdownResponse{`,
 		`}`,
 	}, "")
 	return s
 }
+
 func valueToStringFrontend(v interface{}) string {
 	rv := reflect.ValueOf(v)
 	if rv.IsNil() {
@@ -913,6 +958,7 @@ func valueToStringFrontend(v interface{}) string {
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("*%v", pv)
 }
+
 func (m *FrontendToClient) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -1041,6 +1087,7 @@ func (m *FrontendToClient) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *ClientToFrontend) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -1198,6 +1245,7 @@ func (m *ClientToFrontend) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *NotifyClientShutdownRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -1283,6 +1331,7 @@ func (m *NotifyClientShutdownRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *NotifyClientShutdownResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -1336,6 +1385,7 @@ func (m *NotifyClientShutdownResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func skipFrontend(dAtA []byte) (n int, err error) {
 	l := len(dAtA)
 	iNdEx := 0

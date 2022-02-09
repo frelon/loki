@@ -14,9 +14,9 @@ import (
 	"github.com/pkg/errors"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/grafana/loki/pkg/ruler/rulespb"
-	"github.com/grafana/loki/pkg/ruler/rulestore"
-	"github.com/grafana/loki/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/ruler/rulespb"
+	"github.com/frelon/loki/v2/pkg/ruler/rulestore"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
 )
 
 // Object Rule Storage Schema
@@ -194,13 +194,13 @@ func convertRuleGroupObjectsToMap(ruleGroupObjects []chunk.StorageObject) map[st
 }
 
 // GetRuleGroup returns the requested rule group
-func (o *RuleStore) GetRuleGroup(ctx context.Context, userID string, namespace string, grp string) (*rulespb.RuleGroupDesc, error) {
+func (o *RuleStore) GetRuleGroup(ctx context.Context, userID, namespace, grp string) (*rulespb.RuleGroupDesc, error) {
 	handle := generateRuleObjectKey(userID, namespace, grp)
 	return o.getRuleGroup(ctx, handle, nil)
 }
 
 // SetRuleGroup sets provided rule group
-func (o *RuleStore) SetRuleGroup(ctx context.Context, userID string, namespace string, group *rulespb.RuleGroupDesc) error {
+func (o *RuleStore) SetRuleGroup(ctx context.Context, userID, namespace string, group *rulespb.RuleGroupDesc) error {
 	data, err := proto.Marshal(group)
 	if err != nil {
 		return err
@@ -211,7 +211,7 @@ func (o *RuleStore) SetRuleGroup(ctx context.Context, userID string, namespace s
 }
 
 // DeleteRuleGroup deletes the specified rule group
-func (o *RuleStore) DeleteRuleGroup(ctx context.Context, userID string, namespace string, groupName string) error {
+func (o *RuleStore) DeleteRuleGroup(ctx context.Context, userID, namespace, groupName string) error {
 	objectKey := generateRuleObjectKey(userID, namespace, groupName)
 	err := o.client.DeleteObject(ctx, objectKey)
 	if err == chunk.ErrStorageObjectNotFound {

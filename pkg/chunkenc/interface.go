@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/grafana/loki/pkg/iter"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logql/log"
+	"github.com/frelon/loki/v2/pkg/iter"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logql/log"
 )
 
 // Errors returned by the chunk interface.
@@ -92,7 +92,6 @@ func ParseEncoding(enc string) (Encoding, error) {
 		}
 	}
 	return 0, fmt.Errorf("invalid encoding: %s, supported: %s", enc, SupportedEncoding())
-
 }
 
 // SupportedEncoding returns the list of supported Encoding.

@@ -17,9 +17,9 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaveworks/common/user"
 
-	"github.com/grafana/loki/pkg/querier/batch"
-	"github.com/grafana/loki/pkg/querier/chunkstore"
-	"github.com/grafana/loki/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/querier/batch"
+	"github.com/frelon/loki/v2/pkg/querier/chunkstore"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
 )
 
 func getTarDataFromEnv(t testing.TB) (query string, from, through time.Time, step time.Duration, store chunkstore.ChunkStore) {
@@ -124,7 +124,7 @@ func loadChunks(userID, filename string) ([]chunk.Chunk, error) {
 			return nil, errors.Wrap(err, "here 2")
 		}
 
-		var buf = make([]byte, int(hdr.Size))
+		buf := make([]byte, int(hdr.Size))
 		if _, err := io.ReadFull(tarReader, buf); err != nil {
 			return nil, errors.Wrap(err, "here 3")
 		}

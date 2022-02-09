@@ -20,11 +20,11 @@ import (
 	"github.com/prometheus/prometheus/model/relabel"
 	"go.uber.org/atomic"
 
-	"github.com/grafana/loki/clients/pkg/promtail/api"
-	"github.com/grafana/loki/clients/pkg/promtail/positions"
-	"github.com/grafana/loki/clients/pkg/promtail/targets/target"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/api"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/positions"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/targets/target"
 
-	"github.com/grafana/loki/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logproto"
 )
 
 type Target struct {
@@ -194,7 +194,6 @@ func (t *Target) process(r io.Reader, logStream string) {
 	if err != nil {
 		level.Warn(t.logger).Log("msg", "finished scanning logs lines with an error", "err", err)
 	}
-
 }
 
 // startIfNotRunning starts processing container logs. The operation is idempotent , i.e. the processing cannot be started twice.

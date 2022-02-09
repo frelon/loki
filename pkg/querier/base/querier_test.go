@@ -22,16 +22,16 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaveworks/common/user"
 
-	"github.com/grafana/loki/pkg/ingester/client"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/prom1/storage/metric"
-	"github.com/grafana/loki/pkg/querier/batch"
-	"github.com/grafana/loki/pkg/querier/iterators"
-	"github.com/grafana/loki/pkg/storage/chunk"
-	promchunk "github.com/grafana/loki/pkg/storage/chunk/encoding"
-	"github.com/grafana/loki/pkg/util"
-	"github.com/grafana/loki/pkg/util/chunkcompat"
-	"github.com/grafana/loki/pkg/util/validation"
+	"github.com/frelon/loki/v2/pkg/ingester/client"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/prom1/storage/metric"
+	"github.com/frelon/loki/v2/pkg/querier/batch"
+	"github.com/frelon/loki/v2/pkg/querier/iterators"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	promchunk "github.com/frelon/loki/v2/pkg/storage/chunk/encoding"
+	"github.com/frelon/loki/v2/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util/chunkcompat"
+	"github.com/frelon/loki/v2/pkg/util/validation"
 )
 
 const (
@@ -758,18 +758,23 @@ var errDistributorError = fmt.Errorf("errDistributorError")
 func (m *errDistributor) Query(ctx context.Context, from, to model.Time, matchers ...*labels.Matcher) (model.Matrix, error) {
 	return nil, errDistributorError
 }
+
 func (m *errDistributor) QueryStream(ctx context.Context, from, to model.Time, matchers ...*labels.Matcher) (*client.QueryStreamResponse, error) {
 	return nil, errDistributorError
 }
+
 func (m *errDistributor) QueryExemplars(ctx context.Context, from, to model.Time, matchers ...[]*labels.Matcher) (*client.ExemplarQueryResponse, error) {
 	return nil, errDistributorError
 }
+
 func (m *errDistributor) LabelValuesForLabelName(context.Context, model.Time, model.Time, model.LabelName, ...*labels.Matcher) ([]string, error) {
 	return nil, errDistributorError
 }
+
 func (m *errDistributor) LabelNames(context.Context, model.Time, model.Time) ([]string, error) {
 	return nil, errDistributorError
 }
+
 func (m *errDistributor) MetricsForLabelMatchers(ctx context.Context, from, through model.Time, matchers ...*labels.Matcher) ([]metric.Metric, error) {
 	return nil, errDistributorError
 }

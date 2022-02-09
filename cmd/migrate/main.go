@@ -15,20 +15,20 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/model"
 
-	"github.com/grafana/loki/pkg/tenant"
+	"github.com/frelon/loki/v2/pkg/tenant"
 
 	"github.com/prometheus/prometheus/model/labels"
 	"github.com/weaveworks/common/user"
 
-	"github.com/grafana/loki/pkg/logql"
-	"github.com/grafana/loki/pkg/loki"
-	"github.com/grafana/loki/pkg/storage"
-	"github.com/grafana/loki/pkg/storage/chunk"
-	chunk_storage "github.com/grafana/loki/pkg/storage/chunk/storage"
-	"github.com/grafana/loki/pkg/util"
-	"github.com/grafana/loki/pkg/util/cfg"
-	util_log "github.com/grafana/loki/pkg/util/log"
-	"github.com/grafana/loki/pkg/validation"
+	"github.com/frelon/loki/v2/pkg/logql"
+	"github.com/frelon/loki/v2/pkg/loki"
+	"github.com/frelon/loki/v2/pkg/storage"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	chunk_storage "github.com/frelon/loki/v2/pkg/storage/chunk/storage"
+	"github.com/frelon/loki/v2/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util/cfg"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/validation"
 )
 
 type syncRange struct {
@@ -234,7 +234,7 @@ func main() {
 	}
 }
 
-func calcSyncRanges(from, to int64, shardBy int64) []*syncRange {
+func calcSyncRanges(from, to, shardBy int64) []*syncRange {
 	// Calculate the sync ranges
 	syncRanges := []*syncRange{}
 	// diff := to - from

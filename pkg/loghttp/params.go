@@ -11,7 +11,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/prometheus/common/model"
 
-	"github.com/grafana/loki/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logproto"
 )
 
 const (
@@ -77,7 +77,7 @@ func interval(r *http.Request) (time.Duration, error) {
 
 // defaultQueryRangeStep returns the default step used in the query range API,
 // which is dynamically calculated based on the time range
-func defaultQueryRangeStep(start time.Time, end time.Time) int {
+func defaultQueryRangeStep(start, end time.Time) int {
 	return int(math.Max(math.Floor(end.Sub(start).Seconds()/250), 1))
 }
 

@@ -15,12 +15,12 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaveworks/common/user"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/storage/chunk/local"
-	chunk_util "github.com/grafana/loki/pkg/storage/chunk/util"
-	"github.com/grafana/loki/pkg/storage/stores/shipper/storage"
-	"github.com/grafana/loki/pkg/storage/stores/shipper/testutil"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/local"
+	chunk_util "github.com/frelon/loki/v2/pkg/storage/chunk/util"
+	"github.com/frelon/loki/v2/pkg/storage/stores/shipper/storage"
+	"github.com/frelon/loki/v2/pkg/storage/stores/shipper/testutil"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 const (
@@ -511,8 +511,8 @@ func TestLoadTable(t *testing.T) {
 	table.Close()
 
 	// change a boltdb file to text file which would fail to open.
-	require.NoError(t, ioutil.WriteFile(filepath.Join(tablePathInCache, "0"), []byte("invalid boltdb file"), 0666))
-	require.NoError(t, ioutil.WriteFile(filepath.Join(tablePathInCache, userID, "10"), []byte("invalid boltdb file"), 0666))
+	require.NoError(t, ioutil.WriteFile(filepath.Join(tablePathInCache, "0"), []byte("invalid boltdb file"), 0o666))
+	require.NoError(t, ioutil.WriteFile(filepath.Join(tablePathInCache, userID, "10"), []byte("invalid boltdb file"), 0o666))
 
 	// verify that changed boltdb file can't be opened.
 	_, err = local.OpenBoltdbFile(filepath.Join(tablePathInCache, "0"))

@@ -8,7 +8,7 @@ import (
 	"github.com/segmentio/fasthash/fnv1a"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/chunkenc/testdata"
+	"github.com/frelon/loki/v2/pkg/chunkenc/testdata"
 )
 
 var res uint64
@@ -56,5 +56,4 @@ func Test_xxhash_integrity(t *testing.T) {
 		require.False(t, ok, string(testdata.LogsBytes[i])) // all lines have been made unique
 		unique[xxhash.Sum64(testdata.LogsBytes[i])] = struct{}{}
 	}
-
 }

@@ -3,6 +3,7 @@ package queryrangebase
 import (
 	"bytes"
 	"context"
+	"encoding/json"
 	"io/ioutil"
 	"math/rand"
 	"net/http"
@@ -10,7 +11,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logproto"
 )
 
 func BenchmarkPrometheusCodec_DecodeResponse(b *testing.B) {

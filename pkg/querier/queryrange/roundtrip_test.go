@@ -21,17 +21,17 @@ import (
 	"github.com/weaveworks/common/middleware"
 	"github.com/weaveworks/common/user"
 
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logqlmodel"
-	"github.com/grafana/loki/pkg/querier/queryrange/queryrangebase"
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/storage/chunk/cache"
-	util_log "github.com/grafana/loki/pkg/util/log"
-	"github.com/grafana/loki/pkg/util/marshal"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logqlmodel"
+	"github.com/frelon/loki/v2/pkg/querier/queryrange/queryrangebase"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/cache"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/util/marshal"
 )
 
 var (
-	testTime   = time.Date(2019, 12, 02, 11, 10, 10, 10, time.UTC)
+	testTime   = time.Date(2019, 12, 0o2, 11, 10, 10, 10, time.UTC)
 	testConfig = Config{queryrangebase.Config{
 		AlignQueriesWithStep: true,
 		MaxRetries:           3,

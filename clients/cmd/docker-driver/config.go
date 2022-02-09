@@ -20,11 +20,11 @@ import (
 	"github.com/prometheus/prometheus/model/relabel"
 	"gopkg.in/yaml.v2"
 
-	"github.com/grafana/loki/clients/pkg/logentry/stages"
-	"github.com/grafana/loki/clients/pkg/promtail/client"
-	"github.com/grafana/loki/clients/pkg/promtail/targets/file"
+	"github.com/frelon/loki/v2/clients/pkg/logentry/stages"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/client"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/targets/file"
 
-	"github.com/grafana/loki/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util"
 )
 
 const (
@@ -67,18 +67,16 @@ const (
 	defaultHostLabelName  = model.LabelName("host")
 )
 
-var (
-	defaultClientConfig = client.Config{
-		BatchWait: client.BatchWait,
-		BatchSize: client.BatchSize,
-		BackoffConfig: backoff.Config{
-			MinBackoff: client.MinBackoff,
-			MaxBackoff: client.MaxBackoff,
-			MaxRetries: client.MaxRetries,
-		},
-		Timeout: client.Timeout,
-	}
-)
+var defaultClientConfig = client.Config{
+	BatchWait: client.BatchWait,
+	BatchSize: client.BatchSize,
+	BackoffConfig: backoff.Config{
+		MinBackoff: client.MinBackoff,
+		MaxBackoff: client.MaxBackoff,
+		MaxRetries: client.MaxRetries,
+	},
+	Timeout: client.Timeout,
+}
 
 type config struct {
 	labels       model.LabelSet

@@ -19,13 +19,11 @@ import (
 	"github.com/prometheus/common/version"
 	"github.com/weaveworks/common/instrument"
 
-	"github.com/grafana/loki/pkg/configs/userconfig"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/configs/userconfig"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
-var (
-	errBadURL = errors.New("configs_api_url is not set or valid")
-)
+var errBadURL = errors.New("configs_api_url is not set or valid")
 
 // Config says where we can find the ruler userconfig.
 type Config struct {
@@ -60,7 +58,6 @@ type Client interface {
 
 // New creates a new ConfigClient.
 func New(cfg Config) (*ConfigDBClient, error) {
-
 	if cfg.ConfigsAPIURL.URL == nil {
 		return nil, errBadURL
 	}

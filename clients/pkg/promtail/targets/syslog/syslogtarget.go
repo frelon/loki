@@ -22,12 +22,12 @@ import (
 	"github.com/prometheus/prometheus/model/labels"
 	"github.com/prometheus/prometheus/model/relabel"
 
-	"github.com/grafana/loki/clients/pkg/promtail/api"
-	"github.com/grafana/loki/clients/pkg/promtail/scrapeconfig"
-	"github.com/grafana/loki/clients/pkg/promtail/targets/syslog/syslogparser"
-	"github.com/grafana/loki/clients/pkg/promtail/targets/target"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/api"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/scrapeconfig"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/targets/syslog/syslogparser"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/targets/target"
 
-	"github.com/grafana/loki/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logproto"
 )
 
 var (
@@ -113,7 +113,7 @@ func (t *SyslogTarget) run() error {
 	return nil
 }
 
-func newTLSConfig(certFile string, keyFile string, caFile string) (*tls.Config, error) {
+func newTLSConfig(certFile, keyFile, caFile string) (*tls.Config, error) {
 	if certFile == "" || keyFile == "" {
 		return nil, fmt.Errorf("certificate and key files are required")
 	}
@@ -177,7 +177,6 @@ func (t *SyslogTarget) acceptConnections() {
 		t.openConnections.Add(1)
 		go t.handleConnection(c)
 	}
-
 }
 
 func (t *SyslogTarget) handleConnection(cn net.Conn) {
@@ -201,7 +200,6 @@ func (t *SyslogTarget) handleConnection(cn net.Conn) {
 		}
 		t.handleMessage(connLabels.Copy(), msg.Message)
 	}, t.maxMessageLength())
-
 	if err != nil {
 		level.Warn(t.logger).Log("msg", "error initializing syslog stream", "err", err)
 	}

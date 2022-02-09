@@ -2,13 +2,13 @@
 
 package logql
 
-import __yyfmt__ "fmt"
-
-
 import (
-	"github.com/grafana/loki/pkg/logql/log"
-	"github.com/prometheus/prometheus/model/labels"
+	__yyfmt__ "fmt"
 	"time"
+
+	"github.com/prometheus/prometheus/model/labels"
+
+	"github.com/frelon/loki/v2/pkg/logql/log"
 )
 
 type exprSymType struct {
@@ -61,87 +61,89 @@ type exprSymType struct {
 	OffsetExpr            *OffsetExpr
 }
 
-const BYTES = 57346
-const IDENTIFIER = 57347
-const STRING = 57348
-const NUMBER = 57349
-const DURATION = 57350
-const RANGE = 57351
-const MATCHERS = 57352
-const LABELS = 57353
-const EQ = 57354
-const RE = 57355
-const NRE = 57356
-const OPEN_BRACE = 57357
-const CLOSE_BRACE = 57358
-const OPEN_BRACKET = 57359
-const CLOSE_BRACKET = 57360
-const COMMA = 57361
-const DOT = 57362
-const PIPE_MATCH = 57363
-const PIPE_EXACT = 57364
-const OPEN_PARENTHESIS = 57365
-const CLOSE_PARENTHESIS = 57366
-const BY = 57367
-const WITHOUT = 57368
-const COUNT_OVER_TIME = 57369
-const RATE = 57370
-const SUM = 57371
-const AVG = 57372
-const MAX = 57373
-const MIN = 57374
-const COUNT = 57375
-const STDDEV = 57376
-const STDVAR = 57377
-const BOTTOMK = 57378
-const TOPK = 57379
-const BYTES_OVER_TIME = 57380
-const BYTES_RATE = 57381
-const BOOL = 57382
-const JSON = 57383
-const REGEXP = 57384
-const LOGFMT = 57385
-const PIPE = 57386
-const LINE_FMT = 57387
-const LABEL_FMT = 57388
-const UNWRAP = 57389
-const AVG_OVER_TIME = 57390
-const SUM_OVER_TIME = 57391
-const MIN_OVER_TIME = 57392
-const MAX_OVER_TIME = 57393
-const STDVAR_OVER_TIME = 57394
-const STDDEV_OVER_TIME = 57395
-const QUANTILE_OVER_TIME = 57396
-const BYTES_CONV = 57397
-const DURATION_CONV = 57398
-const DURATION_SECONDS_CONV = 57399
-const FIRST_OVER_TIME = 57400
-const LAST_OVER_TIME = 57401
-const ABSENT_OVER_TIME = 57402
-const LABEL_REPLACE = 57403
-const UNPACK = 57404
-const OFFSET = 57405
-const PATTERN = 57406
-const IP = 57407
-const ON = 57408
-const IGNORING = 57409
-const GROUP_LEFT = 57410
-const GROUP_RIGHT = 57411
-const OR = 57412
-const AND = 57413
-const UNLESS = 57414
-const CMP_EQ = 57415
-const NEQ = 57416
-const LT = 57417
-const LTE = 57418
-const GT = 57419
-const GTE = 57420
-const ADD = 57421
-const SUB = 57422
-const MUL = 57423
-const DIV = 57424
-const MOD = 57425
-const POW = 57426
+const (
+	BYTES                 = 57346
+	IDENTIFIER            = 57347
+	STRING                = 57348
+	NUMBER                = 57349
+	DURATION              = 57350
+	RANGE                 = 57351
+	MATCHERS              = 57352
+	LABELS                = 57353
+	EQ                    = 57354
+	RE                    = 57355
+	NRE                   = 57356
+	OPEN_BRACE            = 57357
+	CLOSE_BRACE           = 57358
+	OPEN_BRACKET          = 57359
+	CLOSE_BRACKET         = 57360
+	COMMA                 = 57361
+	DOT                   = 57362
+	PIPE_MATCH            = 57363
+	PIPE_EXACT            = 57364
+	OPEN_PARENTHESIS      = 57365
+	CLOSE_PARENTHESIS     = 57366
+	BY                    = 57367
+	WITHOUT               = 57368
+	COUNT_OVER_TIME       = 57369
+	RATE                  = 57370
+	SUM                   = 57371
+	AVG                   = 57372
+	MAX                   = 57373
+	MIN                   = 57374
+	COUNT                 = 57375
+	STDDEV                = 57376
+	STDVAR                = 57377
+	BOTTOMK               = 57378
+	TOPK                  = 57379
+	BYTES_OVER_TIME       = 57380
+	BYTES_RATE            = 57381
+	BOOL                  = 57382
+	JSON                  = 57383
+	REGEXP                = 57384
+	LOGFMT                = 57385
+	PIPE                  = 57386
+	LINE_FMT              = 57387
+	LABEL_FMT             = 57388
+	UNWRAP                = 57389
+	AVG_OVER_TIME         = 57390
+	SUM_OVER_TIME         = 57391
+	MIN_OVER_TIME         = 57392
+	MAX_OVER_TIME         = 57393
+	STDVAR_OVER_TIME      = 57394
+	STDDEV_OVER_TIME      = 57395
+	QUANTILE_OVER_TIME    = 57396
+	BYTES_CONV            = 57397
+	DURATION_CONV         = 57398
+	DURATION_SECONDS_CONV = 57399
+	FIRST_OVER_TIME       = 57400
+	LAST_OVER_TIME        = 57401
+	ABSENT_OVER_TIME      = 57402
+	LABEL_REPLACE         = 57403
+	UNPACK                = 57404
+	OFFSET                = 57405
+	PATTERN               = 57406
+	IP                    = 57407
+	ON                    = 57408
+	IGNORING              = 57409
+	GROUP_LEFT            = 57410
+	GROUP_RIGHT           = 57411
+	OR                    = 57412
+	AND                   = 57413
+	UNLESS                = 57414
+	CMP_EQ                = 57415
+	NEQ                   = 57416
+	LT                    = 57417
+	LTE                   = 57418
+	GT                    = 57419
+	GTE                   = 57420
+	ADD                   = 57421
+	SUB                   = 57422
+	MUL                   = 57423
+	DIV                   = 57424
+	MOD                   = 57425
+	POW                   = 57426
+)
 
 var exprToknames = [...]string{
 	"$end",
@@ -231,10 +233,11 @@ var exprToknames = [...]string{
 }
 var exprStatenames = [...]string{}
 
-const exprEofCode = 1
-const exprErrCode = 2
-const exprInitialStackSize = 16
-
+const (
+	exprEofCode          = 1
+	exprErrCode          = 2
+	exprInitialStackSize = 16
+)
 
 var exprExca = [...]int{
 	-1, 1,
@@ -303,6 +306,7 @@ var exprAct = [...]int{
 	11, 10, 9, 123, 14, 8, 296, 13, 7, 70,
 	62, 1,
 }
+
 var exprPact = [...]int{
 
 	309, -1000, -45, -1000, -1000, 213, 309, -1000, -1000, -1000,
@@ -341,6 +345,7 @@ var exprPact = [...]int{
 	54, -1000, -1000, 17, 454, -1000, -1000, 346, 430, 98,
 	-1000,
 }
+
 var exprPgo = [...]int{
 
 	0, 531, 16, 530, 2, 9, 459, 3, 15, 11,
@@ -349,6 +354,7 @@ var exprPgo = [...]int{
 	6, 513, 83, 512, 511, 4, 510, 509, 8, 508,
 	1, 507, 492, 0,
 }
+
 var exprR1 = [...]int{
 
 	0, 1, 2, 2, 7, 7, 7, 7, 7, 7,
@@ -372,6 +378,7 @@ var exprR1 = [...]int{
 	12, 12, 12, 12, 12, 12, 12, 43, 5, 5,
 	4, 4, 4, 4,
 }
+
 var exprR2 = [...]int{
 
 	0, 1, 1, 1, 1, 1, 1, 1, 1, 3,
@@ -395,6 +402,7 @@ var exprR2 = [...]int{
 	1, 1, 1, 1, 1, 1, 1, 2, 1, 3,
 	4, 4, 3, 3,
 }
+
 var exprChk = [...]int{
 
 	-1000, -1, -2, -6, -7, -14, 23, -11, -15, -18,
@@ -433,6 +441,7 @@ var exprChk = [...]int{
 	-40, -43, -43, 9, 19, 24, -43, 6, 19, 6,
 	24,
 }
+
 var exprDef = [...]int{
 
 	0, -2, 1, 2, 3, 10, 0, 4, 5, 6,
@@ -471,10 +480,12 @@ var exprDef = [...]int{
 	20, 24, 28, 31, 0, 40, 32, 0, 0, 0,
 	55,
 }
+
 var exprTok1 = [...]int{
 
 	1,
 }
+
 var exprTok2 = [...]int{
 
 	2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
@@ -487,6 +498,7 @@ var exprTok2 = [...]int{
 	72, 73, 74, 75, 76, 77, 78, 79, 80, 81,
 	82, 83, 84,
 }
+
 var exprTok3 = [...]int{
 	0,
 }
@@ -496,7 +508,6 @@ var exprErrorMessages = [...]struct {
 	token int
 	msg   string
 }{}
-
 
 /*	parser for yacc output	*/
 

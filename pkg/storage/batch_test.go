@@ -13,13 +13,13 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaveworks/common/user"
 
-	"github.com/grafana/loki/pkg/chunkenc"
-	"github.com/grafana/loki/pkg/iter"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logql"
-	"github.com/grafana/loki/pkg/logql/log"
-	"github.com/grafana/loki/pkg/logqlmodel/stats"
-	"github.com/grafana/loki/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/chunkenc"
+	"github.com/frelon/loki/v2/pkg/iter"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logql"
+	"github.com/frelon/loki/v2/pkg/logql/log"
+	"github.com/frelon/loki/v2/pkg/logqlmodel/stats"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
 )
 
 var NilMetrics = NewChunkMetrics(nil, 0)
@@ -1711,7 +1711,7 @@ func Benchmark_store_OverlappingChunks(b *testing.B) {
 	b.Log("Total bytes decompressed:" + fmt.Sprintf("%d", r.TotalDecompressedBytes()))
 }
 
-func newOverlappingStreams(streamCount int, entryCount int) []*logproto.Stream {
+func newOverlappingStreams(streamCount, entryCount int) []*logproto.Stream {
 	streams := make([]*logproto.Stream, streamCount)
 	for i := range streams {
 		streams[i] = &logproto.Stream{

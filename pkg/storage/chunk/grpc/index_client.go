@@ -6,11 +6,11 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/storage/chunk/util"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/util"
 )
 
-func (w *WriteBatch) Add(tableName, hashValue string, rangeValue []byte, value []byte) {
+func (w *WriteBatch) Add(tableName, hashValue string, rangeValue, value []byte) {
 	w.Writes = append(w.Writes, &IndexEntry{
 		TableName:  tableName,
 		HashValue:  hashValue,

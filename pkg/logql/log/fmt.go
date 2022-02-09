@@ -10,7 +10,7 @@ import (
 	"github.com/Masterminds/sprig/v3"
 	"github.com/grafana/regexp"
 
-	"github.com/grafana/loki/pkg/logqlmodel"
+	"github.com/frelon/loki/v2/pkg/logqlmodel"
 )
 
 const (
@@ -33,11 +33,11 @@ var (
 		"TrimPrefix": strings.TrimPrefix,
 		"TrimSuffix": strings.TrimSuffix,
 		"TrimSpace":  strings.TrimSpace,
-		"regexReplaceAll": func(regex string, s string, repl string) string {
+		"regexReplaceAll": func(regex, s, repl string) string {
 			r := regexp.MustCompile(regex)
 			return r.ReplaceAllString(s, repl)
 		},
-		"regexReplaceAllLiteral": func(regex string, s string, repl string) string {
+		"regexReplaceAllLiteral": func(regex, s, repl string) string {
 			r := regexp.MustCompile(regex)
 			return r.ReplaceAllLiteralString(s, repl)
 		},

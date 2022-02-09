@@ -19,9 +19,9 @@ import (
 	"github.com/weaveworks/common/httpgrpc"
 	"github.com/weaveworks/common/user"
 
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/querier"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/querier"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 // Pusher is an ingester server that accepts pushes.
@@ -73,7 +73,6 @@ func (a *PusherAppender) Commit() error {
 	// Since a.pusher is distributor, client.ReuseSlice will be called in a.pusher.Push.
 	// We shouldn't call client.ReuseSlice here.
 	_, err := a.pusher.Push(user.InjectOrgID(a.ctx, a.userID), logproto.ToWriteRequest(a.labels, a.samples, nil, logproto.RULE))
-
 	if err != nil {
 		// Don't report errors that ended with 4xx HTTP status code (series limits, duplicate samples, out of order, etc.)
 		if resp, ok := httpgrpc.HTTPResponseFromError(err); !ok || resp.Code/100 != 4 {

@@ -18,7 +18,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 	"github.com/go-kit/log/level"
 
-	util_log "github.com/grafana/loki/pkg/util/log"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 const arnPrefix = "arn:"
@@ -42,7 +42,7 @@ type mockDynamoDBTable struct {
 type mockDynamoDBItem map[string]*dynamodb.AttributeValue
 
 // nolint
-func newMockDynamoDB(unprocessed int, provisionedErr int) *mockDynamoDBClient {
+func newMockDynamoDB(unprocessed, provisionedErr int) *mockDynamoDBClient {
 	return &mockDynamoDBClient{
 		tables:         map[string]*mockDynamoDBTable{},
 		unprocessed:    unprocessed,

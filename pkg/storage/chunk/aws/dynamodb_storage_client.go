@@ -28,12 +28,12 @@ import (
 	"github.com/weaveworks/common/instrument"
 	"golang.org/x/time/rate"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
-	chunk_util "github.com/grafana/loki/pkg/storage/chunk/util"
-	"github.com/grafana/loki/pkg/util"
-	"github.com/grafana/loki/pkg/util/log"
-	"github.com/grafana/loki/pkg/util/math"
-	"github.com/grafana/loki/pkg/util/spanlogger"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	chunk_util "github.com/frelon/loki/v2/pkg/storage/chunk/util"
+	"github.com/frelon/loki/v2/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/util/math"
+	"github.com/frelon/loki/v2/pkg/util/spanlogger"
 )
 
 const (
@@ -655,7 +655,7 @@ func (b dynamoDBWriteBatch) String() string {
 	return sb.String()
 }
 
-func (b dynamoDBWriteBatch) Add(tableName, hashValue string, rangeValue []byte, value []byte) {
+func (b dynamoDBWriteBatch) Add(tableName, hashValue string, rangeValue, value []byte) {
 	item := map[string]*dynamodb.AttributeValue{
 		hashKey:  {S: aws.String(hashValue)},
 		rangeKey: {B: rangeValue},

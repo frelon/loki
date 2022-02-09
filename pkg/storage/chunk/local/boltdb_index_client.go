@@ -15,9 +15,9 @@ import (
 	"github.com/go-kit/log/level"
 	"go.etcd.io/bbolt"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
-	chunk_util "github.com/grafana/loki/pkg/storage/chunk/util"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	chunk_util "github.com/frelon/loki/v2/pkg/storage/chunk/util"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 var (
@@ -162,7 +162,7 @@ func (b *BoltIndexClient) GetDB(name string, operation int) (*bbolt.DB, error) {
 
 	// Open the database.
 	// Set Timeout to avoid obtaining file lock wait indefinitely.
-	db, err := bbolt.Open(path.Join(b.cfg.Directory, name), 0666, &bbolt.Options{Timeout: openBoltDBFileTimeout})
+	db, err := bbolt.Open(path.Join(b.cfg.Directory, name), 0o666, &bbolt.Options{Timeout: openBoltDBFileTimeout})
 	if err != nil {
 		return nil, err
 	}
@@ -327,7 +327,7 @@ func (b *BoltWriteBatch) Delete(tableName, hashValue string, rangeValue []byte) 
 	writes.deletes[key] = struct{}{}
 }
 
-func (b *BoltWriteBatch) Add(tableName, hashValue string, rangeValue []byte, value []byte) {
+func (b *BoltWriteBatch) Add(tableName, hashValue string, rangeValue, value []byte) {
 	writes := b.getOrCreateTableWrites(tableName)
 
 	key := hashValue + separator + string(rangeValue)
@@ -369,5 +369,5 @@ func (b *boltReadBatchIterator) Value() []byte {
 // Open the database.
 // Set Timeout to avoid obtaining file lock wait indefinitely.
 func OpenBoltdbFile(path string) (*bbolt.DB, error) {
-	return bbolt.Open(path, 0666, &bbolt.Options{Timeout: 5 * time.Second})
+	return bbolt.Open(path, 0o666, &bbolt.Options{Timeout: 5 * time.Second})
 }

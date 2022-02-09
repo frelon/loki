@@ -10,18 +10,18 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/prometheus/tsdb/wal"
 
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/util/flagext"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/util/flagext"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
-var (
-	// shared pool for WALRecords and []logproto.Entries
-	recordPool = newRecordPool()
-)
+// shared pool for WALRecords and []logproto.Entries
+var recordPool = newRecordPool()
 
-const walSegmentSize = wal.DefaultSegmentSize * 4
-const defaultCeiling = 4 << 30 // 4GB
+const (
+	walSegmentSize = wal.DefaultSegmentSize * 4
+	defaultCeiling = 4 << 30 // 4GB
+)
 
 type WALConfig struct {
 	Enabled             bool             `yaml:"enabled"`
@@ -164,7 +164,6 @@ func (w *walWrapper) run() {
 		w.quit,
 	)
 	checkpointer.Run()
-
 }
 
 type resettingPool struct {

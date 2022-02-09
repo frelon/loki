@@ -2,7 +2,8 @@ package secrets
 
 import (
 	"github.com/ViaQ/logerr/kverrors"
-	"github.com/grafana/loki/operator/internal/manifests"
+
+	"github.com/frelon/loki/v2/operator/internal/manifests"
 
 	corev1 "k8s.io/api/core/v1"
 )

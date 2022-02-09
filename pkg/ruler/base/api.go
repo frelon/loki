@@ -20,11 +20,11 @@ import (
 	"github.com/weaveworks/common/user"
 	"gopkg.in/yaml.v3"
 
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/ruler/rulespb"
-	"github.com/grafana/loki/pkg/ruler/rulestore"
-	"github.com/grafana/loki/pkg/tenant"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/ruler/rulespb"
+	"github.com/frelon/loki/v2/pkg/ruler/rulestore"
+	"github.com/frelon/loki/v2/pkg/tenant"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 // In order to reimplement the prometheus rules API, a large amount of code was copied over
@@ -106,7 +106,6 @@ func respondError(logger log.Logger, w http.ResponseWriter, msg string) {
 		Error:     msg,
 		Data:      nil,
 	})
-
 	if err != nil {
 		level.Error(logger).Log("msg", "error marshaling json response", "err", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -147,7 +146,6 @@ func (a *API) PrometheusRules(w http.ResponseWriter, req *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	rgs, err := a.ruler.GetRules(req.Context())
-
 	if err != nil {
 		respondError(logger, w, err.Error())
 		return
@@ -239,7 +237,6 @@ func (a *API) PrometheusAlerts(w http.ResponseWriter, req *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	rgs, err := a.ruler.GetRules(req.Context())
-
 	if err != nil {
 		respondError(logger, w, err.Error())
 		return

@@ -8,9 +8,9 @@ import (
 	"github.com/prometheus/common/model"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/grafana/loki/clients/pkg/promtail/api"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/api"
 
-	"github.com/grafana/loki/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logproto"
 )
 
 func newEntry(ex map[string]interface{}, lbs model.LabelSet, line string, ts time.Time) Entry {
@@ -93,9 +93,7 @@ func TestGetString(t *testing.T) {
 	assert.Error(t, err)
 }
 
-var (
-	location, _ = time.LoadLocation("America/New_York")
-)
+var location, _ = time.LoadLocation("America/New_York")
 
 func TestConvertDateLayout(t *testing.T) {
 	t.Parallel()

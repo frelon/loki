@@ -15,7 +15,7 @@ import (
 	"github.com/weaveworks/common/user"
 	"google.golang.org/grpc"
 
-	"github.com/grafana/loki/pkg/storegateway/storegatewaypb"
+	"github.com/frelon/loki/v2/pkg/storegateway/storegatewaypb"
 )
 
 func Test_newStoreGatewayClientFactory(t *testing.T) {

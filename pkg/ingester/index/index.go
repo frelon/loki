@@ -17,9 +17,9 @@ import (
 	"github.com/prometheus/common/model"
 	"github.com/prometheus/prometheus/model/labels"
 
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/querier/astmapper"
-	"github.com/grafana/loki/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/querier/astmapper"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
 )
 
 const DefaultIndexShards = 32
@@ -329,7 +329,7 @@ func (shard *indexShard) allFPs() model.Fingerprints {
 	}
 
 	var result model.Fingerprints
-	var m = map[model.Fingerprint]struct{}{}
+	m := map[model.Fingerprint]struct{}{}
 	for _, fp := range fps {
 		if _, ok := m[fp]; !ok {
 			m[fp] = struct{}{}

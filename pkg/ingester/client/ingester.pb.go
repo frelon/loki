@@ -8,25 +8,30 @@ import (
 	context "context"
 	encoding_binary "encoding/binary"
 	fmt "fmt"
-	_ "github.com/gogo/protobuf/gogoproto"
-	proto "github.com/gogo/protobuf/proto"
-	github_com_grafana_loki_pkg_logproto "github.com/grafana/loki/pkg/logproto"
-	logproto "github.com/grafana/loki/pkg/logproto"
-	grpc "google.golang.org/grpc"
-	codes "google.golang.org/grpc/codes"
-	status "google.golang.org/grpc/status"
 	io "io"
 	math "math"
 	math_bits "math/bits"
 	reflect "reflect"
 	strconv "strconv"
 	strings "strings"
+
+	_ "github.com/gogo/protobuf/gogoproto"
+	proto "github.com/gogo/protobuf/proto"
+	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
+
+	logproto "github.com/frelon/loki/v2/pkg/logproto"
+
+	github_com_frelon_loki_pkg_logproto "github.com/frelon/loki/v2/pkg/logproto"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
-var _ = proto.Marshal
-var _ = fmt.Errorf
-var _ = math.Inf
+var (
+	_ = proto.Marshal
+	_ = fmt.Errorf
+	_ = math.Inf
+)
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the proto package it is being compiled against.
@@ -70,9 +75,11 @@ func (*ReadRequest) ProtoMessage() {}
 func (*ReadRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{0}
 }
+
 func (m *ReadRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *ReadRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_ReadRequest.Marshal(b, m, deterministic)
@@ -85,12 +92,15 @@ func (m *ReadRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) 
 		return b[:n], nil
 	}
 }
+
 func (m *ReadRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_ReadRequest.Merge(m, src)
 }
+
 func (m *ReadRequest) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *ReadRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_ReadRequest.DiscardUnknown(m)
 }
@@ -113,9 +123,11 @@ func (*ReadResponse) ProtoMessage() {}
 func (*ReadResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{1}
 }
+
 func (m *ReadResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *ReadResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_ReadResponse.Marshal(b, m, deterministic)
@@ -128,12 +140,15 @@ func (m *ReadResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)
 		return b[:n], nil
 	}
 }
+
 func (m *ReadResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_ReadResponse.Merge(m, src)
 }
+
 func (m *ReadResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *ReadResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_ReadResponse.DiscardUnknown(m)
 }
@@ -158,9 +173,11 @@ func (*QueryRequest) ProtoMessage() {}
 func (*QueryRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{2}
 }
+
 func (m *QueryRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *QueryRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_QueryRequest.Marshal(b, m, deterministic)
@@ -173,12 +190,15 @@ func (m *QueryRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)
 		return b[:n], nil
 	}
 }
+
 func (m *QueryRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_QueryRequest.Merge(m, src)
 }
+
 func (m *QueryRequest) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *QueryRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_QueryRequest.DiscardUnknown(m)
 }
@@ -217,9 +237,11 @@ func (*ExemplarQueryRequest) ProtoMessage() {}
 func (*ExemplarQueryRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{3}
 }
+
 func (m *ExemplarQueryRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *ExemplarQueryRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_ExemplarQueryRequest.Marshal(b, m, deterministic)
@@ -232,12 +254,15 @@ func (m *ExemplarQueryRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte
 		return b[:n], nil
 	}
 }
+
 func (m *ExemplarQueryRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_ExemplarQueryRequest.Merge(m, src)
 }
+
 func (m *ExemplarQueryRequest) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *ExemplarQueryRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_ExemplarQueryRequest.DiscardUnknown(m)
 }
@@ -274,9 +299,11 @@ func (*QueryResponse) ProtoMessage() {}
 func (*QueryResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{4}
 }
+
 func (m *QueryResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *QueryResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_QueryResponse.Marshal(b, m, deterministic)
@@ -289,12 +316,15 @@ func (m *QueryResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error
 		return b[:n], nil
 	}
 }
+
 func (m *QueryResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_QueryResponse.Merge(m, src)
 }
+
 func (m *QueryResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *QueryResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_QueryResponse.DiscardUnknown(m)
 }
@@ -319,9 +349,11 @@ func (*QueryStreamResponse) ProtoMessage() {}
 func (*QueryStreamResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{5}
 }
+
 func (m *QueryStreamResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *QueryStreamResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_QueryStreamResponse.Marshal(b, m, deterministic)
@@ -334,12 +366,15 @@ func (m *QueryStreamResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte,
 		return b[:n], nil
 	}
 }
+
 func (m *QueryStreamResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_QueryStreamResponse.Merge(m, src)
 }
+
 func (m *QueryStreamResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *QueryStreamResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_QueryStreamResponse.DiscardUnknown(m)
 }
@@ -369,9 +404,11 @@ func (*ExemplarQueryResponse) ProtoMessage() {}
 func (*ExemplarQueryResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{6}
 }
+
 func (m *ExemplarQueryResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *ExemplarQueryResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_ExemplarQueryResponse.Marshal(b, m, deterministic)
@@ -384,12 +421,15 @@ func (m *ExemplarQueryResponse) XXX_Marshal(b []byte, deterministic bool) ([]byt
 		return b[:n], nil
 	}
 }
+
 func (m *ExemplarQueryResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_ExemplarQueryResponse.Merge(m, src)
 }
+
 func (m *ExemplarQueryResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *ExemplarQueryResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_ExemplarQueryResponse.DiscardUnknown(m)
 }
@@ -415,9 +455,11 @@ func (*LabelValuesRequest) ProtoMessage() {}
 func (*LabelValuesRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{7}
 }
+
 func (m *LabelValuesRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *LabelValuesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_LabelValuesRequest.Marshal(b, m, deterministic)
@@ -430,12 +472,15 @@ func (m *LabelValuesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, 
 		return b[:n], nil
 	}
 }
+
 func (m *LabelValuesRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_LabelValuesRequest.Merge(m, src)
 }
+
 func (m *LabelValuesRequest) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *LabelValuesRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_LabelValuesRequest.DiscardUnknown(m)
 }
@@ -479,9 +524,11 @@ func (*LabelValuesResponse) ProtoMessage() {}
 func (*LabelValuesResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{8}
 }
+
 func (m *LabelValuesResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *LabelValuesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_LabelValuesResponse.Marshal(b, m, deterministic)
@@ -494,12 +541,15 @@ func (m *LabelValuesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte,
 		return b[:n], nil
 	}
 }
+
 func (m *LabelValuesResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_LabelValuesResponse.Merge(m, src)
 }
+
 func (m *LabelValuesResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *LabelValuesResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_LabelValuesResponse.DiscardUnknown(m)
 }
@@ -523,9 +573,11 @@ func (*LabelNamesRequest) ProtoMessage() {}
 func (*LabelNamesRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{9}
 }
+
 func (m *LabelNamesRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *LabelNamesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_LabelNamesRequest.Marshal(b, m, deterministic)
@@ -538,12 +590,15 @@ func (m *LabelNamesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, e
 		return b[:n], nil
 	}
 }
+
 func (m *LabelNamesRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_LabelNamesRequest.Merge(m, src)
 }
+
 func (m *LabelNamesRequest) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *LabelNamesRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_LabelNamesRequest.DiscardUnknown(m)
 }
@@ -573,9 +628,11 @@ func (*LabelNamesResponse) ProtoMessage() {}
 func (*LabelNamesResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{10}
 }
+
 func (m *LabelNamesResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *LabelNamesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_LabelNamesResponse.Marshal(b, m, deterministic)
@@ -588,12 +645,15 @@ func (m *LabelNamesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, 
 		return b[:n], nil
 	}
 }
+
 func (m *LabelNamesResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_LabelNamesResponse.Merge(m, src)
 }
+
 func (m *LabelNamesResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *LabelNamesResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_LabelNamesResponse.DiscardUnknown(m)
 }
@@ -607,17 +667,18 @@ func (m *LabelNamesResponse) GetLabelNames() []string {
 	return nil
 }
 
-type UserStatsRequest struct {
-}
+type UserStatsRequest struct{}
 
 func (m *UserStatsRequest) Reset()      { *m = UserStatsRequest{} }
 func (*UserStatsRequest) ProtoMessage() {}
 func (*UserStatsRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{11}
 }
+
 func (m *UserStatsRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *UserStatsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_UserStatsRequest.Marshal(b, m, deterministic)
@@ -630,12 +691,15 @@ func (m *UserStatsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, er
 		return b[:n], nil
 	}
 }
+
 func (m *UserStatsRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_UserStatsRequest.Merge(m, src)
 }
+
 func (m *UserStatsRequest) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *UserStatsRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_UserStatsRequest.DiscardUnknown(m)
 }
@@ -654,9 +718,11 @@ func (*UserStatsResponse) ProtoMessage() {}
 func (*UserStatsResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{12}
 }
+
 func (m *UserStatsResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *UserStatsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_UserStatsResponse.Marshal(b, m, deterministic)
@@ -669,12 +735,15 @@ func (m *UserStatsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, e
 		return b[:n], nil
 	}
 }
+
 func (m *UserStatsResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_UserStatsResponse.Merge(m, src)
 }
+
 func (m *UserStatsResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *UserStatsResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_UserStatsResponse.DiscardUnknown(m)
 }
@@ -719,9 +788,11 @@ func (*UserIDStatsResponse) ProtoMessage() {}
 func (*UserIDStatsResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{13}
 }
+
 func (m *UserIDStatsResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *UserIDStatsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_UserIDStatsResponse.Marshal(b, m, deterministic)
@@ -734,12 +805,15 @@ func (m *UserIDStatsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte,
 		return b[:n], nil
 	}
 }
+
 func (m *UserIDStatsResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_UserIDStatsResponse.Merge(m, src)
 }
+
 func (m *UserIDStatsResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *UserIDStatsResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_UserIDStatsResponse.DiscardUnknown(m)
 }
@@ -769,9 +843,11 @@ func (*UsersStatsResponse) ProtoMessage() {}
 func (*UsersStatsResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{14}
 }
+
 func (m *UsersStatsResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *UsersStatsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_UsersStatsResponse.Marshal(b, m, deterministic)
@@ -784,12 +860,15 @@ func (m *UsersStatsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, 
 		return b[:n], nil
 	}
 }
+
 func (m *UsersStatsResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_UsersStatsResponse.Merge(m, src)
 }
+
 func (m *UsersStatsResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *UsersStatsResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_UsersStatsResponse.DiscardUnknown(m)
 }
@@ -814,9 +893,11 @@ func (*MetricsForLabelMatchersRequest) ProtoMessage() {}
 func (*MetricsForLabelMatchersRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{15}
 }
+
 func (m *MetricsForLabelMatchersRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *MetricsForLabelMatchersRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_MetricsForLabelMatchersRequest.Marshal(b, m, deterministic)
@@ -829,12 +910,15 @@ func (m *MetricsForLabelMatchersRequest) XXX_Marshal(b []byte, deterministic boo
 		return b[:n], nil
 	}
 }
+
 func (m *MetricsForLabelMatchersRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_MetricsForLabelMatchersRequest.Merge(m, src)
 }
+
 func (m *MetricsForLabelMatchersRequest) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *MetricsForLabelMatchersRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_MetricsForLabelMatchersRequest.DiscardUnknown(m)
 }
@@ -871,9 +955,11 @@ func (*MetricsForLabelMatchersResponse) ProtoMessage() {}
 func (*MetricsForLabelMatchersResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{16}
 }
+
 func (m *MetricsForLabelMatchersResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *MetricsForLabelMatchersResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_MetricsForLabelMatchersResponse.Marshal(b, m, deterministic)
@@ -886,12 +972,15 @@ func (m *MetricsForLabelMatchersResponse) XXX_Marshal(b []byte, deterministic bo
 		return b[:n], nil
 	}
 }
+
 func (m *MetricsForLabelMatchersResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_MetricsForLabelMatchersResponse.Merge(m, src)
 }
+
 func (m *MetricsForLabelMatchersResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *MetricsForLabelMatchersResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_MetricsForLabelMatchersResponse.DiscardUnknown(m)
 }
@@ -905,17 +994,18 @@ func (m *MetricsForLabelMatchersResponse) GetMetric() []*logproto.Metric {
 	return nil
 }
 
-type MetricsMetadataRequest struct {
-}
+type MetricsMetadataRequest struct{}
 
 func (m *MetricsMetadataRequest) Reset()      { *m = MetricsMetadataRequest{} }
 func (*MetricsMetadataRequest) ProtoMessage() {}
 func (*MetricsMetadataRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{17}
 }
+
 func (m *MetricsMetadataRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *MetricsMetadataRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_MetricsMetadataRequest.Marshal(b, m, deterministic)
@@ -928,12 +1018,15 @@ func (m *MetricsMetadataRequest) XXX_Marshal(b []byte, deterministic bool) ([]by
 		return b[:n], nil
 	}
 }
+
 func (m *MetricsMetadataRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_MetricsMetadataRequest.Merge(m, src)
 }
+
 func (m *MetricsMetadataRequest) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *MetricsMetadataRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_MetricsMetadataRequest.DiscardUnknown(m)
 }
@@ -949,9 +1042,11 @@ func (*MetricsMetadataResponse) ProtoMessage() {}
 func (*MetricsMetadataResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{18}
 }
+
 func (m *MetricsMetadataResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *MetricsMetadataResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_MetricsMetadataResponse.Marshal(b, m, deterministic)
@@ -964,12 +1059,15 @@ func (m *MetricsMetadataResponse) XXX_Marshal(b []byte, deterministic bool) ([]b
 		return b[:n], nil
 	}
 }
+
 func (m *MetricsMetadataResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_MetricsMetadataResponse.Merge(m, src)
 }
+
 func (m *MetricsMetadataResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *MetricsMetadataResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_MetricsMetadataResponse.DiscardUnknown(m)
 }
@@ -984,10 +1082,10 @@ func (m *MetricsMetadataResponse) GetMetadata() []*logproto.MetricMetadata {
 }
 
 type TimeSeriesChunk struct {
-	FromIngesterId string                                              `protobuf:"bytes,1,opt,name=from_ingester_id,json=fromIngesterId,proto3" json:"from_ingester_id,omitempty"`
-	UserId         string                                              `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Labels         []github_com_grafana_loki_pkg_logproto.LabelAdapter `protobuf:"bytes,3,rep,name=labels,proto3,customtype=github.com/grafana/loki/pkg/logproto.LabelAdapter" json:"labels"`
-	Chunks         []Chunk                                             `protobuf:"bytes,4,rep,name=chunks,proto3" json:"chunks"`
+	FromIngesterId string                                             `protobuf:"bytes,1,opt,name=from_ingester_id,json=fromIngesterId,proto3" json:"from_ingester_id,omitempty"`
+	UserId         string                                             `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Labels         []github_com_frelon_loki_pkg_logproto.LabelAdapter `protobuf:"bytes,3,rep,name=labels,proto3,customtype=github.com/frelon/loki/v2/pkg/logproto.LabelAdapter" json:"labels"`
+	Chunks         []Chunk                                            `protobuf:"bytes,4,rep,name=chunks,proto3" json:"chunks"`
 }
 
 func (m *TimeSeriesChunk) Reset()      { *m = TimeSeriesChunk{} }
@@ -995,9 +1093,11 @@ func (*TimeSeriesChunk) ProtoMessage() {}
 func (*TimeSeriesChunk) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{19}
 }
+
 func (m *TimeSeriesChunk) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *TimeSeriesChunk) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_TimeSeriesChunk.Marshal(b, m, deterministic)
@@ -1010,12 +1110,15 @@ func (m *TimeSeriesChunk) XXX_Marshal(b []byte, deterministic bool) ([]byte, err
 		return b[:n], nil
 	}
 }
+
 func (m *TimeSeriesChunk) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_TimeSeriesChunk.Merge(m, src)
 }
+
 func (m *TimeSeriesChunk) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *TimeSeriesChunk) XXX_DiscardUnknown() {
 	xxx_messageInfo_TimeSeriesChunk.DiscardUnknown(m)
 }
@@ -1055,9 +1158,11 @@ func (*Chunk) ProtoMessage() {}
 func (*Chunk) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{20}
 }
+
 func (m *Chunk) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *Chunk) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_Chunk.Marshal(b, m, deterministic)
@@ -1070,12 +1175,15 @@ func (m *Chunk) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
+
 func (m *Chunk) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_Chunk.Merge(m, src)
 }
+
 func (m *Chunk) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *Chunk) XXX_DiscardUnknown() {
 	xxx_messageInfo_Chunk.DiscardUnknown(m)
 }
@@ -1110,17 +1218,18 @@ func (m *Chunk) GetData() []byte {
 	return nil
 }
 
-type TransferChunksResponse struct {
-}
+type TransferChunksResponse struct{}
 
 func (m *TransferChunksResponse) Reset()      { *m = TransferChunksResponse{} }
 func (*TransferChunksResponse) ProtoMessage() {}
 func (*TransferChunksResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{21}
 }
+
 func (m *TransferChunksResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *TransferChunksResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_TransferChunksResponse.Marshal(b, m, deterministic)
@@ -1133,12 +1242,15 @@ func (m *TransferChunksResponse) XXX_Marshal(b []byte, deterministic bool) ([]by
 		return b[:n], nil
 	}
 }
+
 func (m *TransferChunksResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_TransferChunksResponse.Merge(m, src)
 }
+
 func (m *TransferChunksResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *TransferChunksResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_TransferChunksResponse.DiscardUnknown(m)
 }
@@ -1154,9 +1266,11 @@ func (*LabelMatchers) ProtoMessage() {}
 func (*LabelMatchers) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{22}
 }
+
 func (m *LabelMatchers) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *LabelMatchers) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_LabelMatchers.Marshal(b, m, deterministic)
@@ -1169,12 +1283,15 @@ func (m *LabelMatchers) XXX_Marshal(b []byte, deterministic bool) ([]byte, error
 		return b[:n], nil
 	}
 }
+
 func (m *LabelMatchers) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_LabelMatchers.Merge(m, src)
 }
+
 func (m *LabelMatchers) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *LabelMatchers) XXX_DiscardUnknown() {
 	xxx_messageInfo_LabelMatchers.DiscardUnknown(m)
 }
@@ -1199,9 +1316,11 @@ func (*LabelMatcher) ProtoMessage() {}
 func (*LabelMatcher) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{23}
 }
+
 func (m *LabelMatcher) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *LabelMatcher) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_LabelMatcher.Marshal(b, m, deterministic)
@@ -1214,12 +1333,15 @@ func (m *LabelMatcher) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)
 		return b[:n], nil
 	}
 }
+
 func (m *LabelMatcher) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_LabelMatcher.Merge(m, src)
 }
+
 func (m *LabelMatcher) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *LabelMatcher) XXX_DiscardUnknown() {
 	xxx_messageInfo_LabelMatcher.DiscardUnknown(m)
 }
@@ -1259,9 +1381,11 @@ func (*TimeSeriesFile) ProtoMessage() {}
 func (*TimeSeriesFile) Descriptor() ([]byte, []int) {
 	return fileDescriptor_5b6c87318632a5b2, []int{24}
 }
+
 func (m *TimeSeriesFile) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *TimeSeriesFile) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_TimeSeriesFile.Marshal(b, m, deterministic)
@@ -1274,12 +1398,15 @@ func (m *TimeSeriesFile) XXX_Marshal(b []byte, deterministic bool) ([]byte, erro
 		return b[:n], nil
 	}
 }
+
 func (m *TimeSeriesFile) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_TimeSeriesFile.Merge(m, src)
 }
+
 func (m *TimeSeriesFile) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *TimeSeriesFile) XXX_DiscardUnknown() {
 	xxx_messageInfo_TimeSeriesFile.DiscardUnknown(m)
 }
@@ -1438,6 +1565,7 @@ func (x MatchType) String() string {
 	}
 	return strconv.Itoa(int(x))
 }
+
 func (this *ReadRequest) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1467,6 +1595,7 @@ func (this *ReadRequest) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *ReadResponse) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1496,6 +1625,7 @@ func (this *ReadResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *QueryRequest) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1531,6 +1661,7 @@ func (this *QueryRequest) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *ExemplarQueryRequest) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1566,6 +1697,7 @@ func (this *ExemplarQueryRequest) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *QueryResponse) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1595,6 +1727,7 @@ func (this *QueryResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *QueryStreamResponse) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1632,6 +1765,7 @@ func (this *QueryStreamResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *ExemplarQueryResponse) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1661,6 +1795,7 @@ func (this *ExemplarQueryResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *LabelValuesRequest) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1694,6 +1829,7 @@ func (this *LabelValuesRequest) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *LabelValuesResponse) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1723,6 +1859,7 @@ func (this *LabelValuesResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *LabelNamesRequest) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1750,6 +1887,7 @@ func (this *LabelNamesRequest) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *LabelNamesResponse) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1779,6 +1917,7 @@ func (this *LabelNamesResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *UserStatsRequest) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1800,6 +1939,7 @@ func (this *UserStatsRequest) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *UserStatsResponse) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1833,6 +1973,7 @@ func (this *UserStatsResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *UserIDStatsResponse) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1860,6 +2001,7 @@ func (this *UserIDStatsResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *UsersStatsResponse) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1889,6 +2031,7 @@ func (this *UsersStatsResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *MetricsForLabelMatchersRequest) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1924,6 +2067,7 @@ func (this *MetricsForLabelMatchersRequest) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *MetricsForLabelMatchersResponse) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1953,6 +2097,7 @@ func (this *MetricsForLabelMatchersResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *MetricsMetadataRequest) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -1974,6 +2119,7 @@ func (this *MetricsMetadataRequest) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *MetricsMetadataResponse) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -2003,6 +2149,7 @@ func (this *MetricsMetadataResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *TimeSeriesChunk) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -2046,6 +2193,7 @@ func (this *TimeSeriesChunk) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *Chunk) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -2079,6 +2227,7 @@ func (this *Chunk) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *TransferChunksResponse) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -2100,6 +2249,7 @@ func (this *TransferChunksResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *LabelMatchers) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -2129,6 +2279,7 @@ func (this *LabelMatchers) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *LabelMatcher) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -2159,6 +2310,7 @@ func (this *LabelMatcher) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *TimeSeriesFile) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -2192,6 +2344,7 @@ func (this *TimeSeriesFile) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *ReadRequest) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2204,6 +2357,7 @@ func (this *ReadRequest) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *ReadResponse) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2216,6 +2370,7 @@ func (this *ReadResponse) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *QueryRequest) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2230,6 +2385,7 @@ func (this *QueryRequest) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *ExemplarQueryRequest) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2244,6 +2400,7 @@ func (this *ExemplarQueryRequest) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *QueryResponse) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2260,6 +2417,7 @@ func (this *QueryResponse) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *QueryStreamResponse) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2283,6 +2441,7 @@ func (this *QueryStreamResponse) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *ExemplarQueryResponse) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2299,6 +2458,7 @@ func (this *ExemplarQueryResponse) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *LabelValuesRequest) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2314,6 +2474,7 @@ func (this *LabelValuesRequest) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *LabelValuesResponse) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2324,6 +2485,7 @@ func (this *LabelValuesResponse) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *LabelNamesRequest) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2335,6 +2497,7 @@ func (this *LabelNamesRequest) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *LabelNamesResponse) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2345,6 +2508,7 @@ func (this *LabelNamesResponse) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *UserStatsRequest) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2354,6 +2518,7 @@ func (this *UserStatsRequest) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *UserStatsResponse) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2367,6 +2532,7 @@ func (this *UserStatsResponse) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *UserIDStatsResponse) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2380,6 +2546,7 @@ func (this *UserIDStatsResponse) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *UsersStatsResponse) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2392,6 +2559,7 @@ func (this *UsersStatsResponse) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *MetricsForLabelMatchersRequest) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2406,6 +2574,7 @@ func (this *MetricsForLabelMatchersRequest) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *MetricsForLabelMatchersResponse) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2418,6 +2587,7 @@ func (this *MetricsForLabelMatchersResponse) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *MetricsMetadataRequest) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2427,6 +2597,7 @@ func (this *MetricsMetadataRequest) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *MetricsMetadataResponse) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2439,6 +2610,7 @@ func (this *MetricsMetadataResponse) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *TimeSeriesChunk) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2458,6 +2630,7 @@ func (this *TimeSeriesChunk) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *Chunk) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2471,6 +2644,7 @@ func (this *Chunk) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *TransferChunksResponse) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2480,6 +2654,7 @@ func (this *TransferChunksResponse) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *LabelMatchers) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2492,6 +2667,7 @@ func (this *LabelMatchers) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *LabelMatcher) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2504,6 +2680,7 @@ func (this *LabelMatcher) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *TimeSeriesFile) GoString() string {
 	if this == nil {
 		return "nil"
@@ -2517,6 +2694,7 @@ func (this *TimeSeriesFile) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func valueToGoStringIngester(v interface{}, typ string) string {
 	rv := reflect.ValueOf(v)
 	if rv.IsNil() {
@@ -2527,8 +2705,10 @@ func valueToGoStringIngester(v interface{}, typ string) string {
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
-var _ context.Context
-var _ grpc.ClientConn
+var (
+	_ context.Context
+	_ grpc.ClientConn
+)
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
@@ -2724,39 +2904,48 @@ type IngesterServer interface {
 }
 
 // UnimplementedIngesterServer can be embedded to have forward compatible implementations.
-type UnimplementedIngesterServer struct {
-}
+type UnimplementedIngesterServer struct{}
 
 func (*UnimplementedIngesterServer) Push(ctx context.Context, req *logproto.WriteRequest) (*logproto.WriteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Push not implemented")
 }
+
 func (*UnimplementedIngesterServer) Query(ctx context.Context, req *QueryRequest) (*QueryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Query not implemented")
 }
+
 func (*UnimplementedIngesterServer) QueryStream(req *QueryRequest, srv Ingester_QueryStreamServer) error {
 	return status.Errorf(codes.Unimplemented, "method QueryStream not implemented")
 }
+
 func (*UnimplementedIngesterServer) QueryExemplars(ctx context.Context, req *ExemplarQueryRequest) (*ExemplarQueryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method QueryExemplars not implemented")
 }
+
 func (*UnimplementedIngesterServer) LabelValues(ctx context.Context, req *LabelValuesRequest) (*LabelValuesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LabelValues not implemented")
 }
+
 func (*UnimplementedIngesterServer) LabelNames(ctx context.Context, req *LabelNamesRequest) (*LabelNamesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LabelNames not implemented")
 }
+
 func (*UnimplementedIngesterServer) UserStats(ctx context.Context, req *UserStatsRequest) (*UserStatsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserStats not implemented")
 }
+
 func (*UnimplementedIngesterServer) AllUserStats(ctx context.Context, req *UserStatsRequest) (*UsersStatsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AllUserStats not implemented")
 }
+
 func (*UnimplementedIngesterServer) MetricsForLabelMatchers(ctx context.Context, req *MetricsForLabelMatchersRequest) (*MetricsForLabelMatchersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MetricsForLabelMatchers not implemented")
 }
+
 func (*UnimplementedIngesterServer) MetricsMetadata(ctx context.Context, req *MetricsMetadataRequest) (*MetricsMetadataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MetricsMetadata not implemented")
 }
+
 func (*UnimplementedIngesterServer) TransferChunks(srv Ingester_TransferChunksServer) error {
 	return status.Errorf(codes.Unimplemented, "method TransferChunks not implemented")
 }
@@ -4038,6 +4227,7 @@ func encodeVarintIngester(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
+
 func (m *ReadRequest) Size() (n int) {
 	if m == nil {
 		return 0
@@ -4474,9 +4664,11 @@ func (m *TimeSeriesFile) Size() (n int) {
 func sovIngester(x uint64) (n int) {
 	return (math_bits.Len64(x|1) + 6) / 7
 }
+
 func sozIngester(x uint64) (n int) {
 	return sovIngester(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
+
 func (this *ReadRequest) String() string {
 	if this == nil {
 		return "nil"
@@ -4486,12 +4678,14 @@ func (this *ReadRequest) String() string {
 		repeatedStringForQueries += strings.Replace(f.String(), "QueryRequest", "QueryRequest", 1) + ","
 	}
 	repeatedStringForQueries += "}"
-	s := strings.Join([]string{`&ReadRequest{`,
+	s := strings.Join([]string{
+		`&ReadRequest{`,
 		`Queries:` + repeatedStringForQueries + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *ReadResponse) String() string {
 	if this == nil {
 		return "nil"
@@ -4501,12 +4695,14 @@ func (this *ReadResponse) String() string {
 		repeatedStringForResults += strings.Replace(f.String(), "QueryResponse", "QueryResponse", 1) + ","
 	}
 	repeatedStringForResults += "}"
-	s := strings.Join([]string{`&ReadResponse{`,
+	s := strings.Join([]string{
+		`&ReadResponse{`,
 		`Results:` + repeatedStringForResults + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *QueryRequest) String() string {
 	if this == nil {
 		return "nil"
@@ -4516,7 +4712,8 @@ func (this *QueryRequest) String() string {
 		repeatedStringForMatchers += strings.Replace(f.String(), "LabelMatcher", "LabelMatcher", 1) + ","
 	}
 	repeatedStringForMatchers += "}"
-	s := strings.Join([]string{`&QueryRequest{`,
+	s := strings.Join([]string{
+		`&QueryRequest{`,
 		`StartTimestampMs:` + fmt.Sprintf("%v", this.StartTimestampMs) + `,`,
 		`EndTimestampMs:` + fmt.Sprintf("%v", this.EndTimestampMs) + `,`,
 		`Matchers:` + repeatedStringForMatchers + `,`,
@@ -4524,6 +4721,7 @@ func (this *QueryRequest) String() string {
 	}, "")
 	return s
 }
+
 func (this *ExemplarQueryRequest) String() string {
 	if this == nil {
 		return "nil"
@@ -4533,7 +4731,8 @@ func (this *ExemplarQueryRequest) String() string {
 		repeatedStringForMatchers += strings.Replace(f.String(), "LabelMatchers", "LabelMatchers", 1) + ","
 	}
 	repeatedStringForMatchers += "}"
-	s := strings.Join([]string{`&ExemplarQueryRequest{`,
+	s := strings.Join([]string{
+		`&ExemplarQueryRequest{`,
 		`StartTimestampMs:` + fmt.Sprintf("%v", this.StartTimestampMs) + `,`,
 		`EndTimestampMs:` + fmt.Sprintf("%v", this.EndTimestampMs) + `,`,
 		`Matchers:` + repeatedStringForMatchers + `,`,
@@ -4541,6 +4740,7 @@ func (this *ExemplarQueryRequest) String() string {
 	}, "")
 	return s
 }
+
 func (this *QueryResponse) String() string {
 	if this == nil {
 		return "nil"
@@ -4550,12 +4750,14 @@ func (this *QueryResponse) String() string {
 		repeatedStringForTimeseries += fmt.Sprintf("%v", f) + ","
 	}
 	repeatedStringForTimeseries += "}"
-	s := strings.Join([]string{`&QueryResponse{`,
+	s := strings.Join([]string{
+		`&QueryResponse{`,
 		`Timeseries:` + repeatedStringForTimeseries + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *QueryStreamResponse) String() string {
 	if this == nil {
 		return "nil"
@@ -4570,13 +4772,15 @@ func (this *QueryStreamResponse) String() string {
 		repeatedStringForTimeseries += fmt.Sprintf("%v", f) + ","
 	}
 	repeatedStringForTimeseries += "}"
-	s := strings.Join([]string{`&QueryStreamResponse{`,
+	s := strings.Join([]string{
+		`&QueryStreamResponse{`,
 		`Chunkseries:` + repeatedStringForChunkseries + `,`,
 		`Timeseries:` + repeatedStringForTimeseries + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *ExemplarQueryResponse) String() string {
 	if this == nil {
 		return "nil"
@@ -4586,17 +4790,20 @@ func (this *ExemplarQueryResponse) String() string {
 		repeatedStringForTimeseries += fmt.Sprintf("%v", f) + ","
 	}
 	repeatedStringForTimeseries += "}"
-	s := strings.Join([]string{`&ExemplarQueryResponse{`,
+	s := strings.Join([]string{
+		`&ExemplarQueryResponse{`,
 		`Timeseries:` + repeatedStringForTimeseries + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *LabelValuesRequest) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&LabelValuesRequest{`,
+	s := strings.Join([]string{
+		`&LabelValuesRequest{`,
 		`LabelName:` + fmt.Sprintf("%v", this.LabelName) + `,`,
 		`StartTimestampMs:` + fmt.Sprintf("%v", this.StartTimestampMs) + `,`,
 		`EndTimestampMs:` + fmt.Sprintf("%v", this.EndTimestampMs) + `,`,
@@ -4605,51 +4812,61 @@ func (this *LabelValuesRequest) String() string {
 	}, "")
 	return s
 }
+
 func (this *LabelValuesResponse) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&LabelValuesResponse{`,
+	s := strings.Join([]string{
+		`&LabelValuesResponse{`,
 		`LabelValues:` + fmt.Sprintf("%v", this.LabelValues) + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *LabelNamesRequest) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&LabelNamesRequest{`,
+	s := strings.Join([]string{
+		`&LabelNamesRequest{`,
 		`StartTimestampMs:` + fmt.Sprintf("%v", this.StartTimestampMs) + `,`,
 		`EndTimestampMs:` + fmt.Sprintf("%v", this.EndTimestampMs) + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *LabelNamesResponse) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&LabelNamesResponse{`,
+	s := strings.Join([]string{
+		`&LabelNamesResponse{`,
 		`LabelNames:` + fmt.Sprintf("%v", this.LabelNames) + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *UserStatsRequest) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&UserStatsRequest{`,
+	s := strings.Join([]string{
+		`&UserStatsRequest{`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *UserStatsResponse) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&UserStatsResponse{`,
+	s := strings.Join([]string{
+		`&UserStatsResponse{`,
 		`IngestionRate:` + fmt.Sprintf("%v", this.IngestionRate) + `,`,
 		`NumSeries:` + fmt.Sprintf("%v", this.NumSeries) + `,`,
 		`ApiIngestionRate:` + fmt.Sprintf("%v", this.ApiIngestionRate) + `,`,
@@ -4658,17 +4875,20 @@ func (this *UserStatsResponse) String() string {
 	}, "")
 	return s
 }
+
 func (this *UserIDStatsResponse) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&UserIDStatsResponse{`,
+	s := strings.Join([]string{
+		`&UserIDStatsResponse{`,
 		`UserId:` + fmt.Sprintf("%v", this.UserId) + `,`,
 		`Data:` + strings.Replace(this.Data.String(), "UserStatsResponse", "UserStatsResponse", 1) + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *UsersStatsResponse) String() string {
 	if this == nil {
 		return "nil"
@@ -4678,12 +4898,14 @@ func (this *UsersStatsResponse) String() string {
 		repeatedStringForStats += strings.Replace(f.String(), "UserIDStatsResponse", "UserIDStatsResponse", 1) + ","
 	}
 	repeatedStringForStats += "}"
-	s := strings.Join([]string{`&UsersStatsResponse{`,
+	s := strings.Join([]string{
+		`&UsersStatsResponse{`,
 		`Stats:` + repeatedStringForStats + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *MetricsForLabelMatchersRequest) String() string {
 	if this == nil {
 		return "nil"
@@ -4693,7 +4915,8 @@ func (this *MetricsForLabelMatchersRequest) String() string {
 		repeatedStringForMatchersSet += strings.Replace(f.String(), "LabelMatchers", "LabelMatchers", 1) + ","
 	}
 	repeatedStringForMatchersSet += "}"
-	s := strings.Join([]string{`&MetricsForLabelMatchersRequest{`,
+	s := strings.Join([]string{
+		`&MetricsForLabelMatchersRequest{`,
 		`StartTimestampMs:` + fmt.Sprintf("%v", this.StartTimestampMs) + `,`,
 		`EndTimestampMs:` + fmt.Sprintf("%v", this.EndTimestampMs) + `,`,
 		`MatchersSet:` + repeatedStringForMatchersSet + `,`,
@@ -4701,6 +4924,7 @@ func (this *MetricsForLabelMatchersRequest) String() string {
 	}, "")
 	return s
 }
+
 func (this *MetricsForLabelMatchersResponse) String() string {
 	if this == nil {
 		return "nil"
@@ -4710,21 +4934,25 @@ func (this *MetricsForLabelMatchersResponse) String() string {
 		repeatedStringForMetric += strings.Replace(fmt.Sprintf("%v", f), "Metric", "logproto.Metric", 1) + ","
 	}
 	repeatedStringForMetric += "}"
-	s := strings.Join([]string{`&MetricsForLabelMatchersResponse{`,
+	s := strings.Join([]string{
+		`&MetricsForLabelMatchersResponse{`,
 		`Metric:` + repeatedStringForMetric + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *MetricsMetadataRequest) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&MetricsMetadataRequest{`,
+	s := strings.Join([]string{
+		`&MetricsMetadataRequest{`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *MetricsMetadataResponse) String() string {
 	if this == nil {
 		return "nil"
@@ -4734,12 +4962,14 @@ func (this *MetricsMetadataResponse) String() string {
 		repeatedStringForMetadata += strings.Replace(fmt.Sprintf("%v", f), "MetricMetadata", "logproto.MetricMetadata", 1) + ","
 	}
 	repeatedStringForMetadata += "}"
-	s := strings.Join([]string{`&MetricsMetadataResponse{`,
+	s := strings.Join([]string{
+		`&MetricsMetadataResponse{`,
 		`Metadata:` + repeatedStringForMetadata + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *TimeSeriesChunk) String() string {
 	if this == nil {
 		return "nil"
@@ -4749,7 +4979,8 @@ func (this *TimeSeriesChunk) String() string {
 		repeatedStringForChunks += strings.Replace(strings.Replace(f.String(), "Chunk", "Chunk", 1), `&`, ``, 1) + ","
 	}
 	repeatedStringForChunks += "}"
-	s := strings.Join([]string{`&TimeSeriesChunk{`,
+	s := strings.Join([]string{
+		`&TimeSeriesChunk{`,
 		`FromIngesterId:` + fmt.Sprintf("%v", this.FromIngesterId) + `,`,
 		`UserId:` + fmt.Sprintf("%v", this.UserId) + `,`,
 		`Labels:` + fmt.Sprintf("%v", this.Labels) + `,`,
@@ -4758,11 +4989,13 @@ func (this *TimeSeriesChunk) String() string {
 	}, "")
 	return s
 }
+
 func (this *Chunk) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&Chunk{`,
+	s := strings.Join([]string{
+		`&Chunk{`,
 		`StartTimestampMs:` + fmt.Sprintf("%v", this.StartTimestampMs) + `,`,
 		`EndTimestampMs:` + fmt.Sprintf("%v", this.EndTimestampMs) + `,`,
 		`Encoding:` + fmt.Sprintf("%v", this.Encoding) + `,`,
@@ -4771,15 +5004,18 @@ func (this *Chunk) String() string {
 	}, "")
 	return s
 }
+
 func (this *TransferChunksResponse) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&TransferChunksResponse{`,
+	s := strings.Join([]string{
+		`&TransferChunksResponse{`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *LabelMatchers) String() string {
 	if this == nil {
 		return "nil"
@@ -4789,17 +5025,20 @@ func (this *LabelMatchers) String() string {
 		repeatedStringForMatchers += strings.Replace(f.String(), "LabelMatcher", "LabelMatcher", 1) + ","
 	}
 	repeatedStringForMatchers += "}"
-	s := strings.Join([]string{`&LabelMatchers{`,
+	s := strings.Join([]string{
+		`&LabelMatchers{`,
 		`Matchers:` + repeatedStringForMatchers + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *LabelMatcher) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&LabelMatcher{`,
+	s := strings.Join([]string{
+		`&LabelMatcher{`,
 		`Type:` + fmt.Sprintf("%v", this.Type) + `,`,
 		`Name:` + fmt.Sprintf("%v", this.Name) + `,`,
 		`Value:` + fmt.Sprintf("%v", this.Value) + `,`,
@@ -4807,11 +5046,13 @@ func (this *LabelMatcher) String() string {
 	}, "")
 	return s
 }
+
 func (this *TimeSeriesFile) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&TimeSeriesFile{`,
+	s := strings.Join([]string{
+		`&TimeSeriesFile{`,
 		`FromIngesterId:` + fmt.Sprintf("%v", this.FromIngesterId) + `,`,
 		`UserId:` + fmt.Sprintf("%v", this.UserId) + `,`,
 		`Filename:` + fmt.Sprintf("%v", this.Filename) + `,`,
@@ -4820,6 +5061,7 @@ func (this *TimeSeriesFile) String() string {
 	}, "")
 	return s
 }
+
 func valueToStringIngester(v interface{}) string {
 	rv := reflect.ValueOf(v)
 	if rv.IsNil() {
@@ -4828,6 +5070,7 @@ func valueToStringIngester(v interface{}) string {
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("*%v", pv)
 }
+
 func (m *ReadRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -4915,6 +5158,7 @@ func (m *ReadRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *ReadResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -5002,6 +5246,7 @@ func (m *ReadResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *QueryRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -5127,6 +5372,7 @@ func (m *QueryRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *ExemplarQueryRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -5252,6 +5498,7 @@ func (m *ExemplarQueryRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *QueryResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -5339,6 +5586,7 @@ func (m *QueryResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *QueryStreamResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -5460,6 +5708,7 @@ func (m *QueryStreamResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *ExemplarQueryResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -5547,6 +5796,7 @@ func (m *ExemplarQueryResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *LabelValuesRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -5706,6 +5956,7 @@ func (m *LabelValuesRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *LabelValuesResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -5791,6 +6042,7 @@ func (m *LabelValuesResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *LabelNamesRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -5882,6 +6134,7 @@ func (m *LabelNamesRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *LabelNamesResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -5967,6 +6220,7 @@ func (m *LabelNamesResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *UserStatsRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -6020,6 +6274,7 @@ func (m *UserStatsRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *UserStatsResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -6125,6 +6380,7 @@ func (m *UserStatsResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *UserIDStatsResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -6246,6 +6502,7 @@ func (m *UserIDStatsResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *UsersStatsResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -6333,6 +6590,7 @@ func (m *UsersStatsResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *MetricsForLabelMatchersRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -6458,6 +6716,7 @@ func (m *MetricsForLabelMatchersRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *MetricsForLabelMatchersResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -6545,6 +6804,7 @@ func (m *MetricsForLabelMatchersResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *MetricsMetadataRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -6598,6 +6858,7 @@ func (m *MetricsMetadataRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *MetricsMetadataResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -6685,6 +6946,7 @@ func (m *MetricsMetadataResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *TimeSeriesChunk) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -6870,6 +7132,7 @@ func (m *TimeSeriesChunk) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *Chunk) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -7014,6 +7277,7 @@ func (m *Chunk) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *TransferChunksResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -7067,6 +7331,7 @@ func (m *TransferChunksResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *LabelMatchers) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -7154,6 +7419,7 @@ func (m *LabelMatchers) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *LabelMatcher) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -7290,6 +7556,7 @@ func (m *LabelMatcher) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *TimeSeriesFile) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -7473,6 +7740,7 @@ func (m *TimeSeriesFile) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func skipIngester(dAtA []byte) (n int, err error) {
 	l := len(dAtA)
 	iNdEx := 0

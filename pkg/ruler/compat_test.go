@@ -12,11 +12,11 @@ import (
 	"github.com/prometheus/prometheus/config"
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/iter"
-	"github.com/grafana/loki/pkg/logql"
-	ruler "github.com/grafana/loki/pkg/ruler/base"
-	"github.com/grafana/loki/pkg/util/log"
-	"github.com/grafana/loki/pkg/validation"
+	"github.com/frelon/loki/v2/pkg/iter"
+	"github.com/frelon/loki/v2/pkg/logql"
+	ruler "github.com/frelon/loki/v2/pkg/ruler/base"
+	"github.com/frelon/loki/v2/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/validation"
 )
 
 func Test_Load(t *testing.T) {
@@ -253,7 +253,7 @@ groups:
 			f, err := ioutil.TempFile(os.TempDir(), "rules")
 			require.Nil(t, err)
 			defer os.Remove(f.Name())
-			err = ioutil.WriteFile(f.Name(), []byte(tc.data), 0777)
+			err = ioutil.WriteFile(f.Name(), []byte(tc.data), 0o777)
 			require.Nil(t, err)
 
 			_, errs := loader.Load(f.Name())
@@ -271,7 +271,6 @@ groups:
 				require.Nil(t, errs)
 			}
 		})
-
 	}
 }
 

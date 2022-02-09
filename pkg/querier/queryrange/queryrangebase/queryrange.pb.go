@@ -5,26 +5,31 @@ package queryrangebase
 
 import (
 	fmt "fmt"
-	_ "github.com/gogo/protobuf/gogoproto"
-	proto "github.com/gogo/protobuf/proto"
-	github_com_gogo_protobuf_types "github.com/gogo/protobuf/types"
-	types "github.com/gogo/protobuf/types"
-	_ "github.com/golang/protobuf/ptypes/duration"
-	github_com_grafana_loki_pkg_logproto "github.com/grafana/loki/pkg/logproto"
-	logproto "github.com/grafana/loki/pkg/logproto"
 	io "io"
 	math "math"
 	math_bits "math/bits"
 	reflect "reflect"
 	strings "strings"
 	time "time"
+
+	_ "github.com/gogo/protobuf/gogoproto"
+	proto "github.com/gogo/protobuf/proto"
+	github_com_gogo_protobuf_types "github.com/gogo/protobuf/types"
+	types "github.com/gogo/protobuf/types"
+	_ "github.com/golang/protobuf/ptypes/duration"
+
+	logproto "github.com/frelon/loki/v2/pkg/logproto"
+
+	github_com_frelon_loki_pkg_logproto "github.com/frelon/loki/v2/pkg/logproto"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
-var _ = proto.Marshal
-var _ = fmt.Errorf
-var _ = math.Inf
-var _ = time.Kitchen
+var (
+	_ = proto.Marshal
+	_ = fmt.Errorf
+	_ = math.Inf
+	_ = time.Kitchen
+)
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the proto package it is being compiled against.
@@ -42,9 +47,11 @@ func (*PrometheusRequestHeader) ProtoMessage() {}
 func (*PrometheusRequestHeader) Descriptor() ([]byte, []int) {
 	return fileDescriptor_4cc6a0c1d6b614c4, []int{0}
 }
+
 func (m *PrometheusRequestHeader) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *PrometheusRequestHeader) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_PrometheusRequestHeader.Marshal(b, m, deterministic)
@@ -57,12 +64,15 @@ func (m *PrometheusRequestHeader) XXX_Marshal(b []byte, deterministic bool) ([]b
 		return b[:n], nil
 	}
 }
+
 func (m *PrometheusRequestHeader) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_PrometheusRequestHeader.Merge(m, src)
 }
+
 func (m *PrometheusRequestHeader) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *PrometheusRequestHeader) XXX_DiscardUnknown() {
 	xxx_messageInfo_PrometheusRequestHeader.DiscardUnknown(m)
 }
@@ -99,9 +109,11 @@ func (*PrometheusRequest) ProtoMessage() {}
 func (*PrometheusRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_4cc6a0c1d6b614c4, []int{1}
 }
+
 func (m *PrometheusRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *PrometheusRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_PrometheusRequest.Marshal(b, m, deterministic)
@@ -114,12 +126,15 @@ func (m *PrometheusRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, e
 		return b[:n], nil
 	}
 }
+
 func (m *PrometheusRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_PrometheusRequest.Merge(m, src)
 }
+
 func (m *PrometheusRequest) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *PrometheusRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_PrometheusRequest.DiscardUnknown(m)
 }
@@ -192,9 +207,11 @@ func (*PrometheusResponseHeader) ProtoMessage() {}
 func (*PrometheusResponseHeader) Descriptor() ([]byte, []int) {
 	return fileDescriptor_4cc6a0c1d6b614c4, []int{2}
 }
+
 func (m *PrometheusResponseHeader) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *PrometheusResponseHeader) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_PrometheusResponseHeader.Marshal(b, m, deterministic)
@@ -207,12 +224,15 @@ func (m *PrometheusResponseHeader) XXX_Marshal(b []byte, deterministic bool) ([]
 		return b[:n], nil
 	}
 }
+
 func (m *PrometheusResponseHeader) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_PrometheusResponseHeader.Merge(m, src)
 }
+
 func (m *PrometheusResponseHeader) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *PrometheusResponseHeader) XXX_DiscardUnknown() {
 	xxx_messageInfo_PrometheusResponseHeader.DiscardUnknown(m)
 }
@@ -246,9 +266,11 @@ func (*PrometheusResponse) ProtoMessage() {}
 func (*PrometheusResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_4cc6a0c1d6b614c4, []int{3}
 }
+
 func (m *PrometheusResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *PrometheusResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_PrometheusResponse.Marshal(b, m, deterministic)
@@ -261,12 +283,15 @@ func (m *PrometheusResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, 
 		return b[:n], nil
 	}
 }
+
 func (m *PrometheusResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_PrometheusResponse.Merge(m, src)
 }
+
 func (m *PrometheusResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *PrometheusResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_PrometheusResponse.DiscardUnknown(m)
 }
@@ -318,9 +343,11 @@ func (*PrometheusData) ProtoMessage() {}
 func (*PrometheusData) Descriptor() ([]byte, []int) {
 	return fileDescriptor_4cc6a0c1d6b614c4, []int{4}
 }
+
 func (m *PrometheusData) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *PrometheusData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_PrometheusData.Marshal(b, m, deterministic)
@@ -333,12 +360,15 @@ func (m *PrometheusData) XXX_Marshal(b []byte, deterministic bool) ([]byte, erro
 		return b[:n], nil
 	}
 }
+
 func (m *PrometheusData) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_PrometheusData.Merge(m, src)
 }
+
 func (m *PrometheusData) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *PrometheusData) XXX_DiscardUnknown() {
 	xxx_messageInfo_PrometheusData.DiscardUnknown(m)
 }
@@ -360,8 +390,8 @@ func (m *PrometheusData) GetResult() []SampleStream {
 }
 
 type SampleStream struct {
-	Labels  []github_com_grafana_loki_pkg_logproto.LabelAdapter `protobuf:"bytes,1,rep,name=labels,proto3,customtype=github.com/grafana/loki/pkg/logproto.LabelAdapter" json:"metric"`
-	Samples []logproto.LegacySample                             `protobuf:"bytes,2,rep,name=samples,proto3" json:"values"`
+	Labels  []github_com_frelon_loki_pkg_logproto.LabelAdapter `protobuf:"bytes,1,rep,name=labels,proto3,customtype=github.com/frelon/loki/v2/pkg/logproto.LabelAdapter" json:"metric"`
+	Samples []logproto.LegacySample                            `protobuf:"bytes,2,rep,name=samples,proto3" json:"values"`
 }
 
 func (m *SampleStream) Reset()      { *m = SampleStream{} }
@@ -369,9 +399,11 @@ func (*SampleStream) ProtoMessage() {}
 func (*SampleStream) Descriptor() ([]byte, []int) {
 	return fileDescriptor_4cc6a0c1d6b614c4, []int{5}
 }
+
 func (m *SampleStream) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *SampleStream) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_SampleStream.Marshal(b, m, deterministic)
@@ -384,12 +416,15 @@ func (m *SampleStream) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)
 		return b[:n], nil
 	}
 }
+
 func (m *SampleStream) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_SampleStream.Merge(m, src)
 }
+
 func (m *SampleStream) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *SampleStream) XXX_DiscardUnknown() {
 	xxx_messageInfo_SampleStream.DiscardUnknown(m)
 }
@@ -414,9 +449,11 @@ func (*CachedResponse) ProtoMessage() {}
 func (*CachedResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_4cc6a0c1d6b614c4, []int{6}
 }
+
 func (m *CachedResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *CachedResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_CachedResponse.Marshal(b, m, deterministic)
@@ -429,12 +466,15 @@ func (m *CachedResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, erro
 		return b[:n], nil
 	}
 }
+
 func (m *CachedResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_CachedResponse.Merge(m, src)
 }
+
 func (m *CachedResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *CachedResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_CachedResponse.DiscardUnknown(m)
 }
@@ -467,9 +507,11 @@ func (*Extent) ProtoMessage() {}
 func (*Extent) Descriptor() ([]byte, []int) {
 	return fileDescriptor_4cc6a0c1d6b614c4, []int{7}
 }
+
 func (m *Extent) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *Extent) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_Extent.Marshal(b, m, deterministic)
@@ -482,12 +524,15 @@ func (m *Extent) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
+
 func (m *Extent) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_Extent.Merge(m, src)
 }
+
 func (m *Extent) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *Extent) XXX_DiscardUnknown() {
 	xxx_messageInfo_Extent.DiscardUnknown(m)
 }
@@ -531,9 +576,11 @@ func (*CachingOptions) ProtoMessage() {}
 func (*CachingOptions) Descriptor() ([]byte, []int) {
 	return fileDescriptor_4cc6a0c1d6b614c4, []int{8}
 }
+
 func (m *CachingOptions) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *CachingOptions) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_CachingOptions.Marshal(b, m, deterministic)
@@ -546,12 +593,15 @@ func (m *CachingOptions) XXX_Marshal(b []byte, deterministic bool) ([]byte, erro
 		return b[:n], nil
 	}
 }
+
 func (m *CachingOptions) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_CachingOptions.Merge(m, src)
 }
+
 func (m *CachingOptions) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *CachingOptions) XXX_DiscardUnknown() {
 	xxx_messageInfo_CachingOptions.DiscardUnknown(m)
 }
@@ -672,6 +722,7 @@ func (this *PrometheusRequestHeader) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *PrometheusRequest) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -722,6 +773,7 @@ func (this *PrometheusRequest) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *PrometheusResponseHeader) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -754,6 +806,7 @@ func (this *PrometheusResponseHeader) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *PrometheusResponse) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -795,6 +848,7 @@ func (this *PrometheusResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *PrometheusData) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -827,6 +881,7 @@ func (this *PrometheusData) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *SampleStream) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -864,6 +919,7 @@ func (this *SampleStream) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *CachedResponse) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -896,6 +952,7 @@ func (this *CachedResponse) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *Extent) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -929,6 +986,7 @@ func (this *Extent) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *CachingOptions) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
@@ -953,6 +1011,7 @@ func (this *CachingOptions) Equal(that interface{}) bool {
 	}
 	return true
 }
+
 func (this *PrometheusRequestHeader) GoString() string {
 	if this == nil {
 		return "nil"
@@ -964,6 +1023,7 @@ func (this *PrometheusRequestHeader) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *PrometheusRequest) GoString() string {
 	if this == nil {
 		return "nil"
@@ -983,6 +1043,7 @@ func (this *PrometheusRequest) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *PrometheusResponseHeader) GoString() string {
 	if this == nil {
 		return "nil"
@@ -994,6 +1055,7 @@ func (this *PrometheusResponseHeader) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *PrometheusResponse) GoString() string {
 	if this == nil {
 		return "nil"
@@ -1010,6 +1072,7 @@ func (this *PrometheusResponse) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *PrometheusData) GoString() string {
 	if this == nil {
 		return "nil"
@@ -1027,6 +1090,7 @@ func (this *PrometheusData) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *SampleStream) GoString() string {
 	if this == nil {
 		return "nil"
@@ -1044,6 +1108,7 @@ func (this *SampleStream) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *CachedResponse) GoString() string {
 	if this == nil {
 		return "nil"
@@ -1061,6 +1126,7 @@ func (this *CachedResponse) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *Extent) GoString() string {
 	if this == nil {
 		return "nil"
@@ -1076,6 +1142,7 @@ func (this *Extent) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func (this *CachingOptions) GoString() string {
 	if this == nil {
 		return "nil"
@@ -1086,6 +1153,7 @@ func (this *CachingOptions) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+
 func valueToGoStringQueryrange(v interface{}, typ string) string {
 	rv := reflect.ValueOf(v)
 	if rv.IsNil() {
@@ -1094,6 +1162,7 @@ func valueToGoStringQueryrange(v interface{}, typ string) string {
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("func(v %v) *%v { return &v } ( %#v )", typ, typ, pv)
 }
+
 func (m *PrometheusRequestHeader) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -1559,6 +1628,7 @@ func encodeVarintQueryrange(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
+
 func (m *PrometheusRequestHeader) Size() (n int) {
 	if m == nil {
 		return 0
@@ -1759,20 +1829,24 @@ func (m *CachingOptions) Size() (n int) {
 func sovQueryrange(x uint64) (n int) {
 	return (math_bits.Len64(x|1) + 6) / 7
 }
+
 func sozQueryrange(x uint64) (n int) {
 	return sovQueryrange(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
+
 func (this *PrometheusRequestHeader) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&PrometheusRequestHeader{`,
+	s := strings.Join([]string{
+		`&PrometheusRequestHeader{`,
 		`Name:` + fmt.Sprintf("%v", this.Name) + `,`,
 		`Values:` + fmt.Sprintf("%v", this.Values) + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *PrometheusRequest) String() string {
 	if this == nil {
 		return "nil"
@@ -1782,7 +1856,8 @@ func (this *PrometheusRequest) String() string {
 		repeatedStringForHeaders += strings.Replace(f.String(), "PrometheusRequestHeader", "PrometheusRequestHeader", 1) + ","
 	}
 	repeatedStringForHeaders += "}"
-	s := strings.Join([]string{`&PrometheusRequest{`,
+	s := strings.Join([]string{
+		`&PrometheusRequest{`,
 		`Path:` + fmt.Sprintf("%v", this.Path) + `,`,
 		`Start:` + fmt.Sprintf("%v", this.Start) + `,`,
 		`End:` + fmt.Sprintf("%v", this.End) + `,`,
@@ -1795,17 +1870,20 @@ func (this *PrometheusRequest) String() string {
 	}, "")
 	return s
 }
+
 func (this *PrometheusResponseHeader) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&PrometheusResponseHeader{`,
+	s := strings.Join([]string{
+		`&PrometheusResponseHeader{`,
 		`Name:` + fmt.Sprintf("%v", this.Name) + `,`,
 		`Values:` + fmt.Sprintf("%v", this.Values) + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *PrometheusResponse) String() string {
 	if this == nil {
 		return "nil"
@@ -1815,7 +1893,8 @@ func (this *PrometheusResponse) String() string {
 		repeatedStringForHeaders += strings.Replace(f.String(), "PrometheusResponseHeader", "PrometheusResponseHeader", 1) + ","
 	}
 	repeatedStringForHeaders += "}"
-	s := strings.Join([]string{`&PrometheusResponse{`,
+	s := strings.Join([]string{
+		`&PrometheusResponse{`,
 		`Status:` + fmt.Sprintf("%v", this.Status) + `,`,
 		`Data:` + strings.Replace(strings.Replace(this.Data.String(), "PrometheusData", "PrometheusData", 1), `&`, ``, 1) + `,`,
 		`ErrorType:` + fmt.Sprintf("%v", this.ErrorType) + `,`,
@@ -1825,6 +1904,7 @@ func (this *PrometheusResponse) String() string {
 	}, "")
 	return s
 }
+
 func (this *PrometheusData) String() string {
 	if this == nil {
 		return "nil"
@@ -1834,13 +1914,15 @@ func (this *PrometheusData) String() string {
 		repeatedStringForResult += strings.Replace(strings.Replace(f.String(), "SampleStream", "SampleStream", 1), `&`, ``, 1) + ","
 	}
 	repeatedStringForResult += "}"
-	s := strings.Join([]string{`&PrometheusData{`,
+	s := strings.Join([]string{
+		`&PrometheusData{`,
 		`ResultType:` + fmt.Sprintf("%v", this.ResultType) + `,`,
 		`Result:` + repeatedStringForResult + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *SampleStream) String() string {
 	if this == nil {
 		return "nil"
@@ -1850,13 +1932,15 @@ func (this *SampleStream) String() string {
 		repeatedStringForSamples += fmt.Sprintf("%v", f) + ","
 	}
 	repeatedStringForSamples += "}"
-	s := strings.Join([]string{`&SampleStream{`,
+	s := strings.Join([]string{
+		`&SampleStream{`,
 		`Labels:` + fmt.Sprintf("%v", this.Labels) + `,`,
 		`Samples:` + repeatedStringForSamples + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *CachedResponse) String() string {
 	if this == nil {
 		return "nil"
@@ -1866,18 +1950,21 @@ func (this *CachedResponse) String() string {
 		repeatedStringForExtents += strings.Replace(strings.Replace(f.String(), "Extent", "Extent", 1), `&`, ``, 1) + ","
 	}
 	repeatedStringForExtents += "}"
-	s := strings.Join([]string{`&CachedResponse{`,
+	s := strings.Join([]string{
+		`&CachedResponse{`,
 		`Key:` + fmt.Sprintf("%v", this.Key) + `,`,
 		`Extents:` + repeatedStringForExtents + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func (this *Extent) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&Extent{`,
+	s := strings.Join([]string{
+		`&Extent{`,
 		`Start:` + fmt.Sprintf("%v", this.Start) + `,`,
 		`End:` + fmt.Sprintf("%v", this.End) + `,`,
 		`TraceId:` + fmt.Sprintf("%v", this.TraceId) + `,`,
@@ -1886,16 +1973,19 @@ func (this *Extent) String() string {
 	}, "")
 	return s
 }
+
 func (this *CachingOptions) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&CachingOptions{`,
+	s := strings.Join([]string{
+		`&CachingOptions{`,
 		`Disabled:` + fmt.Sprintf("%v", this.Disabled) + `,`,
 		`}`,
 	}, "")
 	return s
 }
+
 func valueToStringQueryrange(v interface{}) string {
 	rv := reflect.ValueOf(v)
 	if rv.IsNil() {
@@ -1904,6 +1994,7 @@ func valueToStringQueryrange(v interface{}) string {
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("*%v", pv)
 }
+
 func (m *PrometheusRequestHeader) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -2021,6 +2112,7 @@ func (m *PrometheusRequestHeader) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *PrometheusRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -2295,6 +2387,7 @@ func (m *PrometheusRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *PrometheusResponseHeader) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -2412,6 +2505,7 @@ func (m *PrometheusResponseHeader) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *PrometheusResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -2628,6 +2722,7 @@ func (m *PrometheusResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *PrometheusData) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -2747,6 +2842,7 @@ func (m *PrometheusData) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *SampleStream) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -2868,6 +2964,7 @@ func (m *SampleStream) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *CachedResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -2987,6 +3084,7 @@ func (m *CachedResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *Extent) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -3146,6 +3244,7 @@ func (m *Extent) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *CachingOptions) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -3219,6 +3318,7 @@ func (m *CachingOptions) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func skipQueryrange(dAtA []byte) (n int, err error) {
 	l := len(dAtA)
 	iNdEx := 0

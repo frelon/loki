@@ -22,10 +22,10 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 
-	"github.com/grafana/loki/pkg/loghttp"
-	"github.com/grafana/loki/pkg/logqlmodel"
-	"github.com/grafana/loki/pkg/util/build"
-	"github.com/grafana/loki/pkg/util/unmarshal"
+	"github.com/frelon/loki/v2/pkg/loghttp"
+	"github.com/frelon/loki/v2/pkg/logqlmodel"
+	"github.com/frelon/loki/v2/pkg/util/build"
+	"github.com/frelon/loki/v2/pkg/util/unmarshal"
 )
 
 var (
@@ -43,7 +43,7 @@ var (
 )
 
 type LokiReader interface {
-	Query(start time.Time, end time.Time) ([]time.Time, error)
+	Query(start, end time.Time) ([]time.Time, error)
 	QueryCountOverTime(queryRange string) (float64, error)
 }
 
@@ -235,7 +235,7 @@ func (r *Reader) QueryCountOverTime(queryRange string) (float64, error) {
 
 // Query will ask Loki for all canary timestamps in the requested timerange.
 // Query blocks if a previous query has failed until the appropriate backoff time has been reached.
-func (r *Reader) Query(start time.Time, end time.Time) ([]time.Time, error) {
+func (r *Reader) Query(start, end time.Time) ([]time.Time, error) {
 	r.backoffMtx.RLock()
 	next := r.nextQuery
 	r.backoffMtx.RUnlock()

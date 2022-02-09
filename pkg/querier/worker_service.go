@@ -14,10 +14,10 @@ import (
 	httpgrpc_server "github.com/weaveworks/common/httpgrpc/server"
 	"github.com/weaveworks/common/middleware"
 
-	querier_worker "github.com/grafana/loki/pkg/querier/worker"
-	"github.com/grafana/loki/pkg/util/httpreq"
-	util_log "github.com/grafana/loki/pkg/util/log"
-	serverutil "github.com/grafana/loki/pkg/util/server"
+	querier_worker "github.com/frelon/loki/v2/pkg/querier/worker"
+	"github.com/frelon/loki/v2/pkg/util/httpreq"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
+	serverutil "github.com/frelon/loki/v2/pkg/util/server"
 )
 
 type WorkerServiceConfig struct {
@@ -82,7 +82,7 @@ func InitWorkerService(
 
 		// First, register the internal querier handler with the external HTTP server
 		routes := make([]string, len(queryRoutesToHandlers))
-		var idx = 0
+		idx := 0
 		for route := range queryRoutesToHandlers {
 			routes[idx] = route
 			idx++
@@ -93,8 +93,8 @@ func InitWorkerService(
 			externalRouter.Path(route).Methods("GET", "POST").Handler(handlerMiddleware.Wrap(internalRouter))
 		}
 
-		//If no frontend or scheduler address has been configured, then there is no place for the
-		//querier worker to request work from, so no need to start a worker service
+		// If no frontend or scheduler address has been configured, then there is no place for the
+		// querier worker to request work from, so no need to start a worker service
 		if (*cfg.QuerierWorkerConfig).FrontendAddress == "" && (*cfg.QuerierWorkerConfig).SchedulerAddress == "" {
 			return nil, nil
 		}
@@ -131,8 +131,8 @@ func InitWorkerService(
 
 	internalHandler = handlerMiddleware.Wrap(internalHandler)
 
-	//Return a querier worker pointed to the internal querier HTTP handler so there is not a conflict in routes between the querier
-	//and the query frontend
+	// Return a querier worker pointed to the internal querier HTTP handler so there is not a conflict in routes between the querier
+	// and the query frontend
 	return querier_worker.NewQuerierWorker(
 		*(cfg.QuerierWorkerConfig),
 		cfg.SchedulerRing,

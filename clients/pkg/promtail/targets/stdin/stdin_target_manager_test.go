@@ -12,13 +12,13 @@ import (
 	"github.com/stretchr/testify/require"
 	"gopkg.in/yaml.v2"
 
-	"github.com/grafana/loki/clients/pkg/logentry/stages"
-	"github.com/grafana/loki/clients/pkg/promtail/api"
-	"github.com/grafana/loki/clients/pkg/promtail/client/fake"
-	"github.com/grafana/loki/clients/pkg/promtail/scrapeconfig"
+	"github.com/frelon/loki/v2/clients/pkg/logentry/stages"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/api"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/client/fake"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/scrapeconfig"
 
-	"github.com/grafana/loki/pkg/logproto"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 func Test_newReaderTarget(t *testing.T) {
@@ -139,7 +139,6 @@ func compareEntries(t *testing.T, expected, actual []api.Entry) {
 }
 
 func Test_StdinConfigs(t *testing.T) {
-
 	// should take the first config
 	require.Equal(t, scrapeconfig.DefaultScrapeConfig, getStdinConfig(util_log.Logger, []scrapeconfig.Config{
 		scrapeconfig.DefaultScrapeConfig,

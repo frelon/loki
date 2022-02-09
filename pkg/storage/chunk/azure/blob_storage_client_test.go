@@ -11,7 +11,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"go.uber.org/atomic"
 
-	"github.com/grafana/loki/pkg/storage/chunk/hedging"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/hedging"
 )
 
 type RoundTripperFunc func(*http.Request) (*http.Response, error)

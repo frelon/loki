@@ -15,10 +15,10 @@ import (
 	"github.com/stretchr/testify/require"
 	"go.etcd.io/bbolt"
 
-	"github.com/grafana/loki/pkg/storage/chunk/local"
-	"github.com/grafana/loki/pkg/storage/stores/shipper/compactor/retention"
-	"github.com/grafana/loki/pkg/storage/stores/shipper/storage"
-	"github.com/grafana/loki/pkg/storage/stores/shipper/testutil"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/local"
+	"github.com/frelon/loki/v2/pkg/storage/stores/shipper/compactor/retention"
+	"github.com/frelon/loki/v2/pkg/storage/stores/shipper/storage"
+	"github.com/frelon/loki/v2/pkg/storage/stores/shipper/testutil"
 )
 
 const (
@@ -439,7 +439,7 @@ func TestTable_CompactionFailure(t *testing.T) {
 	testutil.SetupDBsAtPath(t, filepath.Join(objectStoragePath, tableName), dbsToSetup, nil)
 
 	// put a non-boltdb file in the table which should cause the compaction to fail in the middle because it would fail to open that file with boltdb client.
-	require.NoError(t, ioutil.WriteFile(filepath.Join(tablePathInStorage, "fail.txt"), []byte("fail the compaction"), 0666))
+	require.NoError(t, ioutil.WriteFile(filepath.Join(tablePathInStorage, "fail.txt"), []byte("fail the compaction"), 0o666))
 
 	// do the compaction
 	objectClient, err := local.NewFSObjectClient(local.FSConfig{Directory: objectStoragePath})

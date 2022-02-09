@@ -4,7 +4,7 @@ import (
 	"github.com/prometheus/prometheus/model/labels"
 	"go.etcd.io/bbolt"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
 )
 
 type userSeries struct {
@@ -12,7 +12,7 @@ type userSeries struct {
 	seriesIDLen int
 }
 
-func newUserSeries(seriesID []byte, userID []byte) userSeries {
+func newUserSeries(seriesID, userID []byte) userSeries {
 	key := make([]byte, 0, len(seriesID)+len(userID))
 	key = append(key, seriesID...)
 	key = append(key, userID...)
@@ -34,7 +34,7 @@ func (us userSeries) UserID() []byte {
 	return us.key[us.seriesIDLen:]
 }
 
-func (us *userSeries) Reset(seriesID []byte, userID []byte) {
+func (us *userSeries) Reset(seriesID, userID []byte) {
 	if us.key == nil {
 		us.key = make([]byte, 0, len(seriesID)+len(userID))
 	}
@@ -56,7 +56,7 @@ func newUserSeriesMap() userSeriesMap {
 	return make(userSeriesMap)
 }
 
-func (u userSeriesMap) Add(seriesID []byte, userID []byte, lbls labels.Labels) {
+func (u userSeriesMap) Add(seriesID, userID []byte, lbls labels.Labels) {
 	us := newUserSeries(seriesID, userID)
 	if _, ok := u[us.Key()]; ok {
 		return
@@ -70,7 +70,7 @@ func (u userSeriesMap) Add(seriesID []byte, userID []byte, lbls labels.Labels) {
 }
 
 // MarkSeriesNotDeleted is used to mark series not deleted when it still has some chunks left in the store
-func (u userSeriesMap) MarkSeriesNotDeleted(seriesID []byte, userID []byte) {
+func (u userSeriesMap) MarkSeriesNotDeleted(seriesID, userID []byte) {
 	us := newUserSeries(seriesID, userID)
 	usi := u[us.Key()]
 	usi.isDeleted = false
@@ -112,7 +112,7 @@ func newSeriesLabelsMapper(bucket *bbolt.Bucket, config chunk.PeriodConfig) (*se
 	return sm, nil
 }
 
-func (sm *seriesLabelsMapper) Get(seriesID []byte, userID []byte) labels.Labels {
+func (sm *seriesLabelsMapper) Get(seriesID, userID []byte) labels.Labels {
 	sm.bufKey.Reset(seriesID, userID)
 	lbs, ok := sm.mapping[sm.bufKey.Key()]
 	if ok {

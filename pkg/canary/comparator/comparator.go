@@ -10,7 +10,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/weaveworks/common/instrument"
 
-	"github.com/grafana/loki/pkg/canary/reader"
+	"github.com/frelon/loki/v2/pkg/canary/reader"
 )
 
 const (
@@ -191,7 +191,7 @@ func (c *Comparator) entrySent(ts time.Time) {
 	c.entries = append(c.entries, &ts)
 	totalEntries.Inc()
 	c.entMtx.Unlock()
-	//If this entry equals or exceeds the spot check interval from the last entry in the spot check array, add it.
+	// If this entry equals or exceeds the spot check interval from the last entry in the spot check array, add it.
 	c.spotEntMtx.Lock()
 	if len(c.spotCheck) == 0 || ts.Sub(*c.spotCheck[len(c.spotCheck)-1]) >= c.spotCheckInterval {
 		c.spotCheck = append(c.spotCheck, &ts)
@@ -338,7 +338,6 @@ func (c *Comparator) spotCheckEntries(currTime time.Time) {
 			return t.Before(currTime.Add(-c.spotCheckMax))
 		},
 		func(_ int, t *time.Time) {
-
 		})
 
 	// Make a copy so we don't have to hold the lock to verify entries
@@ -380,7 +379,6 @@ func (c *Comparator) spotCheckEntries(currTime time.Time) {
 			spotCheckMissing.Inc()
 		}
 	}
-
 }
 
 func (c *Comparator) pruneEntries(currentTime time.Time) {
@@ -415,7 +413,6 @@ func (c *Comparator) pruneEntries(currentTime time.Time) {
 		} else {
 			c.confirmMissing(currentTime)
 		}
-
 	}
 
 	// Prune c.ackdEntries list of old acknowledged entries which we were using to find duplicates
@@ -424,7 +421,6 @@ func (c *Comparator) pruneEntries(currentTime time.Time) {
 			return t.Before(currentTime.Add(-c.wait))
 		},
 		func(_ int, t *time.Time) {
-
 		})
 }
 
@@ -518,5 +514,4 @@ func pruneList(list []*time.Time, shouldRemove func(int, *time.Time) bool, handl
 	}
 	// Reslice the list to the new size k
 	return list[:k]
-
 }

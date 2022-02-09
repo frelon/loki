@@ -3,7 +3,7 @@ package queryrange
 import (
 	"sort"
 
-	"github.com/grafana/loki/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logproto"
 )
 
 /*
@@ -35,6 +35,7 @@ func (a byDir) Less(i, j int) bool {
 	}
 	return y > x
 }
+
 func (a byDir) EntriesCount() (n int) {
 	for _, m := range a.markers {
 		n += len(m)
@@ -65,7 +66,6 @@ func (pq *priorityqueue) Less(i, j int) bool {
 		return pq.streams[i].Entries[0].Timestamp.UnixNano() < pq.streams[j].Entries[0].Timestamp.UnixNano()
 	}
 	return pq.streams[i].Entries[0].Timestamp.UnixNano() > pq.streams[j].Entries[0].Timestamp.UnixNano()
-
 }
 
 func (pq *priorityqueue) Swap(i, j int) {

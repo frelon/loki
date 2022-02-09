@@ -9,9 +9,9 @@ import (
 	json "github.com/json-iterator/go"
 	"github.com/stretchr/testify/require"
 
-	loghttp "github.com/grafana/loki/pkg/loghttp/legacy"
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logqlmodel"
+	loghttp "github.com/frelon/loki/v2/pkg/loghttp/legacy"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logqlmodel"
 )
 
 // covers responses from /api/prom/query
@@ -227,7 +227,7 @@ func Test_TailResponseMarshalLoop(t *testing.T) {
 	}
 }
 
-func testJSONBytesEqual(t *testing.T, expected []byte, actual []byte, msg string, args ...interface{}) {
+func testJSONBytesEqual(t *testing.T, expected, actual []byte, msg string, args ...interface{}) {
 	var expectedValue map[string]interface{}
 	err := json.Unmarshal(expected, &expectedValue)
 	require.NoError(t, err)
@@ -239,7 +239,7 @@ func testJSONBytesEqual(t *testing.T, expected []byte, actual []byte, msg string
 	require.Equalf(t, expectedValue, actualValue, msg, args)
 }
 
-func mustParse(l string, t string) time.Time {
+func mustParse(l, t string) time.Time {
 	ret, err := time.Parse(l, t)
 	if err != nil {
 		log.Fatalf("Failed to parse %s", t)

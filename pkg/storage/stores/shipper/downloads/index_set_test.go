@@ -9,10 +9,10 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/storage/stores/shipper/storage"
-	"github.com/grafana/loki/pkg/storage/stores/shipper/testutil"
-	util_log "github.com/grafana/loki/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/stores/shipper/storage"
+	"github.com/frelon/loki/v2/pkg/storage/stores/shipper/testutil"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
 )
 
 const tableName = "test"
@@ -69,7 +69,7 @@ func TestIndexSet_Init(t *testing.T) {
 
 	// change a boltdb file to text file which would fail to open.
 	indexSetPathPathInCache := filepath.Join(tempDir, cacheDirName, tableName, userID)
-	require.NoError(t, ioutil.WriteFile(filepath.Join(indexSetPathPathInCache, "0"), []byte("invalid boltdb file"), 0666))
+	require.NoError(t, ioutil.WriteFile(filepath.Join(indexSetPathPathInCache, "0"), []byte("invalid boltdb file"), 0o666))
 
 	// check index set with a corrupt file which should get downloaded again from storage
 	checkIndexSet()

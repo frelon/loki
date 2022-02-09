@@ -1,4 +1,4 @@
-module github.com/grafana/loki
+module github.com/frelon/loki/v2
 
 go 1.17
 

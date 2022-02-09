@@ -16,10 +16,10 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaveworks/common/user"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/storage/chunk/local"
-	"github.com/grafana/loki/pkg/storage/stores/shipper/storage"
-	"github.com/grafana/loki/pkg/storage/stores/shipper/testutil"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/local"
+	"github.com/frelon/loki/v2/pkg/storage/stores/shipper/storage"
+	"github.com/frelon/loki/v2/pkg/storage/stores/shipper/testutil"
 )
 
 const (
@@ -99,7 +99,7 @@ func TestLoadTable(t *testing.T) {
 
 	// change a boltdb file to text file which would fail to open.
 	invalidFilePath := filepath.Join(tablePath, "invalid")
-	require.NoError(t, ioutil.WriteFile(invalidFilePath, []byte("invalid boltdb file"), 0666))
+	require.NoError(t, ioutil.WriteFile(invalidFilePath, []byte("invalid boltdb file"), 0o666))
 
 	// verify that changed boltdb file can't be opened.
 	_, err = local.OpenBoltdbFile(invalidFilePath)

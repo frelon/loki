@@ -18,7 +18,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaveworks/common/httpgrpc"
 
-	"github.com/grafana/loki/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logproto"
 )
 
 type fakePusher struct {
@@ -112,7 +112,6 @@ func TestPusherAppendable(t *testing.T) {
 			require.NoError(t, a.Commit())
 
 			require.Equal(t, tc.expectedTS, pusher.request.Timeseries[0].Samples[0].TimestampMs)
-
 		})
 	}
 }

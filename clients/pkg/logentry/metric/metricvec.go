@@ -4,7 +4,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/grafana/loki/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util"
 
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/model"
@@ -12,7 +12,7 @@ import (
 
 // Expirable allows checking if something has exceeded the provided maxAge based on the provided currentTime
 type Expirable interface {
-	HasExpired(currentTimeSec int64, maxAgeSec int64) bool
+	HasExpired(currentTimeSec, maxAgeSec int64) bool
 }
 
 type metricVec struct {

@@ -10,20 +10,20 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	promRules "github.com/prometheus/prometheus/rules"
 
-	configClient "github.com/grafana/loki/pkg/configs/client"
-	"github.com/grafana/loki/pkg/ruler/rulestore"
-	"github.com/grafana/loki/pkg/ruler/rulestore/bucketclient"
-	"github.com/grafana/loki/pkg/ruler/rulestore/configdb"
-	"github.com/grafana/loki/pkg/ruler/rulestore/local"
-	"github.com/grafana/loki/pkg/ruler/rulestore/objectclient"
-	"github.com/grafana/loki/pkg/storage/bucket"
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/storage/chunk/aws"
-	"github.com/grafana/loki/pkg/storage/chunk/azure"
-	"github.com/grafana/loki/pkg/storage/chunk/gcp"
-	"github.com/grafana/loki/pkg/storage/chunk/hedging"
-	"github.com/grafana/loki/pkg/storage/chunk/openstack"
-	"github.com/grafana/loki/pkg/storage/chunk/storage"
+	configClient "github.com/frelon/loki/v2/pkg/configs/client"
+	"github.com/frelon/loki/v2/pkg/ruler/rulestore"
+	"github.com/frelon/loki/v2/pkg/ruler/rulestore/bucketclient"
+	"github.com/frelon/loki/v2/pkg/ruler/rulestore/configdb"
+	"github.com/frelon/loki/v2/pkg/ruler/rulestore/local"
+	"github.com/frelon/loki/v2/pkg/ruler/rulestore/objectclient"
+	"github.com/frelon/loki/v2/pkg/storage/bucket"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/aws"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/azure"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/gcp"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/hedging"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/openstack"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/storage"
 )
 
 // RuleStoreConfig configures a rule store.
@@ -120,7 +120,6 @@ func NewLegacyRuleStore(cfg RuleStoreConfig, hedgeCfg hedging.Config, clientMetr
 func NewRuleStore(ctx context.Context, cfg rulestore.Config, cfgProvider bucket.TenantConfigProvider, loader promRules.GroupLoader, logger log.Logger, reg prometheus.Registerer) (rulestore.RuleStore, error) {
 	if cfg.Backend == configdb.Name {
 		c, err := configClient.New(cfg.ConfigDB)
-
 		if err != nil {
 			return nil, err
 		}

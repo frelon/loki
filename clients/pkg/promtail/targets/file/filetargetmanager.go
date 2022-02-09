@@ -20,13 +20,13 @@ import (
 	"github.com/prometheus/prometheus/model/labels"
 	"github.com/prometheus/prometheus/model/relabel"
 
-	"github.com/grafana/loki/clients/pkg/logentry/stages"
-	"github.com/grafana/loki/clients/pkg/promtail/api"
-	"github.com/grafana/loki/clients/pkg/promtail/positions"
-	"github.com/grafana/loki/clients/pkg/promtail/scrapeconfig"
-	"github.com/grafana/loki/clients/pkg/promtail/targets/target"
+	"github.com/frelon/loki/v2/clients/pkg/logentry/stages"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/api"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/positions"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/scrapeconfig"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/targets/target"
 
-	"github.com/grafana/loki/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util"
 )
 
 const (
@@ -274,14 +274,14 @@ func (s *targetSyncer) sync(groups []*targetgroup.Group, targetEventHandler chan
 			level.Debug(s.log).Log("msg", "new target", "labels", t)
 
 			discoveredLabels := group.Labels.Merge(t)
-			var labelMap = make(map[string]string)
+			labelMap := make(map[string]string)
 			for k, v := range discoveredLabels.Clone() {
 				labelMap[string(k)] = string(v)
 			}
 
 			processedLabels := relabel.Process(labels.FromMap(labelMap), s.relabelConfig...)
 
-			var labels = make(model.LabelSet)
+			labels := make(model.LabelSet)
 			for k, v := range processedLabels.Map() {
 				labels[model.LabelName(k)] = model.LabelValue(v)
 			}
@@ -387,7 +387,7 @@ func (s *targetSyncer) sendFileCreateEvent(event fsnotify.Event) {
 	}
 }
 
-func (s *targetSyncer) newTarget(path string, labels model.LabelSet, discoveredLabels model.LabelSet, fileEventWatcher chan fsnotify.Event, targetEventHandler chan fileTargetEvent) (*FileTarget, error) {
+func (s *targetSyncer) newTarget(path string, labels, discoveredLabels model.LabelSet, fileEventWatcher chan fsnotify.Event, targetEventHandler chan fileTargetEvent) (*FileTarget, error) {
 	return NewFileTarget(s.metrics, s.log, s.entryHandler, s.positions, path, labels, discoveredLabels, s.targetConfig, fileEventWatcher, targetEventHandler)
 }
 

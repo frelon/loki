@@ -16,13 +16,13 @@ import (
 	"github.com/prometheus/common/model"
 	"github.com/prometheus/prometheus/model/labels"
 
-	"github.com/grafana/loki/pkg/storage/chunk/cache"
-	"github.com/grafana/loki/pkg/storage/chunk/encoding"
-	"github.com/grafana/loki/pkg/util"
-	"github.com/grafana/loki/pkg/util/extract"
-	util_log "github.com/grafana/loki/pkg/util/log"
-	"github.com/grafana/loki/pkg/util/spanlogger"
-	"github.com/grafana/loki/pkg/util/validation"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/cache"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/encoding"
+	"github.com/frelon/loki/v2/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util/extract"
+	util_log "github.com/frelon/loki/v2/pkg/util/log"
+	"github.com/frelon/loki/v2/pkg/util/spanlogger"
+	"github.com/frelon/loki/v2/pkg/util/validation"
 )
 
 var (
@@ -257,7 +257,6 @@ func (c *baseStore) LabelValuesForMetricName(ctx context.Context, userID string,
 	}
 
 	return nil, errors.New("unimplemented: Matchers are not supported by chunk store")
-
 }
 
 // LabelNamesForMetricName retrieves all label names for a metric name.
@@ -293,7 +292,7 @@ func (c *store) LabelNamesForMetricName(ctx context.Context, userID string, from
 	return labelNamesFromChunks(allChunks), nil
 }
 
-func (c *baseStore) validateQueryTimeRange(ctx context.Context, userID string, from *model.Time, through *model.Time) (bool, error) {
+func (c *baseStore) validateQueryTimeRange(ctx context.Context, userID string, from, through *model.Time) (bool, error) {
 	//nolint:ineffassign,staticcheck //Leaving ctx even though we don't currently use it, we want to make it available for when we might need it and hopefully will ensure us using the correct context at that time
 
 	if *through < *from {
@@ -322,7 +321,7 @@ func (c *baseStore) validateQueryTimeRange(ctx context.Context, userID string, f
 	return false, nil
 }
 
-func (c *baseStore) validateQuery(ctx context.Context, userID string, from *model.Time, through *model.Time, matchers []*labels.Matcher) (string, []*labels.Matcher, bool, error) {
+func (c *baseStore) validateQuery(ctx context.Context, userID string, from, through *model.Time, matchers []*labels.Matcher) (string, []*labels.Matcher, bool, error) {
 	shortcut, err := c.validateQueryTimeRange(ctx, userID, from, through)
 	if err != nil {
 		return "", nil, false, err

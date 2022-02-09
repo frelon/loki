@@ -7,8 +7,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/grafana/loki/pkg/ruler/rulespb"
-	"github.com/grafana/loki/pkg/ruler/rulestore"
+	"github.com/frelon/loki/v2/pkg/ruler/rulespb"
+	"github.com/frelon/loki/v2/pkg/ruler/rulestore"
 )
 
 type mockRuleStore struct {
@@ -195,7 +195,7 @@ func (m *mockRuleStore) LoadRuleGroups(ctx context.Context, groupsToLoad map[str
 	return nil
 }
 
-func (m *mockRuleStore) GetRuleGroup(_ context.Context, userID string, namespace string, group string) (*rulespb.RuleGroupDesc, error) {
+func (m *mockRuleStore) GetRuleGroup(_ context.Context, userID, namespace, group string) (*rulespb.RuleGroupDesc, error) {
 	m.mtx.Lock()
 	defer m.mtx.Unlock()
 
@@ -217,7 +217,7 @@ func (m *mockRuleStore) GetRuleGroup(_ context.Context, userID string, namespace
 	return nil, rulestore.ErrGroupNotFound
 }
 
-func (m *mockRuleStore) SetRuleGroup(ctx context.Context, userID string, namespace string, group *rulespb.RuleGroupDesc) error {
+func (m *mockRuleStore) SetRuleGroup(ctx context.Context, userID, namespace string, group *rulespb.RuleGroupDesc) error {
 	m.mtx.Lock()
 	defer m.mtx.Unlock()
 
@@ -242,7 +242,7 @@ func (m *mockRuleStore) SetRuleGroup(ctx context.Context, userID string, namespa
 	return nil
 }
 
-func (m *mockRuleStore) DeleteRuleGroup(ctx context.Context, userID string, namespace string, group string) error {
+func (m *mockRuleStore) DeleteRuleGroup(ctx context.Context, userID, namespace, group string) error {
 	m.mtx.Lock()
 	defer m.mtx.Unlock()
 

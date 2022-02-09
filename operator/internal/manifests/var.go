@@ -3,10 +3,11 @@ package manifests
 import (
 	"fmt"
 
-	"github.com/grafana/loki/operator/internal/manifests/openshift"
 	monitoringv1 "github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/labels"
+
+	"github.com/frelon/loki/v2/operator/internal/manifests/openshift"
 )
 
 const (
@@ -31,7 +32,7 @@ const (
 	EnvRelatedImageGateway = "RELATED_IMAGE_GATEWAY"
 
 	// DefaultContainerImage declares the default fallback for loki image.
-	DefaultContainerImage = "docker.io/grafana/loki:2.4.1"
+	DefaultContainerImage = "docker.io/frelon/loki:2.4.1"
 
 	// DefaultLokiStackGatewayImage declares the default image for lokiStack-gateway.
 	DefaultLokiStackGatewayImage = "quay.io/observatorium/api:latest"

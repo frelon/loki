@@ -12,8 +12,8 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/weaveworks/common/user"
 
-	"github.com/grafana/loki/pkg/storage/chunk"
-	"github.com/grafana/loki/pkg/storage/chunk/cache"
+	"github.com/frelon/loki/v2/pkg/storage/chunk"
+	"github.com/frelon/loki/v2/pkg/storage/chunk/cache"
 )
 
 var ctx = user.InjectOrgID(context.Background(), "1")
@@ -456,7 +456,6 @@ func TestCachingStorageClientStoreQueries(t *testing.T) {
 				sort.Strings(cache.storedKeys)
 				assert.EqualValues(t, expectedQueryKeysInCache, cache.storedKeys)
 			})
-
 		}
 	}
 }

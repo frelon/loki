@@ -13,22 +13,20 @@ import (
 	"github.com/weaveworks/common/httpgrpc"
 	"github.com/weaveworks/common/user"
 
-	"github.com/grafana/loki/pkg/logproto"
-	"github.com/grafana/loki/pkg/logql"
-	"github.com/grafana/loki/pkg/querier/queryrange/queryrangebase"
-	"github.com/grafana/loki/pkg/tenant"
-	"github.com/grafana/loki/pkg/util"
-	"github.com/grafana/loki/pkg/util/spanlogger"
-	"github.com/grafana/loki/pkg/util/validation"
+	"github.com/frelon/loki/v2/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logql"
+	"github.com/frelon/loki/v2/pkg/querier/queryrange/queryrangebase"
+	"github.com/frelon/loki/v2/pkg/tenant"
+	"github.com/frelon/loki/v2/pkg/util"
+	"github.com/frelon/loki/v2/pkg/util/spanlogger"
+	"github.com/frelon/loki/v2/pkg/util/validation"
 )
 
 const (
 	limitErrTmpl = "maximum of series (%d) reached for a single query"
 )
 
-var (
-	ErrMaxQueryParalellism = fmt.Errorf("querying is disabled, please contact your Loki operator")
-)
+var ErrMaxQueryParalellism = fmt.Errorf("querying is disabled, please contact your Loki operator")
 
 // Limits extends the cortex limits interface with support for per tenant splitby parameters
 type Limits interface {

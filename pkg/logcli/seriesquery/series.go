@@ -8,8 +8,8 @@ import (
 	"text/tabwriter"
 	"time"
 
-	"github.com/grafana/loki/pkg/logcli/client"
-	"github.com/grafana/loki/pkg/loghttp"
+	"github.com/frelon/loki/v2/pkg/logcli/client"
+	"github.com/frelon/loki/v2/pkg/loghttp"
 )
 
 // SeriesQuery contains all necessary fields to execute label queries and print out the results
@@ -73,7 +73,6 @@ func (q *SeriesQuery) DoSeries(c client.Client) {
 			fmt.Println(value)
 		}
 	}
-
 }
 
 // GetSeries returns an array of label sets

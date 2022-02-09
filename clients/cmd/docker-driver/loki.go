@@ -10,11 +10,11 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/model"
 
-	"github.com/grafana/loki/clients/pkg/logentry/stages"
-	"github.com/grafana/loki/clients/pkg/promtail/api"
-	"github.com/grafana/loki/clients/pkg/promtail/client"
+	"github.com/frelon/loki/v2/clients/pkg/logentry/stages"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/api"
+	"github.com/frelon/loki/v2/clients/pkg/promtail/client"
 
-	"github.com/grafana/loki/pkg/logproto"
+	"github.com/frelon/loki/v2/pkg/logproto"
 )
 
 var jobName = "docker"
@@ -43,7 +43,7 @@ func New(logCtx logger.Info, logger log.Logger) (logger.Logger, error) {
 		return nil, err
 	}
 	var handler api.EntryHandler = c
-	var stop = func() {}
+	stop := func() {}
 	if len(cfg.pipeline.PipelineStages) != 0 {
 		pipeline, err := stages.NewPipeline(logger, cfg.pipeline.PipelineStages, &jobName, prometheus.DefaultRegisterer)
 		if err != nil {
